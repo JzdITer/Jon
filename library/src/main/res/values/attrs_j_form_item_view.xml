@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JFormItemView">
+        <!-- 左侧TextView属性 -->
+        <attr name="left_text" format="string" />
+        <attr name="left_icon" format="reference" />
+        <attr name="left_text_size" format="dimension" />
+        <attr name="left_text_color" format="color|reference" />
+        <attr name="left_icon_padding" format="dimension" />
+        <attr name="left_padding_start" format="dimension" />
+        <attr name="left_padding_top" format="dimension" />
+        <attr name="left_padding_end" format="dimension" />
+        <attr name="left_padding_bottom" format="dimension" />
+        <attr name="left_visibility">
+            <enum name="visible" value="1" />
+            <enum name="gone" value="2" />
+            <enum name="invisible" value="3" />
+        </attr>
+        <!-- 中间TextView属性 -->
+        <attr name="content_text" format="string" />
+        <attr name="content_text_size" format="dimension" />
+        <attr name="content_text_color" format="color" />
+        <attr name="content_padding_start" format="dimension" />
+        <attr name="content_padding_top" format="dimension" />
+        <attr name="content_padding_end" format="dimension" />
+        <attr name="content_padding_bottom" format="dimension" />
+        <attr name="content_hint" format="string" />
+        <attr name="content_text_color_hint" format="color" />
+        <!-- 右侧ImageView属性 -->-
+        <attr name="right_icon" format="reference" />
+        <attr name="right_padding_start" format="dimension" />
+        <attr name="right_padding_top" format="dimension" />
+        <attr name="right_padding_end" format="dimension" />
+        <attr name="right_padding_bottom" format="dimension" />
+        <attr name="right_visibility">
+            <enum name="visible" value="1" />
+            <enum name="gone" value="2" />
+            <enum name="invisible" value="3" />
+        </attr>
+        <attr name="right_text_size" format="dimension" />
+        <attr name="right_text_color" format="color" />
+        <attr name="right_icon_padding" format="dimension" />
+        <attr name="right_text" format="string" />
+        <!-- 分割线属性 -->
+        <attr name="divider_color" format="color" />
+        <attr name="divider_padding_start" format="dimension" />
+        <attr name="divider_padding_top" format="dimension" />
+        <attr name="divider_padding_end" format="dimension" />
+        <attr name="divider_padding_bottom" format="dimension" />
+        <attr name="divider_height" format="dimension" />
+        <attr name="divider_visibility">
+            <enum name="visible" value="1"/>
+            <enum name="gone" value="2"/>
+            <enum name="invisible" value="3"/>
+        </attr>
+        <!-- 整体 -->
+        <attr name="item_padding" format="dimension" />
+        <attr name="item_padding_start" format="dimension" />
+        <attr name="item_padding_top" format="dimension" />
+        <attr name="item_padding_end" format="dimension" />
+        <attr name="item_padding_bottom" format="dimension" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka'
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.jzd.android.jon"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dokka {
+        moduleName = 'Jon'
+        outputFormat = 'javadoc'
+        outputDirectory = "$buildDir/javadoc"
+
+        skipEmptyPackages = true  //不为空包创建索引页
+        //   ./gradlew dokka
+    }
+    task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+        moduleName = 'Jon'
+        outputFormat = "javadoc"
+        outputDirectory = "$buildDir/dokkaJavadoc"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation project(':library')
+}
+repositories {
+    mavenCentral()
+}

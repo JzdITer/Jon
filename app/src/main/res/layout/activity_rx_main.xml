@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.rx.ui.RxMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/mEdtInput"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="输入"
+            />
+
+        <TextView
+            android:id="@+id/mTvOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="输出"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/mBtnJust"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Just"/>
+
+    <Button
+        android:id="@+id/mBtnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create"/>
+
+    <Button
+        android:id="@+id/mBtnFrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From"/>
+
+    <Button
+        android:id="@+id/mBtnRepeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Repeat"/>
+
+    <Button
+        android:id="@+id/mBtnDefer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Defer"/>
+
+    <Button
+        android:id="@+id/mBtnTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time"/>
+    <Button
+        android:id="@+id/mBtnInterval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Interval"/>
+</LinearLayout>

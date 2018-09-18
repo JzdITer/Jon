@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mEdtId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="id"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/mEdtChannelId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="channelId"/>
+
+        <EditText
+            android:id="@+id/mEdtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"/>
+
+        <EditText
+            android:id="@+id/mEdtContentText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ContentText"/>
+
+        <EditText
+            android:id="@+id/mEdtContentInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ContentInfo"/>
+
+        <EditText
+            android:id="@+id/mEdtTicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ticker"/>
+
+        <EditText
+            android:id="@+id/mEdtNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number"
+            android:inputType="number"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/mCbAutoCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="AutoCancel"/>
+
+            <CheckBox
+                android:id="@+id/mCbOnGoing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="OnGoing"/>
+
+            <CheckBox
+                android:id="@+id/mCbColorized"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Colorized"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/mCbOnlyAlertOnce"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="OnlyAlertOnce"/>
+
+            <CheckBox
+                android:id="@+id/mCbLargerIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="LargerIcon"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/mCbDefAll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEFAULT_ALL"/>
+
+            <CheckBox
+                android:id="@+id/mCbDefSound"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEFAULT_SOUND"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/mCbDefVibrate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEFAULT_VIBRATE"/>
+
+            <CheckBox
+                android:id="@+id/mCbDefLights"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DEFAULT_LIGHTS"/>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/mBtnNot1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="普通"/>
+
+        <Button
+            android:id="@+id/mBtnNot2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="折叠"/>
+
+        <Button
+            android:id="@+id/mBtnNot3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="悬挂"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/mEdtCancelId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/mBtnClear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Clear"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

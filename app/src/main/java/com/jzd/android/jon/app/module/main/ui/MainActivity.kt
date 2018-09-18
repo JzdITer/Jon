@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.app.adapter.ModuleAdapter
+import com.jzd.android.jon.app.module.japp.ui.JAppActivity
 import com.jzd.android.jon.app.module.loader.ui.JLoaderActivity
 import com.jzd.android.jon.app.module.notification.ui.NotificationWatchActivity
 import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity()
         data.add(ModuleBean("RecyclerView", RecyclerViewActivity::class.java))
         data.add(ModuleBean("JLoader", JLoaderActivity::class.java))
         data.add(ModuleBean("Notification", NotificationWatchActivity::class.java))
+        data.add(ModuleBean("JApp", JAppActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

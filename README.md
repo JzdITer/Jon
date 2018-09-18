@@ -16,24 +16,14 @@ allprojects {
 Add the dependency
 ```
 dependencies {
-	        implementation 'com.github.JzdITer:Jon:1.0.0'
+	        implementation 'com.github.JzdITer:Jon:1.0.1'
 	}
 ```
 ## 解决包冲突
 ```
-implementation ('com.github.JzdITer:Jon:1.0.0',{
+implementation ('com.github.JzdITer:Jon:1.0.1',{
         exclude group:'com.android.support'
     })
 ```
 
-
-
-
-
-## core
-### Permission(权限模块)
-
-## utils
-### JNotification(通知栏工具)
-
-    
+具体使用方法，请参考app模块下的测试代码

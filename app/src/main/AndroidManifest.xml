@@ -38,6 +38,8 @@
         </activity>
         <activity android:name=".module.notification.ui.NotificationWatchActivity">
         </activity>
+        <activity android:name=".module.japp.ui.JAppActivity">
+        </activity>
     </application>
 
 </manifest>

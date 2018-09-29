@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationManager
 import android.content.Context
 import android.util.SparseArray
+import com.jzd.android.jon.core.Jon
 
 /**
  * Notification工具类
@@ -74,11 +75,11 @@ class JNotification private constructor()
         private var mCurId = 0
         private var mNotificationManager: NotificationManager? = null
 
-        fun getInstance(context: Context): JNotification
+        fun getInstance(): JNotification
         {
             if (mNotificationManager == null)
             {
-                mNotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                mNotificationManager = Jon.mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             }
             return Holder.INSTANCE
         }

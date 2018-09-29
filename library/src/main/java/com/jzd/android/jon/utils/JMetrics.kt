@@ -1,7 +1,7 @@
 package com.jzd.android.jon.utils
 
-import android.content.Context
 import android.util.DisplayMetrics
+import com.jzd.android.jon.core.Jon
 
 /**
  * 度量相关工具类
@@ -17,65 +17,65 @@ class JMetrics
         /**
          * 屏幕宽
          */
-        fun getWidth(context: Context): Int
+        fun getWidth(): Int
         {
-            return context.resources.displayMetrics.widthPixels
+            return Jon.mContext.resources.displayMetrics.widthPixels
         }
 
         /**
          * 屏幕高
          */
-        fun getHeight(context: Context): Int
+        fun getHeight(): Int
         {
-            return context.resources.displayMetrics.heightPixels
+            return Jon.mContext.resources.displayMetrics.heightPixels
         }
 
         /**
          * dp转px
          */
-        fun dp2px(context: Context, dp: Float): Int
+        fun dp2px(dp: Float): Int
         {
-            return (context.resources.displayMetrics.density * dp).toInt()
+            return (Jon.mContext.resources.displayMetrics.density * dp).toInt()
         }
 
         /**
          * px转dp
          */
-        fun px2dp(context: Context, px: Int): Float
+        fun px2dp(px: Int): Float
         {
-            return px / context.resources.displayMetrics.density
+            return px / Jon.mContext.resources.displayMetrics.density
         }
 
         /**
          * sp转px
          */
-        fun sp2px(context: Context, sp: Float): Int
+        fun sp2px(sp: Float): Int
         {
-            return (context.resources.displayMetrics.density * sp).toInt()
+            return (Jon.mContext.resources.displayMetrics.density * sp).toInt()
         }
 
         /**
          * px转sp
          */
-        fun px2sp(context: Context, px: Int): Float
+        fun px2sp(px: Int): Float
         {
-            return px / context.resources.displayMetrics.density
+            return px / Jon.mContext.resources.displayMetrics.density
         }
 
         /**
          * 得到display metrics
          */
-        fun getDisplayMetrics(context: Context): DisplayMetrics
+        fun getDisplayMetrics(): DisplayMetrics
         {
-            return context.resources.displayMetrics
+            return Jon.mContext.resources.displayMetrics
         }
 
         /**
          * 得到density
          */
-        fun getDensity(context: Context): Float
+        fun getDensity(): Float
         {
-            return context.resources.displayMetrics.density
+            return Jon.mContext.resources.displayMetrics.density
         }
 
         /**
@@ -87,9 +87,9 @@ class JMetrics
          * xhdpi:320
          * xxhdpi:480
          */
-        fun getDensityDpi(context: Context): Int
+        fun getDensityDpi(): Int
         {
-            return context.resources.displayMetrics.densityDpi
+            return Jon.mContext.resources.displayMetrics.densityDpi
         }
 
 

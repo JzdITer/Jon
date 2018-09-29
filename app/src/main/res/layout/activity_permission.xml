@@ -9,7 +9,13 @@
 
     <Button
         android:id="@+id/mBtnCamera"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="摄像头，原始"/>
+
+    <Button
+        android:id="@+id/mBtnCamera2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="摄像头"/>
 </LinearLayout>

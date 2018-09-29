@@ -36,18 +36,18 @@ class NotificationWatchActivity : BaseActivity()
             R.id.mBtnShow ->
             {
                 val initNotification = initNotification()
-                JNotification.getInstance(this).show(initNotification)
+                JNotification.getInstance().show(initNotification)
             }
             R.id.mBtnDownload ->
             {
                 val initNotification = initDownloadNotification(0)
-                val show = JNotification.getInstance(this).show(initNotification)
+                val show = JNotification.getInstance().show(initNotification)
                 Observable.interval(1, 1, TimeUnit.SECONDS)
                         .subscribe(object : Observer<Long>
                         {
                             override fun onComplete()
                             {
-                                JNotification.getInstance(this@NotificationWatchActivity).cancel(show)
+                                JNotification.getInstance().cancel(show)
                             }
 
                             override fun onSubscribe(d: Disposable)
@@ -63,7 +63,7 @@ class NotificationWatchActivity : BaseActivity()
                                 } else
                                 {
                                     val initDownloadNotification = initDownloadNotification(t.toInt().times(10))
-                                    JNotification.getInstance(this@NotificationWatchActivity).show(show, initDownloadNotification)
+                                    JNotification.getInstance().show(show, initDownloadNotification)
                                 }
                             }
 
@@ -74,7 +74,7 @@ class NotificationWatchActivity : BaseActivity()
             }
             R.id.mBtnCancel ->
             {
-                JNotification.getInstance(this).cancel()
+                JNotification.getInstance().cancel()
             }
             R.id.mBtnMain ->
             {
@@ -94,7 +94,7 @@ class NotificationWatchActivity : BaseActivity()
             channel.enableLights(true) // 桌面icon上角标
             // channel.lightColor = Color.RED
             channel.setShowBadge(true) // 长按弹出详情
-            JNotification.getInstance(this).getManager()?.createNotificationChannel(channel)
+            JNotification.getInstance().getManager()?.createNotificationChannel(channel)
             NotificationCompat.Builder(this, channel.id)
         } else
         {
@@ -115,7 +115,7 @@ class NotificationWatchActivity : BaseActivity()
             channel.enableLights(true) // 桌面icon上角标
             // channel.lightColor = Color.RED
             channel.setShowBadge(true) // 长按弹出详情
-            JNotification.getInstance(this).getManager()?.createNotificationChannel(channel)
+            JNotification.getInstance().getManager()?.createNotificationChannel(channel)
             NotificationCompat.Builder(this, channel.id)
         } else
         {

@@ -1,6 +1,6 @@
-package com.jzd.android.jon.core.bean
+package com.jzd.android.jon.core.module.jmap
 
-import com.jzd.android.jon.core.impl.JMapImpl
+import com.jzd.android.jon.core.module.jmap.JMapImpl
 
 
 /**

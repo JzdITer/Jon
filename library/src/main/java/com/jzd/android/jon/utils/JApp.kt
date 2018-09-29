@@ -3,6 +3,10 @@ package com.jzd.android.jon.utils
 import android.app.ActivityManager
 import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.support.v4.content.ContextCompat.startActivity
+import com.jzd.android.jon.core.Jon
 
 /**
  * 应用运行时信息
@@ -13,14 +17,15 @@ class JApp
 {
     companion object
     {
-        @Suppress("DEPRECATION")
+
         /**
          * 得到栈顶的Activity
          * 通过 getTopActivity() == componentName 来判断
          */
-        fun getTopActivity(context: Context): ComponentName?
+        @Suppress("DEPRECATION")
+        fun getTopActivity(): ComponentName?
         {
-            val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val manager = Jon.mContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             val runningTasks = manager.getRunningTasks(1)
             if (runningTasks != null && runningTasks.isNotEmpty())
             {
@@ -29,26 +34,39 @@ class JApp
             return null
         }
 
-        @Suppress("DEPRECATION")
+
         /**
          * 判断是否在运行
          */
-        fun isRunning(context: Context):Boolean
+        @Suppress("DEPRECATION")
+        fun isRunning(): Boolean
         {
-            val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val manager = Jon.mContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             // 貌似只能获取本App的信息
             val runningTasks = manager.getRunningTasks(10)
-            if(runningTasks != null)
+            if (runningTasks != null)
             {
                 for (task in runningTasks)
                 {
-                    if(task.topActivity.packageName == context.packageName || task.baseActivity.packageName == context.packageName)
+                    if (task.topActivity.packageName == Jon.mContext.packageName || task.baseActivity.packageName == Jon.mContext.packageName)
                     {
                         return true
                     }
                 }
             }
             return false
+        }
+
+        /**
+         * 跳转设置界面
+         */
+        fun goSetting()
+        {
+            val intent = Intent()
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+            intent.data = Uri.fromParts("package", Jon.mContext.packageName, null)
+            startActivity(Jon.mContext, intent, null)
         }
     }
 }

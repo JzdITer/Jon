@@ -25,11 +25,11 @@ class JAppActivity : BaseActivity()
         {
             R.id.mBtnRunning ->
             {
-                JLog.d("running:${JApp.isRunning(this)}")
+                JLog.d("running:${JApp.isRunning()}")
             }
             R.id.mBtnTopActivity ->
             {
-                JLog.d("topActivity:${JApp.getTopActivity(this)}")
+                JLog.d("topActivity:${JApp.getTopActivity()}")
             }
         }
     }

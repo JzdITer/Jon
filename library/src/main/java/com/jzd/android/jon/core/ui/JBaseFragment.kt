@@ -1,17 +1,22 @@
 package com.jzd.android.jon.core.ui
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jzd.android.jon.core.impl.IContextDelegate
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PERMISSION
+import com.jzd.android.jon.core.module.permission.JPermission
+import com.jzd.android.jon.core.module.permission.PermissionListener
 
 /**
  * Fragment父类 封装系统级Api
  * @author Jzd
  * @since 1.0
  */
-open class JBaseFragment : Fragment(), View.OnClickListener
+open class JBaseFragment : Fragment(), View.OnClickListener, IContextDelegate
 {
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -22,7 +27,44 @@ open class JBaseFragment : Fragment(), View.OnClickListener
     {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
-    
+
+    /**
+     * 请求权限
+     */
+    fun requestPermission(listener: PermissionListener, vararg permissions: String)
+    {
+        mPermissionListener = listener
+        val granted = !JPermission.lackPermission(permissions)
+
+        if (granted)
+        {
+            listener.onResult(granted)
+        } else
+        {
+            requestPermissions(permissions, REQUEST_CODE_PERMISSION)
+        }
+    }
+
+    private var mPermissionListener: PermissionListener? = null
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+    {
+        if (requestCode == REQUEST_CODE_PERMISSION && mPermissionListener != null)
+        {
+            for (i in permissions.indices)
+            {
+                // 部分权限未授权
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED)
+                {
+                    mPermissionListener!!.onResult(false)
+                    return
+                }
+            }
+            // 都已授权
+            mPermissionListener!!.onResult(true)
+        }
+    }
+
 
     /**
      * 默认实现View.OnClickListener接口，根据需要重写

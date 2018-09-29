@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.jzd.android.jon.app.R
-import com.jzd.android.jon.core.impl.JMapImpl
+import com.jzd.android.jon.R
+import com.jzd.android.jon.core.module.jmap.JMapImpl
 import com.jzd.android.jon.utils.JMetrics
 import com.jzd.android.jon.widget.util.JWidgetUtil
 
@@ -55,7 +55,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             mTvItemLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, leftTextSize.toFloat())
             val leftTextColor = attributeSet.getColor(R.styleable.JFormItemView_left_text_color, defTextColor)
             mTvItemLeft.setTextColor(leftTextColor)
-            val leftIconPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_left_icon_padding, JMetrics.dp2px(context, 3F))
+            val leftIconPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_left_icon_padding, JMetrics.dp2px(3F))
             mTvItemLeft.compoundDrawablePadding = leftIconPadding
             val leftPaddingStart = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_left_padding_start, 0)
             val leftPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_left_padding_top, 0)
@@ -78,9 +78,9 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             mTvItemContext.setTextSize(TypedValue.COMPLEX_UNIT_PX, contentTextSize.toFloat())
             val contentTextColor = attributeSet.getColor(R.styleable.JFormItemView_content_text_color, defTextColor)
             mTvItemContext.setTextColor(contentTextColor)
-            val contentPaddingStart = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_start, JMetrics.dp2px(context, 5F))
+            val contentPaddingStart = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_start, JMetrics.dp2px(5F))
             val contentPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_top, 0)
-            val contentPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_end, JMetrics.dp2px(context, 5F))
+            val contentPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_end, JMetrics.dp2px(5F))
             val contentPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_bottom, 0)
             mTvItemContext.setPadding(contentPaddingStart, contentPaddingTop, contentPaddingEnd, contentPaddingBottom)
             val contentText = attributeSet.getString(R.styleable.JFormItemView_content_text)
@@ -110,7 +110,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             mTvItemRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, rightTextSize.toFloat())
             val rightTextColor = attributeSet.getColor(R.styleable.JFormItemView_right_text_color, defTextColor)
             mTvItemRight.setTextColor(rightTextColor)
-            val rightIconPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_right_icon_padding, JMetrics.dp2px(context, 3F))
+            val rightIconPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_right_icon_padding, JMetrics.dp2px(3F))
             mTvItemRight.compoundDrawablePadding = rightIconPadding
             val rightText = attributeSet.getString(R.styleable.JFormItemView_right_text)
             mTvItemRight.text = rightText
@@ -120,7 +120,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val dividerColor = attributeSet.getColor(R.styleable.JFormItemView_divider_color, Color.BLACK)
             mDivider.setBackgroundColor(dividerColor)
             val dividerPaddingStart = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_divider_padding_start, 0)
-            val dividerPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_divider_padding_top, JMetrics.dp2px(context, 3F))
+            val dividerPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_divider_padding_top, JMetrics.dp2px(3F))
             val dividerPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_divider_padding_end, 0)
             val dividerPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_divider_padding_bottom, 0)
             val layoutParams = mDivider.layoutParams as LinearLayout.LayoutParams
@@ -138,7 +138,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
             // 整体
             mLayoutRoot = view.findViewById(R.id.mLayoutRoot)
-            val itemPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding, JMetrics.dp2px(context, 5F))
+            val itemPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding, JMetrics.dp2px(5F))
             var itemPaddingStart = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_start, 0)
             var itemPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_top, 0)
             var itemPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_end, 0)

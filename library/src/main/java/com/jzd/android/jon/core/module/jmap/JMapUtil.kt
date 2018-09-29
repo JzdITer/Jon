@@ -1,6 +1,4 @@
-package com.jzd.android.jon.core.impl
-
-import com.jzd.android.jon.core.bean.JMap
+package com.jzd.android.jon.core.module.jmap
 
 /**
  * 将Any转换成JMap

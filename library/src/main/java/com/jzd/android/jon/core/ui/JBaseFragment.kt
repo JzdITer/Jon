@@ -28,6 +28,7 @@ open class JBaseFragment : Fragment(), View.OnClickListener, IContextDelegate
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    // 权限-------------------------------------------------------------------------------------
     /**
      * 请求权限
      */
@@ -64,8 +65,10 @@ open class JBaseFragment : Fragment(), View.OnClickListener, IContextDelegate
             mPermissionListener!!.onResult(true)
         }
     }
+    // ----------------------------------------------------------------------------------------
 
 
+    // 点击--------------------------------------------------------------------------------
     /**
      * 默认实现View.OnClickListener接口，根据需要重写
      */
@@ -83,4 +86,5 @@ open class JBaseFragment : Fragment(), View.OnClickListener, IContextDelegate
             it.setOnClickListener(this)
         }
     }
+    // ----------------------------------------------------------------------------------------
 }

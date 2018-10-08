@@ -64,15 +64,8 @@ public class JLog
     {
         if(sDebug)
         {
-            Log.e(TAG, e.toString());
-        }
-    }
-
-    public static void e(Throwable e, String tag)
-    {
-        if(sDebug)
-        {
-            Log.e(tag, e.toString());
+            e.printStackTrace();
+            //Log.e(TAG, e.toString());
         }
     }
 

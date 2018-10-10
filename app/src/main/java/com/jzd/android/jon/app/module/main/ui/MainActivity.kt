@@ -16,6 +16,7 @@ import com.jzd.android.jon.app.module.notification.ui.NotificationWatchActivity
 import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
 import com.jzd.android.jon.app.module.recyclerview.ui.RecyclerViewActivity
 import com.jzd.android.jon.app.module.rx.ui.RxMainActivity
+import com.jzd.android.jon.app.module.tag.ui.TagActivity
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.jutils.app.common.bean.ModuleBean
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,7 +37,7 @@ class MainActivity : BaseActivity()
         {
             override fun onPress(): Boolean
             {
-                return if (mDoubleBackCount-- > 0)
+                return if(mDoubleBackCount-- > 0)
                 {
                     Toast.makeText(mContext, "拦截${mDoubleBackCount}次", Toast.LENGTH_SHORT).show()
                     true
@@ -53,7 +54,7 @@ class MainActivity : BaseActivity()
 
         mAdapter.setOnItemClickListener({ baseQuickAdapter: BaseQuickAdapter<Any, BaseViewHolder>, _: View, i: Int ->
             val moduleBean = baseQuickAdapter.getItem(i) as ModuleBean
-            if (moduleBean.target != null)
+            if(moduleBean.target != null)
             {
                 startActivity(Intent(this, moduleBean.target))
             }
@@ -70,6 +71,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("JLoader", JLoaderActivity::class.java))
         data.add(ModuleBean("Notification", NotificationWatchActivity::class.java))
         data.add(ModuleBean("JApp", JAppActivity::class.java))
+        data.add(ModuleBean("TagView", TagActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

@@ -41,6 +41,8 @@
         </activity>
         <activity android:name=".module.japp.ui.JAppActivity">
         </activity>
+        <activity android:name=".module.tag.ui.TagActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -97,5 +97,199 @@
         android:background="@color/colorAccent"
         />
 
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/mFlexBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:flexWrap="wrap"
+        app:justifyContent="center"
+        >
 
+        <TextView
+            android:id="@+id/mTagMath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_common_radio_button__circle_left"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="数学"/>
+
+        <TextView
+            android:id="@+id/mTagEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginRight="-1dp"
+            android:layout_marginStart="-1dp"
+            android:background="@drawable/drawable_common_radio_button__circle_center"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="大学英语"/>
+
+        <TextView
+            android:id="@+id/mTagProgramming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_common_radio_button__circle_right"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="程序设计"/>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/drawable_common_radio_button__circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="政治"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/drawable_common_radio_button__circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="历史"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/drawable_common_radio_button__circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="地理"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/drawable_common_radio_button__circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="生物"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/drawable_common_radio_button__circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="物理"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/drawable_common_radio_button__circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="滑雪"/>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        />
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:tabBackground="@color/color_black"
+        app:tabIndicatorColor="@color/color_blue"
+        app:tabIndicatorHeight="5dp"
+        app:tabMode="fixed"
+        app:tabPaddingBottom="5dp"
+        app:tabSelectedTextColor="@color/color_green"
+        app:tabTextColor="@color/color_red">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_heart"
+            android:text="标签1"/>
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_heart"
+            android:text="标签2"/>
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标签3"/>
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标签4"/>
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标签5"/>
+    </android.support.design.widget.TabLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"
+        />
+
+    <com.jzd.android.jon.widget.jtag.JTagLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_common_radio_button__circle_left"
+            android:text="自强"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/drawable_common_radio_button__circle_center"
+            android:text="不息"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:background="@drawable/drawable_common_radio_button__circle_right"
+            android:layout_height="wrap_content"
+            android:text="嗯？"/>
+    </com.jzd.android.jon.widget.jtag.JTagLayout>
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </com.jzd.android.jon.widget.JFormItemView>
 </LinearLayout>

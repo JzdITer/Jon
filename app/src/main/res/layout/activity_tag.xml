@@ -270,24 +270,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/drawable_common_radio_button__circle_left"
             android:text="自强"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/drawable_common_radio_button__circle_center"
             android:text="不息"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:background="@drawable/drawable_common_radio_button__circle_right"
             android:layout_height="wrap_content"
             android:text="嗯？"/>
     </com.jzd.android.jon.widget.jtag.JTagLayout>
+
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

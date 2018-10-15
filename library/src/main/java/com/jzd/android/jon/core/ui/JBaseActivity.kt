@@ -49,9 +49,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
      *      finish()
      *   }
      */
-    fun onCreate(savedInstanceState: Bundle?, isSplash: Boolean = false)
+    fun onCreate(savedInstanceState: Bundle?, isSplash: Boolean)
     {
-        onCreate(savedInstanceState)
+        this.onCreate(savedInstanceState)
         if(isSplash)
         {
             if(isTaskRoot)

@@ -17,11 +17,6 @@
         <activity
             android:name=".module.main.ui.MainActivity"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".module.permission.ui.PermissionActivity">
         </activity>
@@ -42,6 +37,13 @@
         <activity android:name=".module.japp.ui.JAppActivity">
         </activity>
         <activity android:name=".module.tag.ui.TagActivity">
+        </activity>
+        <activity android:name=".base.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -25,7 +26,6 @@ import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_FOR_RESULT
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import qiu.niorgai.StatusBarCompat
 
 /**
@@ -33,28 +33,16 @@ import qiu.niorgai.StatusBarCompat
  * @author Jzd
  * @since 1.0
  */
-open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContextDelegate
+open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDelegate
 {
 
     protected lateinit var mContext: Context
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-    }
-
-    /**
-     *  防止重复启动
-     *  if(intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0)
-     *   {
-     *      finish()
-     *   }
-     */
-    fun onCreate(savedInstanceState: Bundle?, isSplash: Boolean)
-    {
-        this.onCreate(savedInstanceState)
-        if(isSplash)
+        if(isSplash())
         {
-            if(isTaskRoot)
+            if(intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0)
             {
                 finish()
             } else
@@ -66,6 +54,14 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
                         .FLAG_FULLSCREEN)
             }
         }
+    }
+
+    /**
+     *  防止重复启动
+     */
+    protected open fun isSplash(): Boolean
+    {
+        return false
     }
 
     override fun setContentView(layoutResID: Int)

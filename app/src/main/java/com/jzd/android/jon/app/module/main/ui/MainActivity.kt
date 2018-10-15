@@ -26,7 +26,7 @@ class MainActivity : BaseActivity()
 
     private val mLayoutManager = GridLayoutManager(this, 2)
     private val mAdapter = ModuleAdapter(R.layout.rv_item_main_module, null)
-    private var mDoubleBackCount = 5
+    private var mDoubleBackCount = 2
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.jzd.android.jon.core.impl.IContextDelegate
@@ -12,13 +11,14 @@ import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PER
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 /**
  * Activity父类 封装系统Api
  * @author Jzd
  * @since 1.0
  */
-open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDelegate
+open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContextDelegate
 {
 
     protected lateinit var mContext: Context
@@ -52,12 +52,12 @@ open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDe
     override fun onBackPressed()
     {
         // 是否可退出
-        if (mIsDoubleBack)
+        if(mIsDoubleBack)
         {
-            if (mOnDoubleBackPressListener != null)
+            if(mOnDoubleBackPressListener != null)
             {
                 val b = mOnDoubleBackPressListener!!.onPress()
-                if (!b)
+                if(!b)
                 {
                     doubleBack(mDoubleBackMessage)
                 }
@@ -77,7 +77,7 @@ open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDe
     private fun doubleBack(message: CharSequence)
     {
         // 判断双击退出事件
-        if (System.currentTimeMillis() - mBackPressTimer >= 2000)
+        if(System.currentTimeMillis() - mBackPressTimer >= 2000)
         {
             Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
             mBackPressTimer = System.currentTimeMillis()
@@ -99,7 +99,7 @@ open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDe
         mPermissionListener = listener
         val granted = !JPermission.lackPermission(permissions)
 
-        if (granted)
+        if(granted)
         {
             listener.onResult(granted)
         } else
@@ -112,12 +112,12 @@ open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDe
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
     {
-        if (requestCode == REQUEST_CODE_PERMISSION && mPermissionListener != null)
+        if(requestCode == REQUEST_CODE_PERMISSION && mPermissionListener != null)
         {
-            for (i in permissions.indices)
+            for(i in permissions.indices)
             {
                 // 部分权限未授权
-                if (grantResults[i] == PackageManager.PERMISSION_DENIED)
+                if(grantResults[i] == PackageManager.PERMISSION_DENIED)
                 {
                     mPermissionListener!!.onResult(false)
                     return

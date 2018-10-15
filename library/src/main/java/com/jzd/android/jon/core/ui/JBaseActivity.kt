@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.jzd.android.jon.core.impl.IContextDelegate
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PERMISSION
@@ -25,13 +26,48 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+    }
 
-        mContext = this
+    /**
+     *  防止重复启动
+     *  if(intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0)
+     *   {
+     *      finish()
+     *   }
+     */
+    fun onCreate(savedInstanceState: Bundle?, isSplash: Boolean = false)
+    {
+        onCreate(savedInstanceState)
+        if(isSplash and isTaskRoot)
+        {
+            finish()
+        }
     }
 
     override fun setContentView(layoutResID: Int)
     {
         super.setContentView(layoutResID)
+        initActivity()
+    }
+
+    override fun setContentView(view: View?)
+    {
+        super.setContentView(view)
+        initActivity()
+    }
+
+    override fun setContentView(view: View?, params: ViewGroup.LayoutParams?)
+    {
+        super.setContentView(view, params)
+        initActivity()
+    }
+
+    /**
+     * 初始化Activity
+     */
+    private fun initActivity()
+    {
+        mContext = this
     }
 
     // 双击退出----------------------------------------------------------------------------------

@@ -10,6 +10,15 @@ interface IContextDelegate
     companion object
     {
         const val REQUEST_CODE_PERMISSION: Int = 0x9000
+        const val START_CODE_STRING: String = "START_CODE_STRING"
+        const val START_CODE_INT: String = "START_CODE_INT"
+        const val START_CODE_LONG: String = "START_CODE_LONG"
+        const val START_CODE_PARCELABLE_LIST: String = "START_CODE_PARCELABLE_LIST"
+        const val START_CODE_PARCELABLE = "START_CODE_PARCELABLE"
+        const val START_CODE_DOUBLE = "START_CODE_DOUBLE"
+        const val START_CODE_FLOAT = "START_CODE_FLOAT"
+
+        const val START_FOR_RESULT_CODE = 0x8000
     }
 }
 

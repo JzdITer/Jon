@@ -1,14 +1,25 @@
 package com.jzd.android.jon.core.ui
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.ActivityCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.jzd.android.jon.core.impl.IContextDelegate
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PERMISSION
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_DOUBLE
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_FLOAT
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_INT
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_LONG
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_PARCELABLE
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_PARCELABLE_LIST
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_STRING
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_FOR_RESULT_CODE
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
@@ -68,6 +79,130 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     private fun initActivity()
     {
         mContext = this
+    }
+
+    // 各种启动Intent
+    fun start(activity: Activity)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        start(intent)
+    }
+
+    interface Start4ResultListener
+    {
+        fun onResult(requestCode: Int, resultCode: Int, data: Intent?)
+    }
+
+    private var mStart4ResultListener: Start4ResultListener? = null
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(mStart4ResultListener != null)
+        {
+            mStart4ResultListener!!.onResult(requestCode, resultCode, data)
+        }
+    }
+
+    fun start4Result(activity: Activity, start4ResultListener: Start4ResultListener)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        mStart4ResultListener = start4ResultListener
+        startActivityForResult(intent, START_FOR_RESULT_CODE)
+    }
+
+    fun start4Result(intent: Intent, start4ResultListener: Start4ResultListener)
+    {
+        mStart4ResultListener = start4ResultListener
+        startActivityForResult(intent, START_FOR_RESULT_CODE)
+    }
+
+    fun startWithString(activity: Activity, str: String?)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putExtra(START_CODE_STRING, str)
+        start(intent)
+    }
+
+    fun getStartString(): String?
+    {
+        return intent.getStringExtra(START_CODE_STRING)
+    }
+
+    fun startWithInt(activity: Activity, i: Int)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putExtra(START_CODE_INT, i)
+        start(intent)
+    }
+
+    fun getStartInt(): Int
+    {
+        return intent.getIntExtra(START_CODE_INT, 0)
+    }
+
+    fun startWithFloat(activity: Activity, f: Float)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putExtra(START_CODE_FLOAT, f)
+        start(intent)
+    }
+
+    fun getStartFloat(): Float
+    {
+        return intent.getFloatExtra(START_CODE_FLOAT, 0f)
+    }
+
+    fun startWithDouble(activity: Activity, d: Double)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putExtra(START_CODE_DOUBLE, d)
+        start(intent)
+    }
+
+    fun getStartDouble(): Double
+    {
+        return intent.getDoubleExtra(START_CODE_DOUBLE, 0.0)
+    }
+
+    fun startWithLong(activity: Activity, l: Long)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putExtra(START_CODE_LONG, l)
+        start(intent)
+    }
+
+    fun getStartLong(): Long
+    {
+        return intent.getLongExtra(START_CODE_LONG, 0)
+    }
+
+    fun startWithParcelable(activity: Activity, p: Parcelable)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putExtra(START_CODE_PARCELABLE, p)
+        start(intent)
+    }
+
+    fun getStartParcelable(): Parcelable?
+    {
+        return intent.getParcelableExtra(START_CODE_PARCELABLE)
+    }
+
+    fun startWithParcelableList(activity: Activity, list: ArrayList<out Parcelable>)
+    {
+        val intent = Intent(mContext, activity::class.java)
+        intent.putParcelableArrayListExtra(START_CODE_PARCELABLE_LIST, list)
+        start(intent)
+    }
+
+    fun getStartParcelableList(): ArrayList<out Parcelable>?
+    {
+        return intent.getParcelableArrayListExtra<Parcelable>(START_CODE_PARCELABLE)
+    }
+
+    fun start(intent: Intent)
+    {
+        startActivity(intent)
     }
 
     // 双击退出----------------------------------------------------------------------------------

@@ -97,9 +97,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     }
 
     // 各种启动Intent
-    fun start(activity: Activity)
+    fun start(activity: Class<out Activity>)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         start(intent)
     }
 
@@ -118,9 +118,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         }
     }
 
-    fun start4Result(activity: Activity, start4ResultListener: Start4ResultListener)
+    fun start4Result(activity: Class<out Activity>, start4ResultListener: Start4ResultListener)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         mStart4ResultListener = start4ResultListener
         startActivityForResult(intent, START_FOR_RESULT_CODE)
     }
@@ -137,9 +137,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         start(intent)
     }
 
-    fun startWithString(activity: Activity, str: String?)
+    fun startWithString(activity: Class<out Activity>, str: String?)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_STRING, str)
         start(intent)
     }
@@ -149,9 +149,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getStringExtra(START_CODE_STRING)
     }
 
-    fun startWithInt(activity: Activity, i: Int)
+    fun startWithInt(activity: Class<out Activity>, i: Int)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_INT, i)
         start(intent)
     }
@@ -161,9 +161,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getIntExtra(START_CODE_INT, 0)
     }
 
-    fun startWithFloat(activity: Activity, f: Float)
+    fun startWithFloat(activity: Class<out Activity>, f: Float)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_FLOAT, f)
         start(intent)
     }
@@ -173,9 +173,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getFloatExtra(START_CODE_FLOAT, 0f)
     }
 
-    fun startWithDouble(activity: Activity, d: Double)
+    fun startWithDouble(activity: Class<out Activity>, d: Double)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_DOUBLE, d)
         start(intent)
     }
@@ -185,9 +185,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getDoubleExtra(START_CODE_DOUBLE, 0.0)
     }
 
-    fun startWithLong(activity: Activity, l: Long)
+    fun startWithLong(activity: Class<out Activity>, l: Long)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_LONG, l)
         start(intent)
     }
@@ -197,9 +197,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getLongExtra(START_CODE_LONG, 0)
     }
 
-    fun startWithParcelable(activity: Activity, p: Parcelable)
+    fun startWithParcelable(activity: Class<out Activity>, p: Parcelable)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_PARCELABLE, p)
         start(intent)
     }
@@ -209,9 +209,9 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getParcelableExtra(START_CODE_PARCELABLE)
     }
 
-    fun startWithParcelableList(activity: Activity, list: ArrayList<out Parcelable>)
+    fun startWithParcelableList(activity: Class<out Activity>, list: ArrayList<out Parcelable>)
     {
-        val intent = Intent(mContext, activity::class.java)
+        val intent = Intent(mContext, activity)
         intent.putParcelableArrayListExtra(START_CODE_PARCELABLE_LIST, list)
         start(intent)
     }

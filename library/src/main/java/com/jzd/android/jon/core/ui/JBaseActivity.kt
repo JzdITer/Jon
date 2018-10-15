@@ -9,6 +9,8 @@ import android.os.Parcelable
 import android.support.v4.app.ActivityCompat
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import com.jzd.android.jon.core.impl.IContextDelegate
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PERMISSION
@@ -24,6 +26,7 @@ import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import qiu.niorgai.StatusBarCompat
 
 /**
  * Activity父类 封装系统Api
@@ -49,9 +52,19 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     fun onCreate(savedInstanceState: Bundle?, isSplash: Boolean = false)
     {
         onCreate(savedInstanceState)
-        if(isSplash and isTaskRoot)
+        if(isSplash)
         {
-            finish()
+            if(isTaskRoot)
+            {
+                finish()
+            } else
+            {
+                //取消标题栏
+                requestWindowFeature(Window.FEATURE_NO_TITLE)
+                //取消状态栏
+                window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams
+                        .FLAG_FULLSCREEN)
+            }
         }
     }
 
@@ -78,6 +91,8 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
      */
     private fun initActivity()
     {
+        // 沉浸式
+        StatusBarCompat.translucentStatusBar(this, true)
         mContext = this
     }
 
@@ -114,6 +129,12 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     {
         mStart4ResultListener = start4ResultListener
         startActivityForResult(intent, START_FOR_RESULT_CODE)
+    }
+
+    fun startTop(intent: Intent)
+    {
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        start(intent)
     }
 
     fun startWithString(activity: Activity, str: String?)

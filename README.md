@@ -27,3 +27,5 @@ implementation ('com.github.JzdITer:Jon:1.0.1',{
 ```
 
 具体使用方法，请参考app模块下的测试代码
+
+[![](https://jitpack.io/v/JzdITer/Jon.svg)](https://jitpack.io/#JzdITer/Jon)

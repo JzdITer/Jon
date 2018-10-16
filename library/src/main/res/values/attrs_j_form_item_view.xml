@@ -17,6 +17,7 @@
             <enum name="invisible" value="3" />
         </attr>
         <!-- 中间TextView属性 -->
+        <attr name="editable" format="boolean"/>
         <attr name="content_text" format="string" />
         <attr name="content_text_size" format="dimension" />
         <attr name="content_text_color" format="color" />

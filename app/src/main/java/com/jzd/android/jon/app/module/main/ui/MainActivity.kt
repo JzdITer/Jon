@@ -11,6 +11,7 @@ import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.app.adapter.ModuleAdapter
 import com.jzd.android.jon.app.base.BaseActivity
 import com.jzd.android.jon.app.module.japp.ui.JAppActivity
+import com.jzd.android.jon.app.module.jformitemview.ui.JFormItemActivity
 import com.jzd.android.jon.app.module.loader.ui.JLoaderActivity
 import com.jzd.android.jon.app.module.notification.ui.NotificationWatchActivity
 import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
@@ -72,6 +73,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("Notification", NotificationWatchActivity::class.java))
         data.add(ModuleBean("JApp", JAppActivity::class.java))
         data.add(ModuleBean("TagView", TagActivity::class.java))
+        data.add(ModuleBean("JFormItem", JFormItemActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

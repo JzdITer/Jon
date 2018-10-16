@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.jformitemview.ui.JFormItemActivity">
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:editable="true"/>
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:content_text="Jzd"
+        app:content_text_color="@color/color_red"
+        app:left_icon="@drawable/ic_heart"
+        app:left_text="姓名"
+        app:right_text="i"/>
+</LinearLayout>

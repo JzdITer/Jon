@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.jzd.android.jon.R
@@ -29,7 +30,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     lateinit var mLayoutRoot: LinearLayout
     lateinit var mLayoutContent: LinearLayout
     lateinit var mTvItemLeft: TextView
-    lateinit var mTvItemContext: TextView
+    lateinit var mTvItemContext: EditText
     lateinit var mTvItemRight: TextView
     lateinit var mDivider: View
 
@@ -38,7 +39,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     init
     {
         val view = LayoutInflater.from(context).inflate(R.layout.layout_j_form_item_view, this, true)
-        if (attrs != null)
+        if(attrs != null)
         {
             val attributeSet = context.obtainStyledAttributes(attrs, R.styleable.JFormItemView)
 
@@ -65,7 +66,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val leftText = attributeSet.getString(R.styleable.JFormItemView_left_text)
             mTvItemLeft.text = leftText
             val leftVisibility = attributeSet.getInt(R.styleable.JFormItemView_left_visibility, 1)
-            when (leftVisibility)
+            when(leftVisibility)
             {
                 1 -> mTvItemLeft.visibility = View.VISIBLE
                 2 -> mTvItemLeft.visibility = View.GONE
@@ -74,6 +75,9 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
             // 中间TextView
             mTvItemContext = view.findViewById(R.id.mTvItemContext)
+            val editable = attributeSet.getBoolean(R.styleable.JFormItemView_editable, false)
+            mTvItemContext.isFocusable = editable
+            mTvItemContext.isFocusableInTouchMode = editable
             val contentTextSize = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_text_size, defTextSize.toInt())
             mTvItemContext.setTextSize(TypedValue.COMPLEX_UNIT_PX, contentTextSize.toFloat())
             val contentTextColor = attributeSet.getColor(R.styleable.JFormItemView_content_text_color, defTextColor)
@@ -84,7 +88,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val contentPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_content_padding_bottom, 0)
             mTvItemContext.setPadding(contentPaddingStart, contentPaddingTop, contentPaddingEnd, contentPaddingBottom)
             val contentText = attributeSet.getString(R.styleable.JFormItemView_content_text)
-            mTvItemContext.text = contentText
+            mTvItemContext.setText(contentText)
             val contentHint = attributeSet.getString(R.styleable.JFormItemView_content_hint)
             mTvItemContext.hint = contentHint
             val contentTextColorHint = attributeSet.getColor(R.styleable.JFormItemView_content_text_color_hint, defHintTextColor)
@@ -100,7 +104,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val rightPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_right_padding_bottom, 0)
             mTvItemRight.setPadding(rightPaddingStart, rightPaddingTop, rightPaddingEnd, rightPaddingBottom)
             val rightVisibility = attributeSet.getInt(R.styleable.JFormItemView_right_visibility, 2)
-            when (rightVisibility)
+            when(rightVisibility)
             {
                 1 -> mTvItemRight.visibility = View.VISIBLE
                 2 -> mTvItemRight.visibility = View.GONE
@@ -128,7 +132,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val dividerHeight = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_divider_height, 1)
             mDivider.layoutParams.height = dividerHeight
             val dividerVisibility = attributeSet.getInt(R.styleable.JFormItemView_divider_visibility, 1)
-            when (dividerVisibility)
+            when(dividerVisibility)
             {
                 1 -> mDivider.visibility = View.VISIBLE
                 2 -> mDivider.visibility = View.GONE
@@ -143,7 +147,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             var itemPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_top, 0)
             var itemPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_end, 0)
             var itemPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_bottom, 0)
-            if (itemPadding != 0)
+            if(itemPadding != 0)
             {
                 itemPaddingStart = itemPadding
                 itemPaddingTop = itemPadding
@@ -163,7 +167,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     fun setData(map: JMapImpl?)
     {
         this.mJMapImpl = map
-        mTvItemContext.text = mJMapImpl?.value().toString()
+        mTvItemContext.setText(map?.value().toString())
     }
 
     /**

@@ -26,6 +26,7 @@ import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_FOR_RESULT
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
+import qiu.niorgai.StatusBarCompat
 
 /**
  * Activity父类 封装系统Api
@@ -87,8 +88,19 @@ open class JBaseActivity : AppCompatActivity(), View.OnClickListener, IContextDe
     private fun initActivity()
     {
         // 沉浸式
-        //StatusBarCompat.translucentStatusBar(this, true)
+        if(isIm())
+        {
+            StatusBarCompat.translucentStatusBar(this, true)
+        }
         mContext = this
+    }
+
+    /**
+     * 是否是沉浸式
+     */
+    protected open fun isIm(): Boolean
+    {
+        return true
     }
 
     // 各种启动Intent

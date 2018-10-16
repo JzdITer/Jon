@@ -21,16 +21,17 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:lines="1"
-            android:text="列表项"/>
+            tools:text="列表项"/>
 
-        <TextView
+        <EditText
             android:id="@+id/mTvItemContext"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical|end"
-            android:text="内容"
-            tools:ignore="NestedWeights"/>
+            android:background="@null"
+            tools:ignore="NestedWeights"
+            tools:text="内容"/>
 
         <TextView
             android:id="@+id/mTvItemRight"
@@ -38,8 +39,8 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:lines="1"
-            android:text="单位"
             android:visibility="visible"
+            tools:text="单位"
             />
     </LinearLayout>
 

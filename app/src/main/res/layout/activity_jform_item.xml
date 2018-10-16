@@ -11,14 +11,18 @@
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:editable="true"/>
+        app:content_text="张三"
+        app:editable="true"
+        app:left_text="姓名"/>
 
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:content_text="Jzd"
         app:content_text_color="@color/color_red"
         app:left_icon="@drawable/ic_heart"
         app:left_text="姓名"
-        app:right_text="i"/>
+        app:right_text="i"
+        />
 </LinearLayout>

@@ -17,6 +17,42 @@
             <enum name="invisible" value="3" />
         </attr>
         <!-- 中间TextView属性 -->
+        <attr name="content_gravity">
+            <!-- Push object to the top of its container, not changing its size. -->
+            <enum name="top" value="0x30" />
+            <!-- Push object to the bottom of its container, not changing its size. -->
+            <enum name="bottom" value="0x50" />
+            <!-- Push object to the left of its container, not changing its size. -->
+            <enum name="left" value="0x03" />
+            <!-- Push object to the right of its container, not changing its size. -->
+            <enum name="right" value="0x05" />
+            <!-- Place object in the vertical center of its container, not changing its size. -->
+            <enum name="center_vertical" value="0x10" />
+            <!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+            <enum name="fill_vertical" value="0x70" />
+            <!-- Place object in the horizontal center of its container, not changing its size. -->
+            <enum name="center_horizontal" value="0x01" />
+            <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+            <enum name="fill_horizontal" value="0x07" />
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <enum name="center" value="0x11" />
+            <!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+            <enum name="fill" value="0x77" />
+            <!-- Additional option that can be set to have the top and/or bottom edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the vertical gravity: a top gravity will clip the bottom
+                 edge, a bottom gravity will clip the top edge, and neither will clip both edges. -->
+            <enum name="clip_vertical" value="0x80" />
+            <!-- Additional option that can be set to have the left and/or right edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the horizontal gravity: a left gravity will clip the right
+                 edge, a right gravity will clip the left edge, and neither will clip both edges. -->
+            <enum name="clip_horizontal" value="0x08" />
+            <!-- Push object to the beginning of its container, not changing its size. -->
+            <enum name="start" value="0x00800003" />
+            <!-- Push object to the end of its container, not changing its size. -->
+            <enum name="end" value="0x00800005" />
+        </attr>
         <attr name="editable" format="boolean"/>
         <attr name="content_text" format="string" />
         <attr name="content_text_size" format="dimension" />

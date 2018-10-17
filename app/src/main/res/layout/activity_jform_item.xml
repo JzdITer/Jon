@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         app:content_text="张三"
         app:editable="true"
+        android:layout_marginTop="24dp"
         app:left_text="姓名"/>
 
     <com.jzd.android.jon.widget.JFormItemView
@@ -25,4 +26,12 @@
         app:left_text="姓名"
         app:right_text="i"
         />
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:content_gravity="center"
+        app:content_text="我要在前面"
+        app:left_icon="@drawable/ic_heart"/>
 </LinearLayout>

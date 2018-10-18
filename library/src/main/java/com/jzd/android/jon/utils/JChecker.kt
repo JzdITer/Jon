@@ -7,7 +7,7 @@ import android.widget.TextView
  * @author Jzd
  * @since 1.0
  */
-class JChecker
+object JChecker
 {
     /**
      * 非空检查

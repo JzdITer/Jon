@@ -12,7 +12,23 @@ object JChecker
     /**
      * 非空检查
      */
-    fun checkEmpty(showHint: Boolean = true, vararg views: TextView): Boolean
+    fun checkEmptu(vararg views: TextView): Boolean
+    {
+        views.forEach {
+            if(it.text.toString().isEmpty())
+            {
+                JToast.show(it.hint)
+                return false
+            }
+        }
+        return true
+    }
+
+
+    /**
+     * 非空检查
+     */
+    fun checkEmpty(showHint: Boolean, vararg views: TextView): Boolean
     {
         views.forEach {
             if(it.text.toString().isEmpty())
@@ -49,7 +65,7 @@ object JChecker
     /**
      * 是否是手机号
      */
-    fun     isPhone(phone: String?): Boolean
+    fun isPhone(phone: String?): Boolean
     {
         return !phone.isNullOrEmpty() && phone!!.matches("^1[34578][0-9]\\d{8}$".toRegex())
     }

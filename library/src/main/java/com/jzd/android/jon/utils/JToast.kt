@@ -20,6 +20,11 @@ class JToast
             show(Jon.mContext, message)
         }
 
+        fun show(e: Throwable?)
+        {
+            show(Jon.mContext, e?.message)
+        }
+
         fun show(context: Context, message: CharSequence?)
         {
             if(toast == null)

@@ -1,5 +1,7 @@
 package com.jzd.android.jon.utils
 
+import android.widget.TextView
+
 /**
  * 检查
  * @author Jzd
@@ -8,11 +10,30 @@ package com.jzd.android.jon.utils
 class JChecker
 {
     /**
+     * 非空检查
+     */
+    fun checkEmpty(showHint: Boolean = true, vararg views: TextView): Boolean
+    {
+        views.forEach {
+            if(it.text.toString().isEmpty())
+            {
+                if(showHint)
+                {
+                    JToast.show(it.hint)
+                }
+                return false
+            }
+        }
+        return true
+    }
+
+
+    /**
      * 是否包含中文字符
      */
     fun isContainChinese(char: Char?): Boolean
     {
-        if (char == null)
+        if(char == null)
         {
             return false
         }

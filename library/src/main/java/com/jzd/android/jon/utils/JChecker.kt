@@ -1,6 +1,7 @@
 package com.jzd.android.jon.utils
 
 import android.widget.TextView
+import com.jzd.android.jon.widget.JFormItemView
 
 /**
  * 检查
@@ -18,6 +19,32 @@ object JChecker
             if(it.text.toString().isEmpty())
             {
                 JToast.show(it.hint)
+                return false
+            }
+        }
+        return true
+    }
+
+    fun checkEmpty(vararg views: JFormItemView): Boolean
+    {
+        views.forEach {
+            if(it.getContent().isEmpty())
+            {
+                JToast.show(it.getContentView().hint)
+                return false
+            }
+        }
+        return true
+    }
+    fun checkEmpty(showHint: Boolean,vararg views: JFormItemView): Boolean
+    {
+        views.forEach {
+            if(it.getContent().isEmpty())
+            {
+                if(showHint)
+                {
+                    JToast.show(it.getContentView().hint)
+                }
                 return false
             }
         }
@@ -54,12 +81,7 @@ object JChecker
             return false
         }
         val ub = Character.UnicodeBlock.of(char)
-        return (ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-                || ub === Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-                || ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-                || ub === Character.UnicodeBlock.GENERAL_PUNCTUATION
-                || ub === Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-                || ub === Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS)
+        return (ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub === Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub === Character.UnicodeBlock.GENERAL_PUNCTUATION || ub === Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub === Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS)
     }
 
     /**

@@ -11,12 +11,13 @@
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         app:content_text="张三"
         app:editable="true"
-        android:layout_marginTop="24dp"
         app:left_text="姓名"/>
 
     <com.jzd.android.jon.widget.JFormItemView
+        android:id="@+id/mFv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -28,10 +29,21 @@
         />
 
     <com.jzd.android.jon.widget.JFormItemView
+        android:id="@+id/mFv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:content_gravity="center"
         app:content_text="我要在前面"
+        app:left_icon="@drawable/ic_heart"/>
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:id="@+id/mFv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:content_gravity="center"
+        app:content_text="可以编辑"
+        app:editable="true"
         app:left_icon="@drawable/ic_heart"/>
 </LinearLayout>

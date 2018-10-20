@@ -213,6 +213,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
     /**
      * 得到文本框
+     * 得到文本框，就能进行自定义设置，比如设置inputType
      */
     fun getContentView(): TextView
     {

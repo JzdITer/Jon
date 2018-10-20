@@ -13,6 +13,8 @@ import com.jzd.android.jon.core.module.permission.PermissionListener
 
 /**
  * Fragment父类 封装系统级Api
+ *
+ * val fragment = JBaseFragment.newInstance("1"),目前不这样写没有警告了???
  * @author Jzd
  * @since 1.0
  */

@@ -12,7 +12,7 @@ object JChecker
     /**
      * 非空检查
      */
-    fun checkEmptu(vararg views: TextView): Boolean
+    fun checkEmpty(vararg views: TextView): Boolean
     {
         views.forEach {
             if(it.text.toString().isEmpty())

@@ -7,6 +7,8 @@ import android.content.Context
  * @author Jzd
  * @since 1.0
  */
+// todo okgo
+// @Throws(Throwable::class)
 class Jon
 {
     companion object

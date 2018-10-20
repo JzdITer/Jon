@@ -21,6 +21,7 @@ import com.jzd.android.jon.widget.util.JWidgetUtil
  * @author jzd
  * @since  v1.0
  */
+// todo 输入类型
 @SuppressWarnings("unused")
 class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr)
 {

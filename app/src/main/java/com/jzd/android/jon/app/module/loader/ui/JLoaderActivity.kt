@@ -24,7 +24,7 @@ class JLoaderActivity : BaseActivity()
         {
             R.id.mBtnShow ->
             {
-                val dialog = JLoadDialog()
+                val dialog = JLoadDialog(false)
                 dialog.show(supportFragmentManager, "")
 
                 //Handler().postDelayed({ dialog.dismiss() }, 5000)

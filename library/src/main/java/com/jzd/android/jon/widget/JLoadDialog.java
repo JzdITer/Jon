@@ -1,5 +1,6 @@
 package com.jzd.android.jon.widget;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
@@ -26,7 +27,19 @@ import io.reactivex.schedulers.Schedulers;
 
 public class JLoadDialog extends DialogFragment
 {
-    Disposable subscribe;
+    private Disposable subscribe;
+    private boolean autoCancelable = false;
+
+    public JLoadDialog()
+    {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public JLoadDialog(boolean autoCancelable)
+    {
+        this.autoCancelable = autoCancelable;
+    }
 
     @NonNull
     @Override
@@ -36,17 +49,20 @@ public class JLoadDialog extends DialogFragment
         ProgressBar progressBar = new ProgressBar(getContext());
         AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(progressBar)
                 .create();
-        subscribe = Observable.timer(5, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>()
-                {
-                    @Override
-                    public void accept(Long aLong)
+        if(autoCancelable)
+        {
+            subscribe = Observable.timer(5, TimeUnit.SECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<Long>()
                     {
-                        setCancelable(true);
-                    }
-                });
+                        @Override
+                        public void accept(Long aLong)
+                        {
+                            setCancelable(true);
+                        }
+                    });
+        }
         return dialog;
     }
 

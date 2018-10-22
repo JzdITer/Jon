@@ -29,6 +29,7 @@ public class JLoadDialog extends DialogFragment
 {
     private Disposable subscribe;
     private boolean autoCancelable = false;
+    private int delay = 5;
 
     public JLoadDialog()
     {
@@ -41,6 +42,13 @@ public class JLoadDialog extends DialogFragment
         this.autoCancelable = autoCancelable;
     }
 
+    @SuppressLint("ValidFragment")
+    public JLoadDialog(boolean autoCancelable, int delay)
+    {
+        this.autoCancelable = autoCancelable;
+        this.delay = delay;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
@@ -51,7 +59,7 @@ public class JLoadDialog extends DialogFragment
                 .create();
         if(autoCancelable)
         {
-            subscribe = Observable.timer(5, TimeUnit.SECONDS)
+            subscribe = Observable.timer(delay, TimeUnit.SECONDS)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<Long>()

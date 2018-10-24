@@ -30,7 +30,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter
 
 	public interface OnNodeClickListener
 	{
-		void onClick(Object object, int position, boolean isExpand);
+		void onClick(Object object, int position, boolean isExpand,boolean isLeaf);
 	}
 
 	public void setOnNodeClickListener(OnNodeClickListener onNodeClickListener)
@@ -94,7 +94,8 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter
 				{
 					TreeListViewAdapter.this.onNodeClickListener.onClick(
 							((Node) TreeListViewAdapter.this.mNodes.get(position)).getObject(), position,
-							((Node) TreeListViewAdapter.this.mNodes.get(position)).isExpand());
+							((Node) TreeListViewAdapter.this.mNodes.get(position)).isExpand(),
+							((Node) TreeListViewAdapter.this.mNodes.get(position)).isLeaf());
 				}
 				
 			}

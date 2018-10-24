@@ -47,6 +47,8 @@
         </activity>
         <activity android:name=".module.jformitemview.ui.JFormItemActivity">
         </activity>
+        <activity android:name=".module.tree.ui.TreeActivity">
+        </activity>
     </application>
 
 </manifest>

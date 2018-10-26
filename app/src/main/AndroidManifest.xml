@@ -49,6 +49,8 @@
         </activity>
         <activity android:name=".module.tree.ui.TreeActivity">
         </activity>
+        <activity android:name=".module.time.ui.TimeActivity">
+        </activity>
     </application>
 
 </manifest>

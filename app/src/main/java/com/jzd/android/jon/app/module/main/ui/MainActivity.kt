@@ -18,6 +18,7 @@ import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
 import com.jzd.android.jon.app.module.recyclerview.ui.RecyclerViewActivity
 import com.jzd.android.jon.app.module.rx.ui.RxMainActivity
 import com.jzd.android.jon.app.module.tag.ui.TagActivity
+import com.jzd.android.jon.app.module.time.ui.TimeActivity
 import com.jzd.android.jon.app.module.tree.ui.TreeActivity
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.jutils.app.common.bean.ModuleBean
@@ -75,7 +76,8 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("JApp", JAppActivity::class.java))
         data.add(ModuleBean("TagView", TagActivity::class.java))
         data.add(ModuleBean("JFormItem", JFormItemActivity::class.java))
-        data.add(ModuleBean("Tree",TreeActivity::class.java))
+        data.add(ModuleBean("Tree", TreeActivity::class.java))
+        data.add(ModuleBean("Time", TimeActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

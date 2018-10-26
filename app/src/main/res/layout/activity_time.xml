@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.time.ui.TimeActivity">
+
+    <EditText
+        android:id="@+id/mEdtTimeString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:id="@+id/mEdtTimeLong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/mBtnChangeLong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="转成Long型"/>
+
+    <Button
+        android:id="@+id/mBtnChangeString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="转成String型"/>
+</LinearLayout>

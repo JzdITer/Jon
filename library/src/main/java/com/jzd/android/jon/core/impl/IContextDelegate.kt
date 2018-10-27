@@ -18,6 +18,7 @@ interface IContextDelegate
         const val START_CODE_DOUBLE = "START_CODE_DOUBLE"
         const val START_CODE_FLOAT = "START_CODE_FLOAT"
         const val START_CODE_SERIALIZABLE = "START_CODE_SERIALIZABLE"
+        const val START_CODE_BUNDLE = "START_CODE_BUNDLE"
         const val START_FOR_RESULT_CODE = 0x8000
     }
 }

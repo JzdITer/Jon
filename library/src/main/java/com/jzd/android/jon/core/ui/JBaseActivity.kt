@@ -14,6 +14,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.jzd.android.jon.core.impl.IContextDelegate
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PERMISSION
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_BUNDLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_DOUBLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_FLOAT
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_INT
@@ -156,6 +157,18 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     fun getStartString(): String?
     {
         return intent.getStringExtra(START_CODE_STRING)
+    }
+
+    fun startWithBundle(activity: Class<out Activity>,bundle:Bundle)
+    {
+        val intent = Intent(mContext, activity)
+        intent.putExtra(START_CODE_BUNDLE, bundle)
+        start(intent)
+    }
+
+    fun getStartBundle(): Bundle?
+    {
+        return intent.getBundleExtra(START_CODE_BUNDLE)
     }
 
     fun startWithSerializable(activity: Class<out Activity>,s : Serializable)

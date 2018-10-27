@@ -20,6 +20,7 @@ import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_INT
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_LONG
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_PARCELABLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_PARCELABLE_LIST
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_SERIALIZABLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_STRING
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_FOR_RESULT_CODE
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
@@ -27,6 +28,7 @@ import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import qiu.niorgai.StatusBarCompat
+import java.io.Serializable
 
 /**
  * Activity父类 封装系统Api
@@ -154,6 +156,18 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     fun getStartString(): String?
     {
         return intent.getStringExtra(START_CODE_STRING)
+    }
+
+    fun startWithSerializable(activity: Class<out Activity>,s : Serializable)
+    {
+        val intent = Intent(mContext, activity)
+        intent.putExtra(START_CODE_INT, s)
+        start(intent)
+    }
+
+    fun getStartSerializable(): Serializable?
+    {
+        return intent.getSerializableExtra(START_CODE_SERIALIZABLE)
     }
 
     fun startWithInt(activity: Class<out Activity>, i: Int)

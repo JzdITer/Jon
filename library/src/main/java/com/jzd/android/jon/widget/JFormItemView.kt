@@ -22,6 +22,7 @@ import com.jzd.android.jon.widget.util.JWidgetUtil
  * @since  v1.0
  */
 // todo 输入类型,contentview单独背景
+// todo 动态生成时失败
 @SuppressWarnings("unused")
 class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr)
 {

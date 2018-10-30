@@ -23,6 +23,7 @@ import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_PARCE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_PARCELABLE_LIST
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_SERIALIZABLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_STRING
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_STRING_LIST
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_FOR_RESULT_CODE
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
@@ -157,6 +158,18 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     fun getStartString(): String?
     {
         return intent.getStringExtra(START_CODE_STRING)
+    }
+
+    fun startWithStringList(activity: Class<out Activity>, list: ArrayList<String>?)
+    {
+        val intent = Intent(mContext, activity)
+        intent.putStringArrayListExtra(START_CODE_STRING_LIST, list)
+        start(intent)
+    }
+
+    fun getStartStringList(): ArrayList<String>?
+    {
+        return intent.getStringArrayListExtra(START_CODE_STRING_LIST)
     }
 
     fun startWithBundle(activity: Class<out Activity>,bundle:Bundle)

@@ -11,6 +11,7 @@ interface IContextDelegate
     {
         const val REQUEST_CODE_PERMISSION: Int = 0x9000
         const val START_CODE_STRING: String = "START_CODE_STRING"
+        const val START_CODE_STRING_LIST: String = "START_CODE_STRING_LIST"
         const val START_CODE_INT: String = "START_CODE_INT"
         const val START_CODE_LONG: String = "START_CODE_LONG"
         const val START_CODE_PARCELABLE_LIST: String = "START_CODE_PARCELABLE_LIST"

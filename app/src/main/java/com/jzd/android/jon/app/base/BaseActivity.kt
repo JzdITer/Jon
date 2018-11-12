@@ -57,7 +57,7 @@ open class BaseActivity : JBaseActivity()
             mTvRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, rightIcon, 0)
         } else
         {
-            mTvLeft.gone()
+            mTvRight.gone()
         }
     }
 

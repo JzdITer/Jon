@@ -2,7 +2,7 @@ package com.jzd.android.jon.utils
 
 import android.content.Context
 
-class JBarUtil
+object JBarUtil
 {
     /**
      * 获取状态栏高度

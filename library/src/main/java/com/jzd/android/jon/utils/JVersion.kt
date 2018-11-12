@@ -8,10 +8,8 @@ import com.jzd.android.jon.core.Jon
  * @author jzd
  * @since  v1.0
  */
-class JVersion
+object JVersion
 {
-    companion object
-    {
 
         /**
          * 获取版本号
@@ -40,5 +38,4 @@ class JVersion
                 ""
             }
         }
-    }
 }

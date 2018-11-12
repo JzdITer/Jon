@@ -11,24 +11,21 @@ import android.widget.TextView
  * @since 1.0
  */
 
-class JView
+object JView
 {
-    companion object
+    fun gone(vararg views: View)
     {
-        fun gone(vararg views: View)
-        {
-            views.forEach { view -> view.gone() }
-        }
+        views.forEach { view -> view.gone() }
+    }
 
-        fun visible(vararg views: View)
-        {
-            views.forEach { view -> view.visible() }
-        }
+    fun visible(vararg views: View)
+    {
+        views.forEach { view -> view.visible() }
+    }
 
-        fun invisible(vararg views: View)
-        {
-            views.forEach { view -> view.invisible() }
-        }
+    fun invisible(vararg views: View)
+    {
+        views.forEach { view -> view.invisible() }
     }
 }
 

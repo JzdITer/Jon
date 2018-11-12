@@ -114,31 +114,54 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         start(intent)
     }
 
-    interface Start4ResultListener
+    interface StartResultListener
     {
         fun onResult(requestCode: Int, resultCode: Int, data: Intent?)
+        fun onResultOk(requestCode: Int, data: Intent?)
+        fun onResultCancel(requestCode: Int, data: Intent?)
     }
 
-    private var mStart4ResultListener: Start4ResultListener? = null
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    interface SimpleStartResultListener : StartResultListener
     {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(mStart4ResultListener != null)
+        override fun onResult(requestCode: Int, resultCode: Int, data: Intent?)
         {
-            mStart4ResultListener!!.onResult(requestCode, resultCode, data)
+        }
+
+        override fun onResultOk(requestCode: Int, data: Intent?)
+        {
+        }
+
+        override fun onResultCancel(requestCode: Int, data: Intent?)
+        {
         }
     }
 
-    fun start4Result(activity: Class<out Activity>, start4ResultListener: Start4ResultListener)
+    private var mStartResultListener: StartResultListener? = null
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(mStartResultListener != null)
+        {
+
+            when(resultCode)
+            {
+                Activity.RESULT_OK -> mStartResultListener!!.onResultOk(requestCode, data)
+                Activity.RESULT_CANCELED -> mStartResultListener!!.onResultCancel(requestCode, data)
+                else -> mStartResultListener!!.onResult(requestCode, resultCode, data)
+            }
+        }
+    }
+
+    fun startResult(activity: Class<out Activity>, startResultListener: StartResultListener)
     {
         val intent = Intent(mContext, activity)
-        mStart4ResultListener = start4ResultListener
+        mStartResultListener = startResultListener
         startActivityForResult(intent, START_FOR_RESULT_CODE)
     }
 
-    fun start4Result(intent: Intent, start4ResultListener: Start4ResultListener)
+    fun startResult(intent: Intent, startResultListener: StartResultListener)
     {
-        mStart4ResultListener = start4ResultListener
+        mStartResultListener = startResultListener
         startActivityForResult(intent, START_FOR_RESULT_CODE)
     }
 
@@ -172,7 +195,7 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getStringArrayListExtra(START_CODE_STRING_LIST)
     }
 
-    fun startWithBundle(activity: Class<out Activity>,bundle:Bundle)
+    fun startWithBundle(activity: Class<out Activity>, bundle: Bundle)
     {
         val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_BUNDLE, bundle)
@@ -184,7 +207,7 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         return intent.getBundleExtra(START_CODE_BUNDLE)
     }
 
-    fun startWithSerializable(activity: Class<out Activity>,s : Serializable)
+    fun startWithSerializable(activity: Class<out Activity>, s: Serializable)
     {
         val intent = Intent(mContext, activity)
         intent.putExtra(START_CODE_INT, s)
@@ -347,23 +370,23 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         }
     }
 
-    private var mPermissionListener: PermissionListener? = null
+    private lateinit var mPermissionListener: PermissionListener
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
     {
-        if(requestCode == REQUEST_CODE_PERMISSION && mPermissionListener != null)
+        if(requestCode == REQUEST_CODE_PERMISSION)
         {
             for(i in permissions.indices)
             {
                 // 部分权限未授权
                 if(grantResults[i] == PackageManager.PERMISSION_DENIED)
                 {
-                    mPermissionListener!!.onResult(false)
+                    mPermissionListener.onResult(false)
                     return
                 }
             }
             // 都已授权
-            mPermissionListener!!.onResult(true)
+            mPermissionListener.onResult(true)
         }
     }
     // ------------------------------------------------------------------------------------

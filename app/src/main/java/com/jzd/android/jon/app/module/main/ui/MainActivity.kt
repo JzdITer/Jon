@@ -14,6 +14,7 @@ import com.jzd.android.jon.app.module.japp.ui.JAppActivity
 import com.jzd.android.jon.app.module.jformitemview.ui.JFormItemActivity
 import com.jzd.android.jon.app.module.loader.ui.JLoaderActivity
 import com.jzd.android.jon.app.module.notification.ui.NotificationWatchActivity
+import com.jzd.android.jon.app.module.okgo.ui.OkGoActivity
 import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
 import com.jzd.android.jon.app.module.recyclerview.ui.RecyclerViewActivity
 import com.jzd.android.jon.app.module.rx.ui.RxMainActivity
@@ -78,6 +79,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("JFormItem", JFormItemActivity::class.java))
         data.add(ModuleBean("Tree", TreeActivity::class.java))
         data.add(ModuleBean("Time", TimeActivity::class.java))
+        data.add(ModuleBean("OKGO", OkGoActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

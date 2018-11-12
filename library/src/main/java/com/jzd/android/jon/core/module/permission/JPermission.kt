@@ -47,23 +47,20 @@ import com.jzd.android.jon.core.Jon
  * @author Jzd
  * @since 1.0
  */
-class JPermission
+object JPermission
 {
-    companion object
+    /**
+     * 判断是否缺少权限
+     */
+    fun lackPermission(permissions: Array<out String>): Boolean
     {
-        /**
-         * 判断是否缺少权限
-         */
-        fun lackPermission(permissions: Array<out String>): Boolean
+        for(i in permissions.indices)
         {
-            for (i in permissions.indices)
+            if(ActivityCompat.checkSelfPermission(Jon.mContext, permissions[i]) == PackageManager.PERMISSION_DENIED)
             {
-                if (ActivityCompat.checkSelfPermission(Jon.mContext, permissions[i]) == PackageManager.PERMISSION_DENIED)
-                {
-                    return true
-                }
+                return true
             }
-            return false
         }
+        return false
     }
 }

@@ -10,10 +10,8 @@ import com.jzd.android.jon.core.Jon
  * @since  v1.0
  */
 @SuppressWarnings("unused")
-class JMetrics
+object JMetrics
 {
-    companion object
-    {
         /**
          * 屏幕宽
          */
@@ -91,7 +89,4 @@ class JMetrics
         {
             return Jon.mContext.resources.displayMetrics.densityDpi
         }
-
-
-    }
 }

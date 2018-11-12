@@ -48,23 +48,23 @@ open class JBaseFragment : Fragment(), View.OnClickListener, IContextDelegate
         }
     }
 
-    private var mPermissionListener: PermissionListener? = null
+    private lateinit var mPermissionListener: PermissionListener
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
     {
-        if (requestCode == REQUEST_CODE_PERMISSION && mPermissionListener != null)
+        if (requestCode == REQUEST_CODE_PERMISSION)
         {
             for (i in permissions.indices)
             {
                 // 部分权限未授权
                 if (grantResults[i] == PackageManager.PERMISSION_DENIED)
                 {
-                    mPermissionListener!!.onResult(false)
+                    mPermissionListener.onResult(false)
                     return
                 }
             }
             // 都已授权
-            mPermissionListener!!.onResult(true)
+            mPermissionListener.onResult(true)
         }
     }
     // ----------------------------------------------------------------------------------------

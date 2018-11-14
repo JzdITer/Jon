@@ -170,6 +170,12 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         start(intent)
     }
+    fun startTop(activity: Class<out Activity>)
+    {
+        val intent = Intent(mContext,activity)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        start(intent)
+    }
 
     fun startWithString(activity: Class<out Activity>, str: String?)
     {

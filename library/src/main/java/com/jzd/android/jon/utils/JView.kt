@@ -44,6 +44,21 @@ fun View.invisible()
     this.visibility = View.INVISIBLE
 }
 
+fun View.isVisible(): Boolean
+{
+    return visibility == View.VISIBLE
+}
+
+fun View.isGone(): Boolean
+{
+    return visibility == View.GONE
+}
+
+fun View.isInvisible(): Boolean
+{
+    return visibility == View.INVISIBLE
+}
+
 /**
  * 添加TextWatcher简单回调
  */

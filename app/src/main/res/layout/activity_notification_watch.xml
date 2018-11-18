@@ -31,4 +31,9 @@
         android:layout_height="wrap_content"
         android:text="Notification参数"/>
 
+    <Button
+        android:id="@+id/mBtnEnable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="通知权限"/>
 </LinearLayout>

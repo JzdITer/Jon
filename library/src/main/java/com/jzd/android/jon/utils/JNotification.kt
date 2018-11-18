@@ -1,8 +1,7 @@
 package com.jzd.android.jon.utils
 
 import android.app.Notification
-import android.app.NotificationManager
-import android.content.Context
+import android.support.v4.app.NotificationManagerCompat
 import android.util.SparseArray
 import com.jzd.android.jon.core.Jon
 
@@ -65,45 +64,32 @@ import com.jzd.android.jon.core.Jon
  * @author Jzd
  * @since 1.0
  */
-class JNotification private constructor()
+object JNotification
 {
-
-    companion object
-    {
-        const val TAG = "JNotification"
-        private val mNotifications = SparseArray<Notification>()
-        private var mCurId = 0
-        private var mNotificationManager: NotificationManager? = null
-
-        fun getInstance(): JNotification
-        {
-            if (mNotificationManager == null)
-            {
-                mNotificationManager = Jon.mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            }
-            return Holder.INSTANCE
-        }
+    private const val TAG = "JNotification"
+    private val mNotifications = SparseArray<Notification>()
+    private var mCurId = 0
+    private var mNotificationManager: NotificationManagerCompat = NotificationManagerCompat.from(Jon.mContext)
 
 
-    }
-
-    fun getManager(): NotificationManager?
+    fun getManager(): NotificationManagerCompat
     {
         return mNotificationManager
     }
 
+
     /**
      * 此方法只要使用id来更新notification,内部id并不会自增
      */
-    public fun show(id: Int, notification: Notification)
+    fun show(id: Int, notification: Notification)
     {
-        if (mNotifications.get(id) != null)
+        if(mNotifications.get(id) != null)
         {
-            mNotificationManager?.notify(TAG, id, notification)
+            mNotificationManager.notify(TAG, id, notification)
         } else
         {
             mNotifications.put(id, notification)
-            mNotificationManager?.notify(TAG, id, notification)
+            mNotificationManager.notify(TAG, id, notification)
         }
     }
 
@@ -130,7 +116,7 @@ class JNotification private constructor()
      */
     fun cancel(id: Int)
     {
-        mNotificationManager?.cancel(TAG,id)
+        mNotificationManager.cancel(TAG, id)
         mNotifications.remove(id)
     }
 
@@ -139,12 +125,8 @@ class JNotification private constructor()
      */
     fun cancel()
     {
-        mNotificationManager?.cancelAll()
+        mNotificationManager.cancelAll()
         mNotifications.clear()
     }
 
-    private object Holder
-    {
-        val INSTANCE = JNotification()
-    }
 }

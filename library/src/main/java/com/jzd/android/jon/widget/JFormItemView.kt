@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -90,8 +91,17 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
             // 中间TextView
             mTvItemContext = view.findViewById(R.id.mTvItemContext)
-            val contentGravity = attributeSet.getInt(R.styleable.JFormItemView_content_gravity, 0x800075)
-            mTvItemContext.gravity = contentGravity
+            val contentGravity = attributeSet.getInt(R.styleable.JFormItemView_content_gravity, 3)
+            when(contentGravity)
+            {
+                1->
+                    mTvItemContext.gravity = Gravity.START or Gravity.CENTER_VERTICAL
+                2->
+                    mTvItemContext.gravity = Gravity.CENTER
+                3->
+                    mTvItemContext.gravity = Gravity.END or Gravity.CENTER_VERTICAL
+            }
+
             val editable = attributeSet.getBoolean(R.styleable.JFormItemView_editable, false)
             mTvItemContext.isFocusable = editable
             mTvItemContext.isFocusableInTouchMode = editable

@@ -33,7 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:content_gravity="center"
+        app:content_gravity="left"
+        app:left_text="姓名"
         app:content_text="我要在前面"
         app:left_icon="@drawable/ic_heart"/>
 

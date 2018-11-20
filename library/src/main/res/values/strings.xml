@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name_jon">jon</string>
+
+
+
+    <string name="j_form_item_view_sign">*</string>
 </resources>

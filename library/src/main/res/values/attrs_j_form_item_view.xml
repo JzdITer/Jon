@@ -5,7 +5,7 @@
         <attr name="left_text" format="string" />
         <attr name="left_icon" format="reference" />
         <attr name="left_text_size" format="dimension" />
-        <attr name="left_text_color" format="color|reference" />
+        <attr name="left_text_color" format="color" />
         <attr name="left_icon_padding" format="dimension" />
         <attr name="left_padding_start" format="dimension" />
         <attr name="left_padding_top" format="dimension" />
@@ -16,6 +16,17 @@
             <enum name="gone" value="2" />
             <enum name="invisible" value="3" />
         </attr>
+
+        <!-- 标记文字属性 -->
+        <attr name="sign_text" format="string"/>
+        <attr name="sign_text_color" format="color"/>
+        <attr name="sign_text_size" format="dimension"/>
+        <attr name="sign_visibility">
+            <enum name="visible" value="1" />
+            <enum name="gone" value="2" />
+            <enum name="invisible" value="3" />
+        </attr>
+
         <!-- 中间TextView属性 -->
         <attr name="content_gravity">
             <enum name="left" value="1"/>

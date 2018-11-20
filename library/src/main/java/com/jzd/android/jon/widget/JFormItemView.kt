@@ -35,6 +35,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     lateinit var mLayoutContent: LinearLayout
     lateinit var mTvItemLeft: TextView
     lateinit var mTvItemContext: EditText
+    lateinit var mTvSign :TextView
     lateinit var mTvItemRight: TextView
     lateinit var mDivider: View
 
@@ -87,6 +88,26 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
                 1 -> mTvItemLeft.visibility = View.VISIBLE
                 2 -> mTvItemLeft.visibility = View.GONE
                 3 -> mTvItemLeft.visibility = View.INVISIBLE
+            }
+
+            // 标记文字
+            mTvSign = view.findViewById(R.id.mTvSign)
+            val signTextSize = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_sign_text_size, defTextSize.toInt())
+            mTvSign.setTextSize(TypedValue.COMPLEX_UNIT_PX, signTextSize.toFloat())
+            val signTextColor = attributeSet.getColor(R.styleable.JFormItemView_sign_text_color, context.resources.getColor(R.color.color_red))
+            mTvSign.setTextColor(signTextColor)
+            var signText = attributeSet.getString(R.styleable.JFormItemView_sign_text)
+            if(signText.isNullOrEmpty())
+            {
+                signText = context.resources.getString(R.string.j_form_item_view_sign)
+            }
+            mTvSign.text = signText
+            val signVisibility = attributeSet.getInt(R.styleable.JFormItemView_sign_visibility, 2)
+            when(signVisibility)
+            {
+                1 -> mTvSign.visibility = View.VISIBLE
+                2 -> mTvSign.visibility = View.GONE
+                3 -> mTvSign.visibility = View.INVISIBLE
             }
 
             // 中间TextView

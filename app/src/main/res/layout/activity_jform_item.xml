@@ -36,6 +36,7 @@
         app:content_gravity="left"
         app:left_text="姓名"
         app:content_text="我要在前面"
+        app:sign_visibility="visible"
         app:left_icon="@drawable/ic_heart"/>
 
     <com.jzd.android.jon.widget.JFormItemView

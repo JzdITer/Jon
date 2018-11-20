@@ -23,14 +23,25 @@
             android:lines="1"
             tools:text="列表项"/>
 
+        <TextView
+            android:id="@+id/mTvSign"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:textColor="@color/color_red"
+            android:text="@string/j_form_item_view_sign"
+            tools:ignore="HardcodedText"/>
+
         <EditText
             android:id="@+id/mTvItemContext"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical|end"
             android:background="@null"
-            tools:ignore="NestedWeights"
+            android:gravity="center_vertical|end"
+            tools:ignore="LabelFor,NestedWeights,TextFields"
             tools:text="内容"/>
 
         <TextView

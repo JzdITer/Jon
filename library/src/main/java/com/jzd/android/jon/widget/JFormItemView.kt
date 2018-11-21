@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -35,7 +36,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     lateinit var mLayoutContent: LinearLayout
     lateinit var mTvItemLeft: TextView
     lateinit var mTvItemContext: EditText
-    lateinit var mTvSign :TextView
+    lateinit var mTvSign: TextView
     lateinit var mTvItemRight: TextView
     lateinit var mDivider: View
 
@@ -45,19 +46,14 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     {
         return !mTvItemContext.isFocusable
     }
+
     init
     {
         val view = LayoutInflater.from(context).inflate(R.layout.layout_j_form_item_view, this, true)
         if(attrs != null)
         {
-            var defPadding = 0
-            var defIconPadding = 0
-            if(!isInEditMode)
-            {
-                defPadding = JMetrics.dp2px(8F)
-                defIconPadding = JMetrics.dp2px(3F)
-            }
-
+            val defPadding = JMetrics.dp2px(context, 8F)
+            val defIconPadding = JMetrics.dp2px(context, 3F)
 
             val attributeSet = context.obtainStyledAttributes(attrs, R.styleable.JFormItemView)
             // 获取系统默认字体
@@ -115,11 +111,11 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val contentGravity = attributeSet.getInt(R.styleable.JFormItemView_content_gravity, 3)
             when(contentGravity)
             {
-                1->
+                1 ->
                     mTvItemContext.gravity = Gravity.START or Gravity.CENTER_VERTICAL
-                2->
+                2 ->
                     mTvItemContext.gravity = Gravity.CENTER
-                3->
+                3 ->
                     mTvItemContext.gravity = Gravity.END or Gravity.CENTER_VERTICAL
             }
 
@@ -140,9 +136,61 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val contentText = attributeSet.getString(R.styleable.JFormItemView_content_text)
             mTvItemContext.setText(contentText)
             val contentHint = attributeSet.getString(R.styleable.JFormItemView_content_hint)
-            mTvItemContext.hint = contentHint
+            var contentHintPrefix = attributeSet.getString(R.styleable.JFormItemView_content_hint_prefix)
+            if(contentHintPrefix.isNullOrEmpty())
+            {
+                contentHintPrefix = context.resources.getString(R.string.j_form_item_view_content_hint_prefix)
+            }
+            if(contentHint.isNullOrEmpty())
+            {
+                mTvItemContext.hint = "$contentHintPrefix${mTvItemLeft.text}"
+            } else
+            {
+                mTvItemContext.hint = contentHint
+            }
             val contentTextColorHint = attributeSet.getColor(R.styleable.JFormItemView_content_text_color_hint, defHintTextColor)
             mTvItemContext.setHintTextColor(contentTextColorHint)
+            // 最少行数
+            val contentMinLines = attributeSet.getInt(R.styleable.JFormItemView_content_min_lines, 0)
+            if(contentMinLines != 0)
+            {
+                mTvItemContext.minHeight = contentMinLines
+            }
+            // 最多行数
+            val contentMaxLines = attributeSet.getInt(R.styleable.JFormItemView_content_max_lines, 0)
+            if(contentMaxLines != 0)
+            {
+                mTvItemContext.maxHeight = contentMaxLines
+            }
+            // 显示行数，不管文字多少
+            val contentLines = attributeSet.getInt(R.styleable.JFormItemView_content_lines, 0)
+            if(contentLines != 0)
+            {
+                mTvItemContext.setLines(contentLines)
+            }
+            // inputType
+            val inputType = attributeSet.getInt(R.styleable.JFormItemView_content_input_type, 1)
+            when(inputType)
+            {
+                1 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_NORMAL
+                2 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_PASSWORD
+                3 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_VARIATION_NORMAL
+                4 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+                5 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+                6 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_VARIATION_PASSWORD
+                7 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_PHONE or EditorInfo.TYPE_TEXT_VARIATION_PHONETIC
+                8 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                9 ->
+                    mTvItemContext.inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            }
 
             // 右侧TextView
             mTvItemRight = view.findViewById(R.id.mTvItemRight)

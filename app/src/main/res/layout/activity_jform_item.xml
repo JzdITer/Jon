@@ -11,7 +11,6 @@
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         app:content_text="张三"
         app:editable="true"
         app:left_text="姓名"/>
@@ -20,10 +19,9 @@
         android:id="@+id/mFv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:content_text="Jzd"
         app:content_text_color="@color/color_red"
-        app:left_icon="@drawable/ic_heart"
+        app:left_icon="@drawable/ic_username"
         app:left_text="姓名"
         app:right_text="i"
         />
@@ -32,20 +30,56 @@
         android:id="@+id/mFv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         app:content_gravity="start"
-        app:left_text="姓名"
         app:content_text="我要在前面"
-        app:sign_visibility="visible"
-        app:left_icon="@drawable/ic_heart"/>
+        app:left_icon="@drawable/ic_username"
+        app:left_text="姓名"
+        app:sign_visibility="visible"/>
 
     <com.jzd.android.jon.widget.JFormItemView
         android:id="@+id/mFv3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         app:content_gravity="center"
-        app:content_text="可以编辑"
+        app:content_text="看见了"
         app:editable="true"
-        app:left_icon="@drawable/ic_heart"/>
+        app:left_icon="@drawable/ic_username"/>
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        app:editable="true"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:inputType="textVisiblePassword"
+        android:maxLines="2"
+        android:text="可以编辑hndkls大上课讲的撒垃圾斯科拉就代课老师按揭贷款了撒娇几点开始垃圾快乐撒酒监督 的数据阿里大家电几点开始看见了看见了"
+        />
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_text="手机号"
+        app:editable="true"
+        app:content_input_type="phone"
+        android:minHeight="48dp"/>
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_text="密码"
+        app:editable="true"
+        app:content_input_type="password"
+        android:minHeight="48dp"/>
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_text="明文密码"
+        app:editable="true"
+        app:content_input_type="textVisiblePassword"
+        android:minHeight="48dp"/>
 </LinearLayout>

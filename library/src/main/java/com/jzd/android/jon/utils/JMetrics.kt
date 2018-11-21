@@ -1,5 +1,6 @@
 package com.jzd.android.jon.utils
 
+import android.content.Context
 import android.util.DisplayMetrics
 import com.jzd.android.jon.core.Jon
 
@@ -34,6 +35,11 @@ object JMetrics
         fun dp2px(dp: Float): Int
         {
             return (Jon.mContext.resources.displayMetrics.density * dp).toInt()
+        }
+
+        fun dp2px(context: Context,dp:Float):Int
+        {
+            return (context.resources.displayMetrics.density * dp).toInt()
         }
 
         /**

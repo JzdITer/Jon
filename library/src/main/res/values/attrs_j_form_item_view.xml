@@ -42,7 +42,22 @@
         <attr name="content_padding_end" format="dimension" />
         <attr name="content_padding_bottom" format="dimension" />
         <attr name="content_hint" format="string" />
+        <attr name="content_hint_prefix" format="string"/>
         <attr name="content_text_color_hint" format="color" />
+        <attr name="content_min_lines" format="integer"/>
+        <attr name="content_max_lines" format="integer"/>
+        <attr name="content_lines" format="integer"/>
+        <attr name="content_input_type">
+            <enum name="text" value="1"/>
+            <enum name="password" value="2"/>
+            <enum name="number" value="3"/>
+            <enum name="numberDecimal" value="4"/>
+            <enum name="numberSigned" value="5"/>
+            <enum name="numberPassword" value="6"/>
+            <enum name="phone" value="7"/>
+            <enum name="textEmailAddress" value="8"/>
+            <enum name="textVisiblePassword" value="9"/>
+        </attr>
         <!-- 右侧ImageView属性 -->-
         <attr name="right_icon" format="reference" />
         <attr name="right_padding_start" format="dimension" />

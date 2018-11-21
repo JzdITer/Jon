@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:content_gravity="left"
+        app:content_gravity="start"
         app:left_text="姓名"
         app:content_text="我要在前面"
         app:sign_visibility="visible"

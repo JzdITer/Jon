@@ -1,6 +1,8 @@
 package com.jzd.android.jon.utils
 
 import android.app.Notification
+import android.app.NotificationManager
+import android.content.Context
 import android.support.v4.app.NotificationManagerCompat
 import android.util.SparseArray
 import com.jzd.android.jon.core.Jon
@@ -69,10 +71,15 @@ object JNotification
     private const val TAG = "JNotification"
     private val mNotifications = SparseArray<Notification>()
     private var mCurId = 0
-    private var mNotificationManager: NotificationManagerCompat = NotificationManagerCompat.from(Jon.mContext)
+    private var mNotificationManager: NotificationManager = Jon.mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val mNotificationManagerCompat = NotificationManagerCompat.from(Jon.mContext)
 
+    fun areNotificationsEnabled(): Boolean
+    {
+        return mNotificationManagerCompat.areNotificationsEnabled()
+    }
 
-    fun getManager(): NotificationManagerCompat
+    fun getManager(): NotificationManager
     {
         return mNotificationManager
     }

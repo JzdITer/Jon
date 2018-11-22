@@ -238,18 +238,27 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             }
 
 
-            // 整体
+            // 整体   itemPadding优先级小于itemPaddingStart等
             mLayoutRoot = view.findViewById(R.id.mLayoutRoot)
-            val itemPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding, defPadding)
+            val itemPadding = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding, 0)
             var itemPaddingStart = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_start, 0)
             var itemPaddingTop = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_top, 0)
             var itemPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_end, 0)
             var itemPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_item_padding_bottom, 0)
-            if(itemPadding != 0)
+            if(itemPaddingStart == 0)
             {
                 itemPaddingStart = itemPadding
+            }
+            if(itemPaddingTop == 0)
+            {
                 itemPaddingTop = itemPadding
+            }
+            if(itemPaddingEnd == 0)
+            {
                 itemPaddingEnd = itemPadding
+            }
+            if(itemPaddingBottom == 0)
+            {
                 itemPaddingBottom = itemPadding
             }
             mLayoutRoot.setPadding(itemPaddingStart, itemPaddingTop, itemPaddingEnd, itemPaddingBottom)

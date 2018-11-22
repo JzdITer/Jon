@@ -102,7 +102,7 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     /**
      * 是否是沉浸式
      */
-    protected open fun isIm(): Boolean
+    open fun isIm(): Boolean
     {
         return true
     }

@@ -16,6 +16,7 @@ import com.jzd.android.jon.app.module.loader.ui.JLoaderActivity
 import com.jzd.android.jon.app.module.notification.ui.NotificationWatchActivity
 import com.jzd.android.jon.app.module.okgo.ui.OkGoActivity
 import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
+import com.jzd.android.jon.app.module.popupwindow.PopupWindowActivity
 import com.jzd.android.jon.app.module.recyclerview.ui.RecyclerViewActivity
 import com.jzd.android.jon.app.module.rx.ui.RxMainActivity
 import com.jzd.android.jon.app.module.tag.ui.TagActivity
@@ -80,6 +81,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("Tree", TreeActivity::class.java))
         data.add(ModuleBean("Time", TimeActivity::class.java))
         data.add(ModuleBean("OKGO", OkGoActivity::class.java))
+        data.add(ModuleBean("PopupWindow", PopupWindowActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

@@ -1,6 +1,7 @@
 package com.jzd.android.jon.app.base
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import com.jzd.android.jon.core.ui.JBaseActivity
 import com.jzd.android.jon.utils.gone
@@ -14,6 +15,8 @@ open class BaseActivity : JBaseActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT//竖屏
+        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE //横屏
     }
 
     protected fun initToolBar(title: CharSequence?)

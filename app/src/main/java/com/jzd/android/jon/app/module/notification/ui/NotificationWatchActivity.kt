@@ -36,7 +36,7 @@ class NotificationWatchActivity : BaseActivity()
         {
             R.id.mBtnEnable ->
             {
-                val enable = JNotification.getManager().areNotificationsEnabled()
+                val enable = JNotification.areNotificationsEnabled()
                 JToast.show("通知权限：$enable")
             }
             R.id.mBtnShow ->

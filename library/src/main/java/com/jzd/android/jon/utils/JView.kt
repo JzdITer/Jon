@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
+import com.jzd.android.jon.widget.JFormItemView
 
 /**
  * View相关工具类
@@ -80,4 +81,12 @@ interface SimpleWatcherListener : TextWatcher
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
     {
     }
+}
+
+/**
+ * 为JFormItemView添加回调
+ */
+fun JFormItemView.watch(listener: TextWatcher)
+{
+    this.getContentView().addTextChangedListener(listener)
 }

@@ -76,6 +76,7 @@
         android:minHeight="48dp"
         app:content_input_type="password"
         app:editable="true"
+        app:right_text="天"
         app:left_text="密码"/>
 
     <com.jzd.android.jon.widget.JFormItemView
@@ -84,6 +85,6 @@
         android:minHeight="48dp"
         app:editable="true"
         app:content_single_line="true"
-        app:content_text="d打算的撒的撒的撒的撒的撒的撒打算的撒旦撒的撒d的啊啊其味无穷二"
+        app:right_text="天"
         app:left_text="明文密码"/>
 </LinearLayout>

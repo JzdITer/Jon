@@ -68,6 +68,14 @@ fun TextView.watch(listener: TextWatcher)
     this.addTextChangedListener(listener)
 }
 
+/**
+ * 删除TextWatcher回调
+ */
+fun TextView.removeWatch(listener: TextWatcher)
+{
+    this.removeTextChangedListener(listener)
+}
+
 interface SimpleWatcherListener : TextWatcher
 {
     override fun afterTextChanged(s: Editable?)
@@ -89,4 +97,11 @@ interface SimpleWatcherListener : TextWatcher
 fun JFormItemView.watch(listener: TextWatcher)
 {
     this.getContentView().addTextChangedListener(listener)
+}
+/**
+ * 删除JFormItemView回调
+ */
+fun JFormItemView.removeWatch(listener: TextWatcher)
+{
+    this.getContentView().removeTextChangedListener(listener)
 }

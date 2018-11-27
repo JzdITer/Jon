@@ -83,9 +83,7 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         app:editable="true"
-        app:content_min_lines="2"
-        app:content_max_lines="5"
-        app:content_single_line="false"
+        app:content_single_line="true"
         app:content_text="d打算的撒的撒的撒的撒的撒的撒打算的撒旦撒的撒d的啊啊其味无穷二"
         app:left_text="明文密码"/>
 </LinearLayout>

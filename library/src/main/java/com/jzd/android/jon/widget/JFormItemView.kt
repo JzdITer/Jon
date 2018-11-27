@@ -115,7 +115,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val rightPaddingEnd = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_right_padding_end, 0)
             val rightPaddingBottom = attributeSet.getDimensionPixelSize(R.styleable.JFormItemView_right_padding_bottom, 0)
             mTvItemRight.setPadding(rightPaddingStart, rightPaddingTop, rightPaddingEnd, rightPaddingBottom)
-            val rightVisibility = attributeSet.getInt(R.styleable.JFormItemView_right_visibility, 1)
+            val rightVisibility = attributeSet.getInt(R.styleable.JFormItemView_right_visibility, 2)
             when(rightVisibility)
             {
                 1 -> mTvItemRight.visibility = View.VISIBLE

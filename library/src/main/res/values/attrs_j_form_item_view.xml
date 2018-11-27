@@ -47,6 +47,7 @@
         <attr name="content_min_lines" format="integer"/>
         <attr name="content_max_lines" format="integer"/>
         <attr name="content_lines" format="integer"/>
+        <attr name="content_single_line" format="boolean"/>
         <attr name="content_input_type">
             <enum name="text" value="1"/>
             <enum name="password" value="2"/>

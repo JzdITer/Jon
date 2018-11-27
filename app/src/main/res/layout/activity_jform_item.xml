@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/color_white"
+    android:orientation="vertical"
     tools:context=".module.jformitemview.ui.JFormItemActivity">
 
     <com.jzd.android.jon.widget.JFormItemView
@@ -56,31 +56,36 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:inputType="textVisiblePassword"
-        android:maxLines="2"
-        android:text="可以编辑hndkls大上课讲的撒垃圾斯科拉就代课老师按揭贷款了撒娇几点开始垃圾快乐撒酒监督 的数据阿里大家电几点开始看见了看见了"
+        android:minHeight="48dp"
+        android:background="@null"
+        android:inputType="text"
+        android:text="1可以编辑hndkls大上课讲的撒垃圾斯科拉就代课老师按揭贷款了撒娇几点开始垃圾快乐撒酒监督 的数据阿里大家电几点开始看见了看见了"
         />
 
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:left_text="手机号"
-        app:editable="true"
+        android:minHeight="48dp"
         app:content_input_type="phone"
-        android:minHeight="48dp"/>
+        app:editable="true"
+        app:left_text="手机号"/>
+
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:left_text="密码"
-        app:editable="true"
+        android:minHeight="48dp"
         app:content_input_type="password"
-        android:minHeight="48dp"/>
+        app:editable="true"
+        app:left_text="密码"/>
+
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:left_text="明文密码"
+        android:minHeight="48dp"
         app:editable="true"
-        app:content_input_type="textVisiblePassword"
-        android:minHeight="48dp"/>
+        app:content_min_lines="2"
+        app:content_max_lines="5"
+        app:content_single_line="false"
+        app:content_text="d打算的撒的撒的撒的撒的撒的撒打算的撒旦撒的撒d的啊啊其味无穷二"
+        app:left_text="明文密码"/>
 </LinearLayout>

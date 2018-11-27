@@ -19,7 +19,7 @@ import com.jzd.android.jon.widget.util.JWidgetUtil
 
 /**
  * 表单输入控件，包含左侧TextView,内容TextView,右侧TextView和分割线
- *
+ * inputType会影响single,如果多行，设置inputType=none
  * @author jzd
  * @since  v1.0
  */
@@ -168,8 +168,11 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             {
                 mTvItemContext.setLines(contentLines)
             }
+            // single
+            val single = attributeSet.getBoolean(R.styleable.JFormItemView_content_single_line, false)
+            mTvItemContext.setSingleLine(single)
             // inputType
-            val inputType = attributeSet.getInt(R.styleable.JFormItemView_content_input_type, 1)
+            val inputType = attributeSet.getInt(R.styleable.JFormItemView_content_input_type, -1)
             when(inputType)
             {
                 1 ->

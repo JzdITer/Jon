@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -16,7 +17,6 @@ import android.widget.PopupWindow;
 import com.jzd.android.jon.R;
 import com.jzd.android.jon.core.ui.JBaseActivity;
 import com.jzd.android.jon.utils.JBarUtil;
-import com.jzd.android.jon.utils.JMetrics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +43,8 @@ import java.util.List;
 
         setView(view);
 
-        setWidth((int) (JMetrics.INSTANCE.getWidth() * 0.5));
-        setHeight(JMetrics.INSTANCE.getHeight());
+        setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
 
         setClippingEnabled(false);
         setOutsideTouchable(true);
@@ -75,16 +75,38 @@ import java.util.List;
                 .inflate(R.layout.layout_j_base_popup_window, null, false);
         if(view != null)
         {
+            rootView.removeAllViews();
             rootView.addView(view);
-            if(mActivity.isIm())
-            {
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
-                layoutParams.topMargin = JBarUtil.INSTANCE.getStatusBarHeight(mActivity);
-                view.setLayoutParams(layoutParams);
-            }
         }
 
         setContentView(rootView);
+        return this;
+    }
+
+    /**
+     * 设置沉浸式(当高度全屏时使用)
+     * <p>
+     * 1.使用setContentView()方法设置界面时，需要用户自己实现沉浸式
+     * 2.使用JBasePopupWindow构造方法设置界面时，该方法可以实现沉浸式
+     * 3.使用setView(View)时，在setView之后调用该方法才会生效
+     */
+    public JBasePopupWindow setIm(boolean isIm)
+    {
+        if(isIm)
+        {
+            if(getContentView() != null)
+            {
+                LinearLayout parent = getContentView().findViewById(R.id.mLayoutRoot);
+                if(parent != null && parent.getChildCount() > 0)
+                {
+                    View view = parent.getChildAt(0);
+
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+                    layoutParams.topMargin = JBarUtil.INSTANCE.getStatusBarHeight(mActivity);
+                    view.setLayoutParams(layoutParams);
+                }
+            }
+        }
         return this;
     }
 
@@ -112,7 +134,7 @@ import java.util.List;
         //        }
         lightAlpha(0.79f);
         showAtLocation(mActivity.getWindow()
-                .getDecorView(), Gravity.END | Gravity.CENTER, 0, 0);
+                .getDecorView(), Gravity.CENTER, 0, 0);
     }
 
     /**
@@ -121,7 +143,8 @@ import java.util.List;
     public void show(int gravity, int x, int y)
     {
         lightAlpha(0.79f);
-        showAtLocation(mActivity.getWindow().getDecorView(), gravity, x, y);
+        showAtLocation(mActivity.getWindow()
+                .getDecorView(), gravity, x, y);
     }
 
     /**

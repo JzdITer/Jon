@@ -34,6 +34,9 @@ import java.util.List;
     {
         super(activity, null);
 
+        setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+
         RecyclerView mRvData = new RecyclerView(activity);
         int dp2px = JMetrics.INSTANCE.dp2px(8);
         mRvData.setPadding(dp2px, 0, dp2px, 0);

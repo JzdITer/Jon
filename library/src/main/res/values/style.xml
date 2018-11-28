@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="j_base_popup_window_style">
+    <style name="style_anim_slide_from_right">
         <item name="android:windowEnterAnimation">@anim/anim_slide_in_right</item>
         <item name="android:windowExitAnimation">@anim/anim_slide_out_right</item>
+    </style>
+    <style name="style_anim_slide_from_top">
+        <item name="android:windowEnterAnimation">@anim/anim_slide_in_top</item>
+        <item name="android:windowExitAnimation">@anim/anim_slide_out_top</item>
+    </style>
+    <style name="style_anim_slide_from_left">
+        <item name="android:windowEnterAnimation">@anim/anim_slide_in_left</item>
+        <item name="android:windowExitAnimation">@anim/anim_slide_out_left</item>
+    </style>
+    <style name="style_anim_slide_from_bottom">
+        <item name="android:windowEnterAnimation">@anim/anim_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/anim_slide_out_bottom</item>
     </style>
 </resources>

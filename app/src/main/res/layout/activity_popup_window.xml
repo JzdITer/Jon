@@ -12,9 +12,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="show"/>
+
     <Button
         android:id="@+id/mBtnShowList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="show_list"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mBtnShowTop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="top"/>
+
+        <Button
+            android:id="@+id/mBtnShowBottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="bottom"/>
+
+        <Button
+            android:id="@+id/mBtnShowRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="right"/>
+
+        <Button
+            android:id="@+id/mBtnShowLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="left"/>
+    </LinearLayout>
 </LinearLayout>

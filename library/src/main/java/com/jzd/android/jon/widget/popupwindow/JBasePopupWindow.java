@@ -22,11 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 项目中通用的PopupWindow:
- * 从屏幕右侧弹出，宽度为屏幕宽度*0.5，弹出时变为模态,外部点击可关闭
+ * 通用的PopupWindow:
+ * 宽度为屏幕宽度*0.5，弹出时变为模态,外部点击可关闭
+ * show为弹出样式，showAsDropDown为下拉
  */
 // TODO 取消软键盘
-public class JBasePopupWindow extends PopupWindow
+@SuppressWarnings("unused") public class JBasePopupWindow extends PopupWindow
 {
 
     private JBaseActivity mActivity;
@@ -50,7 +51,7 @@ public class JBasePopupWindow extends PopupWindow
         setFocusable(true);
         setTouchable(true);
         setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        setAnimationStyle(R.style.j_base_popup_window_style);
+        //setAnimationStyle(R.style.style_anim_slide_from_top);
 
         mOnDismissListeners.add(() -> lightAlpha(1));
         setOnDismissListener(() ->
@@ -90,12 +91,13 @@ public class JBasePopupWindow extends PopupWindow
     /**
      * 添加dismiss监听
      */
-    public void addOnDismissListener(PopupWindow.OnDismissListener listener)
+    public JBasePopupWindow addOnDismissListener(PopupWindow.OnDismissListener listener)
     {
         if(listener != null)
         {
             mOnDismissListeners.add(listener);
         }
+        return this;
     }
 
 
@@ -116,6 +118,15 @@ public class JBasePopupWindow extends PopupWindow
     /**
      * 弹出
      */
+    public void show(int gravity, int x, int y)
+    {
+        lightAlpha(0.79f);
+        showAtLocation(mActivity.getWindow().getDecorView(), gravity, x, y);
+    }
+
+    /**
+     * 弹出
+     */
     public void show(View view, int gravity, int x, int y)
     {
         //        View currentFocus = mActivity.getCurrentFocus();
@@ -125,6 +136,7 @@ public class JBasePopupWindow extends PopupWindow
         lightAlpha(0.79f);
         showAtLocation(view, gravity, x, y);
     }
+
 
     /**
      * 改变屏幕亮度
@@ -149,4 +161,34 @@ public class JBasePopupWindow extends PopupWindow
         valueAnimator.start();
     }
 
+    /**
+     * 进入动画
+     * 1：top
+     * 2：bottom
+     * 3: left
+     * 4: right
+     * <p>
+     * 自定义动画使用setAnimationStyle
+     */
+    public JBasePopupWindow setAnim(int type)
+    {
+        switch(type)
+        {
+            case 1:
+                setAnimationStyle(R.style.style_anim_slide_from_top);
+                break;
+            case 2:
+                setAnimationStyle(R.style.style_anim_slide_from_bottom);
+                break;
+            case 3:
+                setAnimationStyle(R.style.style_anim_slide_from_left);
+                break;
+            case 4:
+                setAnimationStyle(R.style.style_anim_slide_from_right);
+                break;
+            default:
+                break;
+        }
+        return this;
+    }
 }

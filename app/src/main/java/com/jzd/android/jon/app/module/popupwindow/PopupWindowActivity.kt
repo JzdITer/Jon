@@ -20,7 +20,7 @@ class PopupWindowActivity : BaseActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup_window)
 
-        setOnClick(mBtnShow,mBtnShowList)
+        setOnClick(mBtnShow,mBtnShowList,mBtnShowTop,mBtnShowBottom,mBtnShowRight,mBtnShowLeft)
     }
 
     override fun onClick(v: View?)
@@ -44,6 +44,26 @@ class PopupWindowActivity : BaseActivity()
                         JListPopupWindow.OnItemClickListener { _, obj ->
                             JToast.show(obj.value().toString())
                         }).setListGravity(Gravity.END or Gravity.CENTER_VERTICAL).show()
+            }
+            R.id.mBtnShowTop->
+            {
+                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
+                JBasePopupWindow(this,view).setAnim(1).show()
+            }
+            R.id.mBtnShowBottom->
+            {
+                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
+                JBasePopupWindow(this,view).setAnim(2).show()
+            }
+            R.id.mBtnShowLeft->
+            {
+                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
+                JBasePopupWindow(this,view).setAnim(3).show(Gravity.START,0,0)
+            }
+            R.id.mBtnShowRight->
+            {
+                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
+                JBasePopupWindow(this,view).setAnim(4).show()
             }
         }
     }

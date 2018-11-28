@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 列表弹出窗口
  */
-public class JListPopupWindow extends JBasePopupWindow
+@SuppressWarnings("unused") public class JListPopupWindow extends JBasePopupWindow
 {
 
     private OnItemClickListener mOnItemClickListener;
@@ -46,10 +46,13 @@ public class JListPopupWindow extends JBasePopupWindow
         mRvData.addItemDecoration(dividerItemDecoration);
         ListAdapter adapter = new ListAdapter();
         mData = data;
-        setOnItemClickListener(onItemClickListener);
+        this.mOnItemClickListener = onItemClickListener;
         mRvData.setAdapter(adapter);
     }
 
+    /**
+     * 列表对齐方式
+     */
     private int mListGravity = Gravity.CENTER;
 
     public JListPopupWindow setListGravity(int gravity)
@@ -59,11 +62,13 @@ public class JListPopupWindow extends JBasePopupWindow
     }
 
     /**
-     * 弹窗里的列表点击事件
+     * 点击后是否自动消失
      */
-    public JListPopupWindow setOnItemClickListener(OnItemClickListener itemClickListener)
+    private boolean mAutoDismiss = true;
+
+    public JListPopupWindow setAutoDismiss(boolean autoDismiss)
     {
-        this.mOnItemClickListener = itemClickListener;
+        mAutoDismiss = autoDismiss;
         return this;
     }
 
@@ -108,7 +113,10 @@ public class JListPopupWindow extends JBasePopupWindow
             {
                 int position = (int) v.getTag();
                 mOnItemClickListener.onItemClick(position, mData.get(position));
-                dismiss();
+                if(mAutoDismiss)
+                {
+                    dismiss();
+                }
             }
         }
     }

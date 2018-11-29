@@ -80,6 +80,7 @@ import java.util.List;
         void onItemClick(int position, JMapImpl obj);
     }
 
+    // TODO 把这个封装起来
     private class ListAdapter extends RecyclerView.Adapter<ListViewHolder> implements View.OnClickListener
     {
 

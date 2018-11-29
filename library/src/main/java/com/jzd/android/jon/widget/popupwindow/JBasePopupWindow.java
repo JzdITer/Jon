@@ -123,18 +123,21 @@ import java.util.List;
     }
 
 
+    private int mGravity = Gravity.CENTER;
+
     /**
      * 弹出
      */
     public void show()
     {
-        //        View currentFocus = mActivity.getCurrentFocus();
-        //        if(currentFocus != null) {
-        //            KeyBoardUtil.closeKeybord(mActivity, currentFocus);
-        //        }
-        lightAlpha(0.79f);
-        showAtLocation(mActivity.getWindow()
-                .getDecorView(), Gravity.CENTER, 0, 0);
+        show(mActivity.getWindow()
+                .getDecorView(), mGravity, 0, 0);
+    }
+
+    public void show(int gravity)
+    {
+        show(mActivity.getWindow()
+                .getDecorView(), gravity, 0, 0);
     }
 
     /**
@@ -142,8 +145,7 @@ import java.util.List;
      */
     public void show(int gravity, int x, int y)
     {
-        lightAlpha(0.79f);
-        showAtLocation(mActivity.getWindow()
+        show(mActivity.getWindow()
                 .getDecorView(), gravity, x, y);
     }
 
@@ -185,13 +187,22 @@ import java.util.List;
     }
 
     /**
+     * 修改弹出时的Gravity属性
+     */
+    public JBasePopupWindow setGravity(int gravity)
+    {
+        mGravity = gravity;
+        return this;
+    }
+
+    /**
      * 进入动画
      * 1：top
      * 2：bottom
      * 3: left
      * 4: right
      * <p>
-     * 自定义动画使用setAnimationStyle
+     * 自定义动画使用setAnimationStyle,使用该方法对对应修改弹出时的Gravity属性
      */
     public JBasePopupWindow setAnim(int type)
     {
@@ -199,15 +210,19 @@ import java.util.List;
         {
             case 1:
                 setAnimationStyle(R.style.style_anim_slide_from_top);
+                mGravity = Gravity.TOP;
                 break;
             case 2:
                 setAnimationStyle(R.style.style_anim_slide_from_bottom);
+                mGravity = Gravity.BOTTOM;
                 break;
             case 3:
                 setAnimationStyle(R.style.style_anim_slide_from_left);
+                mGravity = Gravity.START;
                 break;
             case 4:
                 setAnimationStyle(R.style.style_anim_slide_from_right);
+                mGravity = Gravity.END;
                 break;
             default:
                 break;

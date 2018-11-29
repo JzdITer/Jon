@@ -122,6 +122,16 @@ import java.util.List;
         return this;
     }
 
+    /**
+     * 设置width和height
+     */
+    public JBasePopupWindow setSize(int width,int height)
+    {
+        setWidth(width);
+        setHeight(height);
+        return this;
+    }
+
 
     private int mGravity = Gravity.CENTER;
 

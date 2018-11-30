@@ -8,7 +8,7 @@ package com.jzd.android.jon.core.module.jmap
  * @since  v1.0
  */
 
-class JMap(val key: String, val value: Any) : JMapImpl
+class JMap(val key: Any, val value: Any) : JMapImpl
 {
 
     constructor(value:Any):this("",value)

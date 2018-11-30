@@ -164,3 +164,18 @@ fun View.getData(): JMapImpl?
 {
     return this.tag as JMapImpl?
 }
+
+/**
+ * 获取key
+ */
+fun View.getDataKey(): Any?
+{
+    return getData()?.key()
+}
+/**
+ * 获取value
+ */
+fun View.getDataValue(): Any?
+{
+    return getData()?.value()
+}

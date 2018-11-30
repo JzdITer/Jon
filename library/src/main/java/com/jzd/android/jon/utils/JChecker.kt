@@ -1,5 +1,6 @@
 package com.jzd.android.jon.utils
 
+import android.view.View
 import android.widget.TextView
 import com.jzd.android.jon.widget.JFormItemView
 
@@ -25,6 +26,107 @@ object JChecker
         return true
     }
 
+    /**
+     * 非空检查
+     */
+    fun checkEmpty(vararg views: View): Boolean
+    {
+        views.forEach {
+            if(it is TextView)
+            {
+                if(it.text.toString().isEmpty())
+                {
+                    JToast.show(it.hint)
+                    return false
+                }
+            } else if(it is JFormItemView)
+            {
+                if(it.getContent().isEmpty())
+                {
+                    JToast.show(it.getContentView().hint)
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    /**
+     * 非空检查
+     */
+    fun checkEmpty(showHint: Boolean, vararg views: View): Boolean
+    {
+        views.forEach {
+            if(it is TextView)
+            {
+                if(it.text.toString().isEmpty())
+                {
+                    if(showHint)
+                    {
+                        JToast.show(it.hint)
+                    }
+                    return false
+                }
+            } else if(it is JFormItemView)
+            {
+                if(it.getContent().isEmpty())
+                {
+                    if(showHint)
+                    {
+                        JToast.show(it.getContentView().hint)
+                    }
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    /**
+     * tag检查
+     */
+    fun checkTag(vararg views: View): Boolean
+    {
+        views.forEach {
+            if(it.tag == null)
+            {
+                if(it is TextView)
+                {
+                    JToast.show(it.hint)
+                } else if(it is JFormItemView)
+                {
+                    JToast.show(it.getContentView().hint)
+                }
+                return false
+            }
+        }
+        return true
+    }
+
+    /**
+     * tag检查
+     */
+    fun checkTag(showHint: Boolean, vararg views: View): Boolean
+    {
+        views.forEach {
+            if(it.tag == null)
+            {
+                if(showHint)
+                {
+                    if(it is TextView)
+                    {
+                        JToast.show(it.hint)
+                    } else if(it is JFormItemView)
+                    {
+                        JToast.show(it.getContentView().hint)
+                    }
+                }
+                return false
+            }
+        }
+        return true
+    }
+
     fun checkEmpty(vararg views: JFormItemView): Boolean
     {
         views.forEach {
@@ -36,7 +138,9 @@ object JChecker
         }
         return true
     }
-    fun checkEmpty(showHint: Boolean,vararg views: JFormItemView): Boolean
+
+
+    fun checkEmpty(showHint: Boolean, vararg views: JFormItemView): Boolean
     {
         views.forEach {
             if(it.getContent().isEmpty())

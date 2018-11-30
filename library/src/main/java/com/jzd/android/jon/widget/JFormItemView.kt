@@ -264,23 +264,6 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
     /**
-     * 为控件绑定数据
-     */
-    fun setData(map: JMapImpl?)
-    {
-        this.mJMapImpl = map
-        mTvItemContext.setText(map?.value().toString())
-    }
-
-    /**
-     * 获取该控件上的数据
-     */
-    fun getData(): JMapImpl?
-    {
-        return this.mJMapImpl
-    }
-
-    /**
      * 得到文本内容
      */
     fun getContent(): String

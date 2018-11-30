@@ -13,8 +13,8 @@ import com.jzd.android.jon.app.base.BaseActivity
 import com.jzd.android.jon.app.module.recyclerview.adapter.RecyclerViewAdapter
 import com.jzd.android.jon.core.module.jmap.JMapImpl
 import com.jzd.android.jon.core.module.jmap.toJMap
-import com.jzd.android.jon.widget.util.clearItemDecoration
-import com.jzd.android.jon.widget.util.setItemDecoration
+import com.jzd.android.jon.utils.clearItemDecoration
+import com.jzd.android.jon.utils.setItemDecoration
 import kotlinx.android.synthetic.main.activity_recycler_view.*
 
 class RecyclerViewActivity : BaseActivity()

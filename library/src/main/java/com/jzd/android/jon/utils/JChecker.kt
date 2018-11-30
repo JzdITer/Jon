@@ -14,21 +14,6 @@ object JChecker
     /**
      * 非空检查
      */
-    fun checkEmpty(vararg views: TextView): Boolean
-    {
-        views.forEach {
-            if(it.text.toString().isEmpty())
-            {
-                JToast.show(it.hint)
-                return false
-            }
-        }
-        return true
-    }
-
-    /**
-     * 非空检查
-     */
     fun checkEmpty(vararg views: View): Boolean
     {
         views.forEach {
@@ -127,25 +112,20 @@ object JChecker
         return true
     }
 
-    fun checkEmpty(vararg views: JFormItemView): Boolean
+    /**
+     * data检查
+     * JFormItemView检查data,TextView检查text
+     */
+    fun checkData(vararg views: View): Boolean
     {
         views.forEach {
-            if(it.getContent().isEmpty())
+            val map = it.getData()
+            if(map == null)
             {
-                JToast.show(it.getContentView().hint)
-                return false
-            }
-        }
-        return true
-    }
-
-
-    fun checkEmpty(showHint: Boolean, vararg views: JFormItemView): Boolean
-    {
-        views.forEach {
-            if(it.getContent().isEmpty())
-            {
-                if(showHint)
+                if(it is TextView)
+                {
+                    JToast.show(it.hint)
+                } else if(it is JFormItemView)
                 {
                     JToast.show(it.getContentView().hint)
                 }
@@ -155,18 +135,25 @@ object JChecker
         return true
     }
 
-
     /**
-     * 非空检查
+     * data检查
+     * JFormItemView检查data,TextView检查text
      */
-    fun checkEmpty(showHint: Boolean, vararg views: TextView): Boolean
+    fun checkData(showHint: Boolean, vararg views: View): Boolean
     {
         views.forEach {
-            if(it.text.toString().isEmpty())
+            val map = it.getData()
+            if(map == null)
             {
                 if(showHint)
                 {
-                    JToast.show(it.hint)
+                    if(it is TextView)
+                    {
+                        JToast.show(it.hint)
+                    } else if(it is JFormItemView)
+                    {
+                        JToast.show(it.getContentView().hint)
+                    }
                 }
                 return false
             }

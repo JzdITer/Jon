@@ -1,9 +1,12 @@
 package com.jzd.android.jon.utils
 
+import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
+import com.jzd.android.jon.core.module.jmap.JMap
+import com.jzd.android.jon.core.module.jmap.JMapImpl
 import com.jzd.android.jon.widget.JFormItemView
 
 /**
@@ -98,10 +101,66 @@ fun JFormItemView.watch(listener: TextWatcher)
 {
     this.getContentView().addTextChangedListener(listener)
 }
+
 /**
  * 删除JFormItemView回调
  */
 fun JFormItemView.removeWatch(listener: TextWatcher)
 {
     this.getContentView().removeTextChangedListener(listener)
+}
+
+/**
+ * 清除RecyclerView的ItemDecoration
+ */
+fun RecyclerView.clearItemDecoration()
+{
+    while(this.itemDecorationCount > 0)
+    {
+        this.removeItemDecorationAt(0)
+    }
+}
+
+/**
+ * 重新设置RecyclerView的ItemDecoration
+ */
+fun RecyclerView.setItemDecoration(itemDecoration: RecyclerView.ItemDecoration)
+{
+    if(this.itemDecorationCount > 0)
+    {
+        clearItemDecoration()
+    }
+    addItemDecoration(itemDecoration)
+}
+
+/**
+ * 为View设置data,该方法通过设置tag实现，如果手动调用setTag，该方法会失效
+ */
+fun View.setData(map: JMapImpl)
+{
+    this.tag = map
+    if(this is TextView)
+    {
+        this.text = map.value().toString()
+    } else if(this is JFormItemView)
+    {
+        this.setContent(map.value().toString())
+    }
+}
+
+/**
+ * 为View设置data,该方法通过设置tag实现，如果手动调用setTag，该方法会失效
+ */
+fun View.setData(msg: String)
+{
+    val map = JMap("", msg)
+    setData(map)
+}
+
+/**
+ * 获取设置的data
+ */
+fun View.getData(): JMapImpl?
+{
+    return this.tag as JMapImpl?
 }

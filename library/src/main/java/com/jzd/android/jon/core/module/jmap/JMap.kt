@@ -8,10 +8,10 @@ package com.jzd.android.jon.core.module.jmap
  * @since  v1.0
  */
 
-class JMap(val key: Any, val value: Any) : JMapImpl
+class JMap(val key: Any, val value: Any) : JMapImpl<Any, Any>
 {
 
-    constructor(value:Any):this("",value)
+    constructor(value: Any) : this("", value)
 
     override fun key(): Any
     {

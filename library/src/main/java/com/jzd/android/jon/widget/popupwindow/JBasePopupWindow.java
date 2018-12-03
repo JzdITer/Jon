@@ -218,19 +218,19 @@ import java.util.List;
     {
         switch(type)
         {
-            case Top:
+            case TOP:
                 setAnimationStyle(R.style.style_anim_slide_from_top);
                 mGravity = Gravity.TOP;
                 break;
-            case Bottom:
+            case BOTTOM:
                 setAnimationStyle(R.style.style_anim_slide_from_bottom);
                 mGravity = Gravity.BOTTOM;
                 break;
-            case Left:
+            case LEFT:
                 setAnimationStyle(R.style.style_anim_slide_from_left);
                 mGravity = Gravity.START;
                 break;
-            case Right:
+            case RIGHT:
                 setAnimationStyle(R.style.style_anim_slide_from_right);
                 mGravity = Gravity.END;
                 break;
@@ -240,6 +240,6 @@ import java.util.List;
 
     public enum Type
     {
-        Top, Bottom, Left, Right
+        TOP, BOTTOM, LEFT, RIGHT
     }
 }

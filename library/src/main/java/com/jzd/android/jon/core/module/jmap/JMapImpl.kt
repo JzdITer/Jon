@@ -7,17 +7,17 @@ package com.jzd.android.jon.core.module.jmap
  * @since  v1.0
  */
 
-interface JMapImpl<out K, out V>
+interface JMapImpl
 {
     /**
      * 返回Key
      */
-    fun key(): K
+    fun key(): Any
 
     /**
      * 返回Value
      */
-    fun value(): V
+    fun value(): Any
 
     /**
      * 返回本身

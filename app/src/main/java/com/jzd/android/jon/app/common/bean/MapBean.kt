@@ -3,7 +3,7 @@ package com.jzd.android.jon.app.common.bean
 import com.jzd.android.jon.core.module.jmap.JMapImpl
 
 
-data class MapBean(val key: String, val value: String) : JMapImpl<String,String>
+data class MapBean(val key: String, val value: String) : JMapImpl
 {
     override fun key(): String
     {

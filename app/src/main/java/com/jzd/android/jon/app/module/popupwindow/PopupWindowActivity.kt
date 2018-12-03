@@ -34,7 +34,7 @@ class PopupWindowActivity : BaseActivity()
             }
             R.id.mBtnShowList ->
             {
-                val data = arrayListOf<JMapImpl<Any, Any>>()
+                val data = arrayListOf<JMapImpl>()
                 data.add(JMap("1", "C"))
                 data.add(JMap("2", "C++"))
                 data.add(JMap("3", "C#"))

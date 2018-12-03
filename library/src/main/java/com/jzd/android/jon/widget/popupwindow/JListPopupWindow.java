@@ -24,13 +24,13 @@ import java.util.List;
 {
 
     private OnItemClickListener mOnItemClickListener;
-    private List<JMapImpl<Object,Object>> mData;
+    private List<JMapImpl> mData;
     private JBaseActivity mActivity;
 
     /**
      * 初始化
      */
-    public JListPopupWindow(JBaseActivity activity, List<JMapImpl<Object,Object>> data, OnItemClickListener onItemClickListener)
+    public JListPopupWindow(JBaseActivity activity, List<JMapImpl> data, OnItemClickListener onItemClickListener)
     {
         super(activity, null);
 

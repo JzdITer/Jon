@@ -125,7 +125,7 @@ import java.util.List;
     /**
      * 设置width和height
      */
-    public JBasePopupWindow setSize(int width,int height)
+    public JBasePopupWindow setSize(int width, int height)
     {
         setWidth(width);
         setHeight(height);
@@ -214,29 +214,32 @@ import java.util.List;
      * <p>
      * 自定义动画使用setAnimationStyle,使用该方法对对应修改弹出时的Gravity属性
      */
-    public JBasePopupWindow setAnim(int type)
+    public JBasePopupWindow setAnim(Type type)
     {
         switch(type)
         {
-            case 1:
+            case Top:
                 setAnimationStyle(R.style.style_anim_slide_from_top);
                 mGravity = Gravity.TOP;
                 break;
-            case 2:
+            case Bottom:
                 setAnimationStyle(R.style.style_anim_slide_from_bottom);
                 mGravity = Gravity.BOTTOM;
                 break;
-            case 3:
+            case Left:
                 setAnimationStyle(R.style.style_anim_slide_from_left);
                 mGravity = Gravity.START;
                 break;
-            case 4:
+            case Right:
                 setAnimationStyle(R.style.style_anim_slide_from_right);
                 mGravity = Gravity.END;
                 break;
-            default:
-                break;
         }
         return this;
+    }
+
+    public enum Type
+    {
+        Top, Bottom, Left, Right
     }
 }

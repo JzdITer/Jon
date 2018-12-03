@@ -136,8 +136,12 @@ fun RecyclerView.setItemDecoration(itemDecoration: RecyclerView.ItemDecoration)
 /**
  * 为View设置data,该方法通过设置tag实现，如果手动调用setTag，该方法会失效
  */
-fun View.setData(map: JMapImpl)
+fun View.setData(map: JMapImpl?)
 {
+    if(map == null)
+    {
+        return
+    }
     this.tag = map
     if(this is TextView)
     {
@@ -151,8 +155,12 @@ fun View.setData(map: JMapImpl)
 /**
  * 为View设置data,该方法通过设置tag实现，如果手动调用setTag，该方法会失效
  */
-fun View.setData(msg: String)
+fun View.setData(msg: String?)
 {
+    if(msg == null)
+    {
+        return
+    }
     val map = JMap("", msg)
     setData(map)
 }

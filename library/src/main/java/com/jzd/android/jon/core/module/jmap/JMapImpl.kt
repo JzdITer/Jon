@@ -7,8 +7,7 @@ package com.jzd.android.jon.core.module.jmap
  * @since  v1.0
  */
 
-interface JMapImpl<out K,out V>
-    : JMapImpl<Any, Any>
+interface JMapImpl<out K, out V>
 {
     /**
      * 返回Key

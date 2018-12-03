@@ -20,7 +20,7 @@ class PopupWindowActivity : BaseActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup_window)
 
-        setOnClick(mBtnShow,mBtnShowList,mBtnShowTop,mBtnShowBottom,mBtnShowRight,mBtnShowLeft)
+        setOnClick(mBtnShow, mBtnShowList, mBtnShowTop, mBtnShowBottom, mBtnShowRight, mBtnShowLeft)
     }
 
     override fun onClick(v: View?)
@@ -29,41 +29,41 @@ class PopupWindowActivity : BaseActivity()
         {
             R.id.mBtnShow ->
             {
-                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
-                JBasePopupWindow(this,view).show()
+                val view = layoutInflater.inflate(R.layout.activity_jform_item, null, false)
+                JBasePopupWindow(this, view).show()
             }
-            R.id.mBtnShowList->
+            R.id.mBtnShowList ->
             {
-                val data = arrayListOf<JMapImpl>()
-                data.add(JMap("1","C"))
-                data.add(JMap("2","C++"))
-                data.add(JMap("3","C#"))
-                data.add(JMap("4","JAVA"))
-                data.add(JMap("5","Python"))
+                val data = arrayListOf<JMapImpl<Any, Any>>()
+                data.add(JMap("1", "C"))
+                data.add(JMap("2", "C++"))
+                data.add(JMap("3", "C#"))
+                data.add(JMap("4", "JAVA"))
+                data.add(JMap("5", "Python"))
                 JListPopupWindow(this, data,
                         JListPopupWindow.OnItemClickListener { _, obj ->
                             JToast.show(obj.value().toString())
                         }).setListGravity(Gravity.END or Gravity.CENTER_VERTICAL).setIm(true).show()
             }
-            R.id.mBtnShowTop->
+            R.id.mBtnShowTop ->
             {
-                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
-                JBasePopupWindow(this,view).setAnim(1).show()
+                val view = layoutInflater.inflate(R.layout.activity_jform_item, null, false)
+                JBasePopupWindow(this, view).setAnim(JBasePopupWindow.Type.TOP).show()
             }
-            R.id.mBtnShowBottom->
+            R.id.mBtnShowBottom ->
             {
-                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
-                JBasePopupWindow(this,view).setAnim(2).show()
+                val view = layoutInflater.inflate(R.layout.activity_jform_item, null, false)
+                JBasePopupWindow(this, view).setAnim(JBasePopupWindow.Type.BOTTOM).show()
             }
-            R.id.mBtnShowLeft->
+            R.id.mBtnShowLeft ->
             {
-                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
-                JBasePopupWindow(this,view).setAnim(3).show(Gravity.START,0,0)
+                val view = layoutInflater.inflate(R.layout.activity_jform_item, null, false)
+                JBasePopupWindow(this, view).setAnim(JBasePopupWindow.Type.LEFT).show(Gravity.START, 0, 0)
             }
-            R.id.mBtnShowRight->
+            R.id.mBtnShowRight ->
             {
-                val view = layoutInflater.inflate(R.layout.activity_jform_item,null,false)
-                JBasePopupWindow(this,view).setAnim(4).show()
+                val view = layoutInflater.inflate(R.layout.activity_jform_item, null, false)
+                JBasePopupWindow(this, view).setAnim(JBasePopupWindow.Type.RIGHT).show()
             }
         }
     }

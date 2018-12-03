@@ -13,7 +13,6 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.jzd.android.jon.R
-import com.jzd.android.jon.core.module.jmap.JMapImpl
 import com.jzd.android.jon.utils.JMetrics
 import com.jzd.android.jon.widget.util.JWidgetUtil
 
@@ -40,7 +39,6 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     lateinit var mTvItemRight: TextView
     lateinit var mDivider: View
 
-    private var mJMapImpl: JMapImpl? = null
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean
     {

@@ -25,7 +25,7 @@ class RecyclerViewActivity : BaseActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
 
-        val data = arrayListOf<JMapImpl>()
+        val data = arrayListOf<JMapImpl<*,*>>()
         for (i in 0..20)
         {
             data.add(i.toString().toJMap())

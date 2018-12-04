@@ -161,7 +161,7 @@ fun View.setData(msg: String?)
     {
         return
     }
-    val map = JMap("", msg)
+    val map = JMap(msg, msg)
     setData(map)
 }
 

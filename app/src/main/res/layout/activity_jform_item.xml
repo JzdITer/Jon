@@ -68,6 +68,7 @@
         android:minHeight="48dp"
         app:content_input_type="phone"
         app:editable="true"
+        app:content_hint_auto="false"
         app:left_text="手机号"/>
 
     <com.jzd.android.jon.widget.JFormItemView

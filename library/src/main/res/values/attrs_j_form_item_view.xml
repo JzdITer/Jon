@@ -43,6 +43,7 @@
         <attr name="content_padding_bottom" format="dimension" />
         <attr name="content_hint" format="string" />
         <attr name="content_hint_prefix" format="string"/>
+        <attr name="content_hint_auto" format="boolean"/>
         <attr name="content_text_color_hint" format="color" />
         <attr name="content_min_lines" format="integer"/>
         <attr name="content_max_lines" format="integer"/>

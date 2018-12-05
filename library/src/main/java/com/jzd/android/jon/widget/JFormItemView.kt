@@ -161,13 +161,18 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             mTvItemContext.setText(contentText)
             val contentHint = attributeSet.getString(R.styleable.JFormItemView_content_hint)
             var contentHintPrefix = attributeSet.getString(R.styleable.JFormItemView_content_hint_prefix)
+            val contentHintAuto = attributeSet.getBoolean(R.styleable.JFormItemView_content_hint_auto,true)
             if(contentHintPrefix.isNullOrEmpty())
             {
                 contentHintPrefix = context.resources.getString(R.string.j_form_item_view_content_hint_prefix)
             }
             if(contentHint.isNullOrEmpty())
             {
-                mTvItemContext.hint = "$contentHintPrefix${mTvItemLeft.text}"
+                // 是否自动生成hint
+                if(contentHintAuto)
+                {
+                    mTvItemContext.hint = "$contentHintPrefix${mTvItemLeft.text}"
+                }
             } else
             {
                 mTvItemContext.hint = contentHint

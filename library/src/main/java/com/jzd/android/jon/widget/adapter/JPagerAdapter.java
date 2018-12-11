@@ -11,13 +11,13 @@ public class JPagerAdapter<T> extends PagerAdapter
 {
     private List<T> mData = new ArrayList<>();
 
-    public void setDatas(List<T> data)
+    public void setData(List<T> data)
     {
         this.mData = data;
         this.notifyDataSetChanged();
     }
 
-    public void addDatas(List<T> data)
+    public void addData(List<T> data)
     {
         this.mData.addAll(data);
         this.notifyDataSetChanged();
@@ -29,7 +29,7 @@ public class JPagerAdapter<T> extends PagerAdapter
         this.notifyDataSetChanged();
     }
 
-    public List<T> getDatas()
+    public List<T> getData()
     {
         return this.mData;
     }

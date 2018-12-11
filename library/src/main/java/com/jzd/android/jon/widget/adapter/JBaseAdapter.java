@@ -7,18 +7,18 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class JAdapter<T> extends BaseAdapter
+public abstract class JBaseAdapter<T> extends BaseAdapter
 {
 
     private List<T> mData = new ArrayList<T>();
 
-    public void setDatas(List<T> data)
+    public void setData(List<T> data)
     {
         this.mData = data;
         this.notifyDataSetChanged();
     }
 
-    public void addDatas(List<T> data)
+    public void addData(List<T> data)
     {
         this.mData.addAll(data);
         this.notifyDataSetChanged();
@@ -30,7 +30,7 @@ public abstract class JAdapter<T> extends BaseAdapter
         this.notifyDataSetChanged();
     }
 
-    public List<T> getDatas()
+    public List<T> getData()
     {
         return this.mData;
     }

@@ -294,7 +294,7 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
 
     fun getStartParcelableList(): ArrayList<out Parcelable>?
     {
-        return intent.getParcelableArrayListExtra<Parcelable>(START_CODE_PARCELABLE)
+        return intent.getParcelableArrayListExtra<Parcelable>(START_CODE_PARCELABLE_LIST)
     }
 
     fun start(intent: Intent)

@@ -88,7 +88,7 @@
             <enum name="invisible" value="3"/>
         </attr>
         <!-- 整体 -->
-        <attr name="item_padding" format="dimension" />
+        <attr name="item_padding" format="dimension"/>
         <attr name="item_padding_start" format="dimension" />
         <attr name="item_padding_top" format="dimension" />
         <attr name="item_padding_end" format="dimension" />

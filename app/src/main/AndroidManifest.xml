@@ -36,8 +36,6 @@
         </activity>
         <activity android:name=".module.japp.ui.JAppActivity">
         </activity>
-        <activity android:name=".module.tag.ui.TagActivity">
-        </activity>
         <activity android:name=".base.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -54,6 +52,8 @@
         <activity android:name=".module.okgo.ui.OkGoActivity">
         </activity>
         <activity android:name=".module.popupwindow.PopupWindowActivity">
+        </activity>
+        <activity android:name=".module.imgpreview.ImgPreviewActivity">
         </activity>
     </application>
 

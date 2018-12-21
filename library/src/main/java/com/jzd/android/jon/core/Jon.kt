@@ -2,6 +2,7 @@ package com.jzd.android.jon.core
 
 import android.annotation.SuppressLint
 import android.content.Context
+import com.jzd.android.jon.core.impl.ImageLoaderImp
 
 /**
  * @author Jzd
@@ -11,16 +12,21 @@ import android.content.Context
 // @Throws(Throwable::class)
 // popupwindow
 // todo webview
-class Jon
+@SuppressLint("StaticFieldLeak")
+object Jon
 {
-    companion object
-    {
-        @SuppressLint("StaticFieldLeak")
-        lateinit var mContext: Context
+    lateinit var mContext: Context
+    var imageLoader: ImageLoaderImp? = null
 
-        fun init(context: Context)
-        {
-            mContext = context
-        }
+    fun init(context: Context): Jon
+    {
+        mContext = context
+        return this
+    }
+
+    fun initImageLoader(imageLoaderImp: ImageLoaderImp): Jon
+    {
+        imageLoader = imageLoaderImp
+        return this
     }
 }

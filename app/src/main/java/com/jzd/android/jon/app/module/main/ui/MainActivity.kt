@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.app.adapter.ModuleAdapter
 import com.jzd.android.jon.app.base.BaseActivity
+import com.jzd.android.jon.app.module.imgpreview.ImgPreviewActivity
 import com.jzd.android.jon.app.module.japp.ui.JAppActivity
 import com.jzd.android.jon.app.module.jformitemview.ui.JFormItemActivity
 import com.jzd.android.jon.app.module.loader.ui.JLoaderActivity
@@ -19,7 +20,6 @@ import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
 import com.jzd.android.jon.app.module.popupwindow.PopupWindowActivity
 import com.jzd.android.jon.app.module.recyclerview.ui.RecyclerViewActivity
 import com.jzd.android.jon.app.module.rx.ui.RxMainActivity
-import com.jzd.android.jon.app.module.tag.ui.TagActivity
 import com.jzd.android.jon.app.module.time.ui.TimeActivity
 import com.jzd.android.jon.app.module.tree.ui.TreeActivity
 import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
@@ -76,12 +76,12 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("JLoader", JLoaderActivity::class.java))
         data.add(ModuleBean("Notification", NotificationWatchActivity::class.java))
         data.add(ModuleBean("JApp", JAppActivity::class.java))
-        data.add(ModuleBean("TagView", TagActivity::class.java))
         data.add(ModuleBean("JFormItem", JFormItemActivity::class.java))
         data.add(ModuleBean("Tree", TreeActivity::class.java))
         data.add(ModuleBean("Time", TimeActivity::class.java))
         data.add(ModuleBean("OKGO", OkGoActivity::class.java))
         data.add(ModuleBean("PopupWindow", PopupWindowActivity::class.java))
+        data.add(ModuleBean("ImgPreview", ImgPreviewActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

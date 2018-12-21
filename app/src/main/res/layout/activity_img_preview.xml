@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.imgpreview.ImgPreviewActivity">
+
+    <com.jzd.android.jon.widget.JImgPreview
+        android:id="@+id/mIPLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/color_red"
+        android:orientation="horizontal"
+        app:j_img_preview_item_height="100dp"
+        app:j_img_preview_item_width="100dp"
+        app:j_img_preview_padding="30dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+
+    <com.jzd.android.jon.widget.JImgPreview
+        android:id="@+id/mIPLinear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/color_red"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:j_img_preview_item_height="100dp"
+        app:j_img_preview_item_width="100dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+
+    <com.jzd.android.jon.widget.JImgPreview
+        android:id="@+id/mIPGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/color_red"
+        android:orientation="vertical"
+        app:j_img_preview_item_height="100dp"
+        app:j_img_preview_item_width="100dp"
+        app:j_img_preview_padding="20dp"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="4"/>
+
+</LinearLayout>

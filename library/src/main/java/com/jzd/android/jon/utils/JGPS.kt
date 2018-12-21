@@ -49,7 +49,7 @@ object JGPS
     {
         if(lon < 72.004 || lon > 137.8347)
             return true
-        return if(lat < 0.8293 || lat > 55.8271) true else false
+        return lat < 0.8293 || lat > 55.8271
     }
 
     /**

@@ -65,7 +65,7 @@ class RecyclerViewActivity : BaseActivity()
             }
             R.id.id_menu_grid ->
             {
-                mRvData.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+                mRvData.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
                 mRvData.clearItemDecoration()
                 mRvData.addItemDecoration(DividerItemDecoration(mRvData.context, DividerItemDecoration.VERTICAL))
                 mRvData.addItemDecoration(DividerItemDecoration(mRvData.context, DividerItemDecoration.HORIZONTAL))

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JImgPreview">
+        <attr name="j_img_preview_max_count" format="integer"/>
+        <!-- 布局文件 -->
+        <attr name="j_img_preview_item_width" format="dimension"/>
+        <attr name="j_img_preview_item_height" format="dimension"/>
+        <attr name="j_img_preview_layout" format="dimension"/>
+        <attr name="j_img_preview_padding" format="dimension"/>
+    </declare-styleable>
+</resources>

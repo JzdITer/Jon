@@ -17,19 +17,7 @@
         android:orientation="horizontal"
         app:j_img_preview_item_height="100dp"
         app:j_img_preview_item_width="100dp"
-        app:j_img_preview_padding="30dp"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
-
-    <com.jzd.android.jon.widget.JImgPreview
-        android:id="@+id/mIPLinear2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/color_red"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:j_img_preview_item_height="100dp"
-        app:j_img_preview_item_width="100dp"
+        app:j_img_preview_max_count="5"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
     <com.jzd.android.jon.widget.JImgPreview
@@ -39,9 +27,10 @@
         android:layout_marginTop="50dp"
         android:background="@color/color_red"
         android:orientation="vertical"
+        app:j_img_preview_add="true"
         app:j_img_preview_item_height="100dp"
         app:j_img_preview_item_width="100dp"
-        app:j_img_preview_padding="20dp"
+        app:j_img_preview_max_count="9"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="4"/>
 

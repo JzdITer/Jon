@@ -13,9 +13,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.jzd.android.jon.R
 import com.jzd.android.jon.core.Jon
-import com.jzd.android.jon.core.module.jmap.JMapImpl
-import com.jzd.android.jon.utils.JLog
 import com.jzd.android.jon.utils.clearItemDecoration
+import com.jzd.android.jon.utils.gone
+import com.jzd.android.jon.utils.visible
+import io.reactivex.internal.operators.maybe.MaybeConcatArrayDelayError
 
 /**
  * 因为xml设置LayoutManager是反射注入，在init方法时还不能获取layoutManager
@@ -28,24 +29,28 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
 
     private var mMaxCount = -1
     private lateinit var mAdapter: ImgAdapter
+    private var mAddable = false // 是否可以添加
+    private var mDelete = false // 是否可以删除
 
     init
     {
         if(attrs != null)
         {
             val attributeSet = context.obtainStyledAttributes(attrs, R.styleable.JImgPreview)
-            JLog.e(mMaxCount.toString())
-            // 最大数量
+            // 最大数量 -1:不限制数量
             mMaxCount = attributeSet.getInt(R.styleable.JImgPreview_j_img_preview_max_count, -1)
 
             val width = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_item_width, 100)
             val height = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_item_height, 100)
 
             val padding = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_padding, 0) / 2
-
             setPadding(padding, padding, padding, padding)
 
-            mAdapter = ImgAdapter(context, width, height)
+            mAddable = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_add, false)
+            mDelete = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_delete, false)
+
+
+            mAdapter = ImgAdapter(context, width, height, mAddable, mDelete, mMaxCount)
             adapter = mAdapter
             attributeSet.recycle()
         }
@@ -84,26 +89,121 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
         super.setLayoutManager(layout)
     }
 
-    fun setData(data: List<JMapImpl>)
+    fun setData(data: List<Any>): JImgPreview
     {
         if(Jon.imageLoader == null)
         {
             throw NullPointerException("ImageLoader不能为空，请使用Jon.init()初始化")
         }
         mAdapter.setData(data)
+        return this
     }
 
+    fun setOnPreviewItemClickListener(onItemClickListener: OnPreviewItemClickListener)
+    {
+        mAdapter.mOnItemClickListener = onItemClickListener
+    }
+
+    /**
+     * 主动删除
+     */
+    fun delete(position: Int)
+    {
+        mAdapter.delete(position)
+    }
 
 }
 
-private class ImgAdapter(val context: Context, val width: Int, val height: Int) : RecyclerView.Adapter<MyViewHolder>()
+private class ImgAdapter(val context: Context, val width: Int, val height: Int, val addable: Boolean, val delete: Boolean, val maxCount: Int) :
+        RecyclerView.Adapter<MyViewHolder>()
 {
-    val mData = arrayListOf<JMapImpl>()
-    fun setData(data: List<JMapImpl>)
+    val mData = arrayListOf<Any>()
+    val mAddBtn = R.drawable.jon_ic_img_preview_add
+    var mOnItemClickListener: OnPreviewItemClickListener? = null
+
+    private fun checkData(checkData: List<Any>): List<Any>
+    {
+        val result = arrayListOf<Any>()
+        val data = arrayListOf<Any>()
+        data.addAll(checkData - mAddBtn)
+
+        // 如果有限制数量
+        if(maxCount > 0)
+        {
+            if(data.size > maxCount)
+            {
+                result.addAll(data.subList(0, maxCount))
+            } else
+            {
+                result.addAll(data)
+            }
+        } else
+        {
+            result.addAll(data)
+        }
+        // +
+        if(needAddBtn())
+        {
+            result.add(mAddBtn)
+        }
+        return result
+    }
+
+    fun setData(data: List<Any>)
     {
         mData.clear()
-        mData.addAll(data)
+        mData.addAll(checkData(data))
         notifyDataSetChanged()
+    }
+
+    fun addData(data: Any)
+    {
+        addData(arrayListOf(data))
+    }
+
+    fun addData(data: List<Any>)
+    {
+        val oldData = arrayListOf<Any>()
+        oldData.addAll(mData)
+        oldData.addAll(data)
+        val result = checkData(oldData)
+        mData.clear()
+        mData.addAll(result)
+        notifyDataSetChanged()
+    }
+
+    private fun needAddBtn(): Boolean
+    {
+        if(addable)
+        {
+            // 限制了数量
+            if(maxCount > 0)
+            {
+                // 达到最大数据
+                if(mData.size >= maxCount)
+                {
+                    return false
+                }
+            }
+            return true
+        } else
+        {
+            return false
+        }
+    }
+
+    /**
+     * 返回图片数据，不包含图片按钮
+     */
+    fun getData(): ArrayList<Any>
+    {
+        val data = arrayListOf<Any>()
+        if(mData.contains(mAddBtn))
+        {
+            data.addAll(mData)
+            data.remove(mAddBtn)
+        }
+        return data
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder
@@ -119,10 +219,58 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int) 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int)
     {
-        Jon.imageLoader?.display(context, mData[position].value(), holder.mIvImg)
-        holder.mIvDelete.setOnClickListener {
+        holder.mIvDelete.visibility = View.GONE
+        if(mData[position] != mAddBtn)
+        {
+            Jon.imageLoader?.display(context, mData[position], holder.mIvImg)
+            holder.mIvImg.setOnClickListener({
+                if(mOnItemClickListener != null)
+                {
+                    mOnItemClickListener!!.onImgClick(position, mData[position])
+                }
+            })
+            holder.mIvDelete.setOnClickListener({
 
+                if(mOnItemClickListener != null)
+                {
+                    val call = !mOnItemClickListener!!.onDeleteClick(position)
+                    if(call)
+                    {
+                        delete(position)
+                    }
+                } else
+                {
+                    delete(position)
+                }
+            })
+            if(delete)
+            {
+                holder.mIvDelete.visible()
+            } else
+            {
+                holder.mIvDelete.gone()
+            }
+        } else
+        {
+            holder.mIvImg.setImageResource(mAddBtn)
+            holder.mIvImg.setOnClickListener({
+                if(mOnItemClickListener != null)
+                {
+                    mOnItemClickListener!!.onAddClick()
+                }
+            })
+
+            holder.mIvDelete.setOnClickListener(null)
+            holder.mIvDelete.gone()
         }
+    }
+
+    fun delete(position: Int)
+    {
+        // 完成删除操作  再回调
+        mData.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeRemoved(position, itemCount)
     }
 }
 
@@ -138,4 +286,30 @@ private class MyViewHolder(itemView: View, width: Int, height: Int) : RecyclerVi
         layoutParams.height = height
         mIvImg.layoutParams = layoutParams
     }
+}
+
+abstract class OnSimplePreviewItemClickListener : OnPreviewItemClickListener
+{
+    override fun onDeleteClick(position: Int): Boolean
+    {
+        return false
+    }
+}
+
+interface OnPreviewItemClickListener
+{
+    /**
+     * 图片点击事件
+     */
+    fun onImgClick(position: Int, obj: Any)
+
+    /**
+     * 删除事件
+     */
+    fun onDeleteClick(position: Int): Boolean
+
+    /**
+     * 添加事件
+     */
+    fun onAddClick()
 }

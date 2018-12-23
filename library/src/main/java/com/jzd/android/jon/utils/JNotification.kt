@@ -46,7 +46,7 @@ import com.jzd.android.jon.core.Jon
  *              channel.enableLights(true) // 桌面icon上角标
  *              // channel.lightColor = Color.RED
  *              channel.setShowBadge(true) // 长按弹出详情
- *              JNotification.getInstance(this).getManager()?.createNotificationChannel(channel)
+ *              JNotification.getManager().createNotificationChannel(channel)
  *              NotificationCompat.Builder(this, channel.id)
  *          }else
  *          {

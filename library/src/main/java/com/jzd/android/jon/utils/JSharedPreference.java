@@ -12,6 +12,7 @@ import java.lang.reflect.Modifier;
 
 /**
  * 数据存储
+ * 存储对象的时候 可以考虑Gson转换成string存储
  */
 
 public class JSharedPreference {
@@ -26,8 +27,7 @@ public class JSharedPreference {
 
     public void remove(String key) {
         mPreferences.edit()
-                .putString(key, "")
-                .apply();
+                .remove(key).apply();
     }
 
     public static class Builder {

@@ -22,7 +22,7 @@ import com.jzd.android.jon.utils.visible
  * GridLayoutManager时要动态计算width,height
  * LinearLayoutManager时取值
  */
-// todo 升级成淘宝评价样式，addbtn自定义布局   add可调整位置
+// todo 升级成淘宝评价样式，addbtn自定义布局   add可调整位置   图片不可重复选择
 class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : RecyclerView(context, attrs, defStyle)
 {
 
@@ -124,6 +124,11 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
     {
         mAdapter.setAddImgResource(resId)
         return this
+    }
+
+    fun getData(): ArrayList<Any>
+    {
+        return mAdapter.getData()
     }
 
 }

@@ -49,19 +49,9 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
             mAddable = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_add, false)
             mDelete = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_delete, false)
 
-            mAdapter = ImgAdapter(context, width, height, mAddable, mDelete, mMaxCount, layoutManager)
-            adapter = mAdapter
-            attributeSet.recycle()
-        }
-    }
-
-    override fun setLayoutManager(layout: LayoutManager)
-    {
-        if(itemDecorationCount <= 0)
-        {
             val drawableV = ContextCompat.getDrawable(context, R.drawable.drawable_item_decoration_empty_v)!!
             val drawableH = ContextCompat.getDrawable(context, R.drawable.drawable_item_decoration_empty_h)!!
-            if(layout is GridLayoutManager)
+            if(layoutManager is GridLayoutManager)
             {
                 val itemDecoration1 = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
                 itemDecoration1.setDrawable(drawableV)
@@ -70,9 +60,9 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
                 clearItemDecoration()
                 addItemDecoration(itemDecoration1)
                 addItemDecoration(itemDecoration2)
-            } else if(layout is LinearLayoutManager)
+            } else if(layoutManager is LinearLayoutManager)
             {
-                val orientation = layout.orientation
+                val orientation = (layoutManager as LinearLayoutManager).orientation
                 val itemDecoration = DividerItemDecoration(context, orientation)
                 if(orientation == DividerItemDecoration.HORIZONTAL)
                 {
@@ -84,8 +74,11 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
                 clearItemDecoration()
                 addItemDecoration(itemDecoration)
             }
+
+            mAdapter = ImgAdapter(context, width, height, mAddable, mDelete, mMaxCount, layoutManager)
+            adapter = mAdapter
+            attributeSet.recycle()
         }
-        super.setLayoutManager(layout)
     }
 
     fun setData(data: List<Any>): JImgPreview

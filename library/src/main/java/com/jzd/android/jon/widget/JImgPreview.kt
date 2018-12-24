@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.jzd.android.jon.R
 import com.jzd.android.jon.core.Jon
-import com.jzd.android.jon.utils.clearItemDecoration
 import com.jzd.android.jon.utils.gone
 import com.jzd.android.jon.utils.visible
 
@@ -57,7 +56,7 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
                 itemDecoration1.setDrawable(drawableV)
                 val itemDecoration2 = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
                 itemDecoration2.setDrawable(drawableH)
-                clearItemDecoration()
+                //clearItemDecoration()
                 addItemDecoration(itemDecoration1)
                 addItemDecoration(itemDecoration2)
             } else if(layoutManager is LinearLayoutManager)
@@ -71,12 +70,13 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
                 {
                     itemDecoration.setDrawable(drawableV)
                 }
-                clearItemDecoration()
+                //clearItemDecoration()
                 addItemDecoration(itemDecoration)
             }
 
             mAdapter = ImgAdapter(context, width, height, mAddable, mDelete, mMaxCount, layoutManager)
             adapter = mAdapter
+            mAdapter.setData(arrayListOf())
             attributeSet.recycle()
         }
     }

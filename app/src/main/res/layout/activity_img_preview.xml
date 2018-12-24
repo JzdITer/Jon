@@ -15,10 +15,10 @@
         android:layout_marginTop="50dp"
         android:background="@color/color_red"
         android:orientation="horizontal"
+        app:j_img_preview_add="true"
         app:j_img_preview_item_height="100dp"
         app:j_img_preview_item_width="100dp"
         app:j_img_preview_max_count="5"
-        app:j_img_preview_add="true"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
     <com.jzd.android.jon.widget.JImgPreview
@@ -29,11 +29,26 @@
         android:background="@color/color_red"
         android:orientation="vertical"
         app:j_img_preview_add="true"
+        app:j_img_preview_delete="true"
         app:j_img_preview_item_height="100dp"
         app:j_img_preview_item_width="100dp"
-        app:j_img_preview_delete="true"
         app:j_img_preview_max_count="9"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="4"/>
+
+    <com.jzd.android.jon.widget.JImgPreview
+        android:id="@+id/mIPVDevicePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/color_red"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:j_img_preview_add="true"
+        app:j_img_preview_delete="true"
+        app:j_img_preview_item_height="104dp"
+        app:j_img_preview_item_width="120dp"
+        app:j_img_preview_max_count="9"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
 </LinearLayout>

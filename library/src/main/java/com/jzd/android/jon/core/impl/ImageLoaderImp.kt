@@ -7,7 +7,7 @@ interface ImageLoaderImp
 {
     fun display(context: Context, path: Any, imageView: ImageView)
 
-    fun stop(context: Context)
+    fun onStop(context: Context)
 
     fun clearMemory(context: Context)
 }

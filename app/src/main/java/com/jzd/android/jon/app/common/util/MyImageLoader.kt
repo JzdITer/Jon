@@ -12,7 +12,7 @@ object MyImageLoader : ImageLoaderImp
         Glide.with(context).load(path).into(imageView)
     }
 
-    override fun stop(context: Context)
+    override fun onStop(context: Context)
     {
     }
 

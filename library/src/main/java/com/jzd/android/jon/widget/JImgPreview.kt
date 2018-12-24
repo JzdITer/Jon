@@ -168,7 +168,7 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
             result.addAll(data)
         }
         // +
-        if(needAddBtn())
+        if(needAddBtn(result))
         {
             result.add(mAddBtn)
         }
@@ -198,7 +198,7 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
         notifyDataSetChanged()
     }
 
-    private fun needAddBtn(): Boolean
+    private fun needAddBtn(data:List<Any>): Boolean
     {
         if(addable)
         {
@@ -206,7 +206,7 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
             if(maxCount > 0)
             {
                 // 达到最大数据
-                if(mData.size >= maxCount)
+                if(data.size >= maxCount)
                 {
                     return false
                 }

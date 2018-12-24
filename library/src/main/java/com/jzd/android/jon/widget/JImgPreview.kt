@@ -1,6 +1,7 @@
 package com.jzd.android.jon.widget
 
 import android.content.Context
+import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
@@ -16,11 +17,13 @@ import com.jzd.android.jon.core.Jon
 import com.jzd.android.jon.utils.clearItemDecoration
 import com.jzd.android.jon.utils.gone
 import com.jzd.android.jon.utils.visible
-import io.reactivex.internal.operators.maybe.MaybeConcatArrayDelayError
 
 /**
  * 因为xml设置LayoutManager是反射注入，在init方法时还不能获取layoutManager
+ * GridLayoutManager时要动态计算width,height
+ * LinearLayoutManager时取值
  */
+// todo 升级成淘宝评价样式，addbtn自定义布局   add可调整位置
 class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : RecyclerView(context, attrs, defStyle)
 {
 
@@ -40,17 +43,13 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
             // 最大数量 -1:不限制数量
             mMaxCount = attributeSet.getInt(R.styleable.JImgPreview_j_img_preview_max_count, -1)
 
-            val width = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_item_width, 100)
-            val height = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_item_height, 100)
-
-            val padding = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_padding, 0) / 2
-            setPadding(padding, padding, padding, padding)
+            val width = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_item_width, 300)
+            val height = attributeSet.getDimensionPixelSize(R.styleable.JImgPreview_j_img_preview_item_height, 300)
 
             mAddable = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_add, false)
             mDelete = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_delete, false)
 
-
-            mAdapter = ImgAdapter(context, width, height, mAddable, mDelete, mMaxCount)
+            mAdapter = ImgAdapter(context, width, height, mAddable, mDelete, mMaxCount, layoutManager)
             adapter = mAdapter
             attributeSet.recycle()
         }
@@ -99,9 +98,22 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
         return this
     }
 
-    fun setOnPreviewItemClickListener(onItemClickListener: OnPreviewItemClickListener)
+    fun addData(obj: Any): JImgPreview
+    {
+        mAdapter.addData(obj)
+        return this
+    }
+
+    fun addData(data: List<Any>): JImgPreview
+    {
+        mAdapter.addData(data)
+        return this
+    }
+
+    fun setOnPreviewItemClickListener(onItemClickListener: OnPreviewItemClickListener): JImgPreview
     {
         mAdapter.mOnItemClickListener = onItemClickListener
+        return this
     }
 
     /**
@@ -112,14 +124,30 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
         mAdapter.delete(position)
     }
 
+    /**
+     * 自定义add图片,需要在设置数据之前执行
+     */
+    fun setAddImgResource(@DrawableRes resId: Int): JImgPreview
+    {
+        mAdapter.setAddImgResource(resId)
+        return this
+    }
+
 }
 
-private class ImgAdapter(val context: Context, val width: Int, val height: Int, val addable: Boolean, val delete: Boolean, val maxCount: Int) :
+private class ImgAdapter(val context: Context, val width: Int, val height: Int, val addable: Boolean, val delete: Boolean, val maxCount: Int,
+                         val layoutManager: RecyclerView.LayoutManager) :
         RecyclerView.Adapter<MyViewHolder>()
 {
     val mData = arrayListOf<Any>()
-    val mAddBtn = R.drawable.jon_ic_img_preview_add
+    var mAddBtn = R.drawable.jon_ic_img_preview_add
     var mOnItemClickListener: OnPreviewItemClickListener? = null
+
+
+    fun setAddImgResource(@DrawableRes resId: Int)
+    {
+        mAddBtn = resId
+    }
 
     private fun checkData(checkData: List<Any>): List<Any>
     {
@@ -209,7 +237,7 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder
     {
         val view = LayoutInflater.from(context).inflate(R.layout.jon_rv_item_j_img_preview, parent, false)
-        return MyViewHolder(view, width, height)
+        return MyViewHolder(view, width, height, layoutManager)
     }
 
     override fun getItemCount(): Int
@@ -269,12 +297,16 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
     {
         // 完成删除操作  再回调
         mData.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeRemoved(position, itemCount)
+        val data = checkData(mData)
+        mData.clear()
+        mData.addAll(data)
+        notifyDataSetChanged()
+        //notifyItemRemoved(position)
+        //notifyItemRangeRemoved(position, itemCount)
     }
 }
 
-private class MyViewHolder(itemView: View, width: Int, height: Int) : RecyclerView.ViewHolder(itemView)
+private class MyViewHolder(itemView: View, width: Int, height: Int, layoutManager: RecyclerView.LayoutManager) : RecyclerView.ViewHolder(itemView)
 {
     var mIvImg: ImageView = itemView.findViewById(R.id.mIvImg)
     var mIvDelete: ImageView = itemView.findViewById(R.id.mIvDelete)
@@ -282,8 +314,15 @@ private class MyViewHolder(itemView: View, width: Int, height: Int) : RecyclerVi
     init
     {
         val layoutParams = mIvImg.layoutParams
-        layoutParams.width = width
-        layoutParams.height = height
+        if(layoutManager is GridLayoutManager)
+        {
+            layoutParams.width = layoutManager.width / layoutManager.spanCount
+            layoutParams.height = layoutParams.width
+        } else
+        {
+            layoutParams.width = width
+            layoutParams.height = height
+        }
         mIvImg.layoutParams = layoutParams
     }
 }

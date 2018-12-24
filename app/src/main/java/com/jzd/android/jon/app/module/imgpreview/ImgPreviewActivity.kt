@@ -1,14 +1,10 @@
 package com.jzd.android.jon.app.module.imgpreview
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.base.BaseActivity
-import com.jzd.android.jon.core.module.jmap.JMapImpl
-import com.jzd.android.jon.core.module.jmap.toJMap
 import com.jzd.android.jon.utils.JToast
-import com.jzd.android.jon.widget.OnPreviewItemClickListener
 import com.jzd.android.jon.widget.OnSimplePreviewItemClickListener
 import kotlinx.android.synthetic.main.activity_img_preview.*
 
@@ -33,13 +29,14 @@ class ImgPreviewActivity : BaseActivity()
 
             override fun onAddClick()
             {
-                JToast.show("添加")
+                JToast.show("添加啊，不要删除啊啊")
+                mIPGrid.addData("https://goss.veer.com/creative/vcg/veer/800water/veer-167534806.jpg")
             }
 
             override fun onDeleteClick(position: Int): Boolean
             {
                 AlertDialog.Builder(mContext).setPositiveButton("是否删除") { _, _ ->
-                    JToast.show("是")
+                    JToast.show("是啊")
                     mIPGrid.delete(position)
                 }.setNegativeButton("取消", { _, _ ->
 
@@ -53,7 +50,7 @@ class ImgPreviewActivity : BaseActivity()
     {
         val list = arrayListOf<String>()
         val map = "https://goss.veer.com/creative/vcg/veer/800water/veer-167534806.jpg"
-        for(i in 1..10)
+        for(i in 1..6)
         {
             list.add(map)
         }

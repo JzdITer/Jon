@@ -18,6 +18,7 @@
         app:j_img_preview_item_height="100dp"
         app:j_img_preview_item_width="100dp"
         app:j_img_preview_max_count="5"
+        app:j_img_preview_add="true"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
     <com.jzd.android.jon.widget.JImgPreview
@@ -30,6 +31,7 @@
         app:j_img_preview_add="true"
         app:j_img_preview_item_height="100dp"
         app:j_img_preview_item_width="100dp"
+        app:j_img_preview_delete="true"
         app:j_img_preview_max_count="9"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="4"/>

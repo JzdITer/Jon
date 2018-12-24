@@ -6,7 +6,6 @@
         <attr name="j_img_preview_item_width" format="dimension"/>
         <attr name="j_img_preview_item_height" format="dimension"/>
         <attr name="j_img_preview_layout" format="dimension"/>
-        <attr name="j_img_preview_padding" format="dimension"/>
         <!-- 是否有添加按钮 -->
         <attr name="j_img_preview_add" format="boolean"/>
         <attr name="j_img_preview_delete" format="boolean"/>

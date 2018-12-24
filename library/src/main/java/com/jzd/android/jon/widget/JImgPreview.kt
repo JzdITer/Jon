@@ -224,9 +224,9 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
     fun getData(): ArrayList<Any>
     {
         val data = arrayListOf<Any>()
-        if(mData.contains(mAddBtn))
+        data.addAll(mData)
+        if(data.contains(mAddBtn))
         {
-            data.addAll(mData)
             data.remove(mAddBtn)
         }
         return data

@@ -12,6 +12,7 @@ class SplashActivity : BaseActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        setSwipeBackEnable(false)
     }
 
     override fun isSplash(): Boolean

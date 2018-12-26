@@ -29,17 +29,21 @@ import com.jzd.android.jon.core.impl.OnDoubleBackPressListener
 import com.jzd.android.jon.core.module.permission.JPermission
 import com.jzd.android.jon.core.module.permission.PermissionListener
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import me.imid.swipebacklayout.lib.SwipeBackLayout
+import me.imid.swipebacklayout.lib.Utils
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper
 import qiu.niorgai.StatusBarCompat
 import java.io.Serializable
 
 /**
  * Activity父类 封装系统Api
+ * 侧滑返回需要重写findViewById,这里没有重写，可能会有问题
  * @author Jzd
  * @since 1.0
  */
-open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContextDelegate
+open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContextDelegate, SwipeBackActivityBase
 {
-
     protected lateinit var mContext: Context
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -58,8 +62,34 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
                         .FLAG_FULLSCREEN)
             }
         }
+        mHelper = SwipeBackActivityHelper(this)
+        mHelper.onActivityCreate()
     }
 
+    // ------------------------------------- 侧滑返回  --------------------------------------------------------------
+    private lateinit var mHelper: SwipeBackActivityHelper
+    override fun getSwipeBackLayout(): SwipeBackLayout
+    {
+        return mHelper.swipeBackLayout
+    }
+
+    override fun scrollToFinishActivity()
+    {
+        Utils.convertActivityToTranslucent(this)
+        swipeBackLayout.scrollToFinishActivity()
+    }
+
+    override fun setSwipeBackEnable(enable: Boolean)
+    {
+        swipeBackLayout.setEnableGesture(enable)
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?)
+    {
+        super.onPostCreate(savedInstanceState)
+        mHelper.onPostCreate()
+    }
+    // ------------------------------------- 侧滑返回  --------------------------------------------------------------
     /**
      *  防止重复启动
      */
@@ -170,9 +200,10 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         start(intent)
     }
+
     fun startTop(activity: Class<out Activity>)
     {
-        val intent = Intent(mContext,activity)
+        val intent = Intent(mContext, activity)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         start(intent)
     }

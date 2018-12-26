@@ -56,9 +56,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
         android:background="@null"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="1可以编辑hndkls大上课讲的撒垃圾斯科拉就代课老师按揭贷款了撒娇几点开始垃圾快乐撒酒监督 的数据阿里大家电几点开始看见了看见了"
         />
 
@@ -66,9 +66,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
+        app:content_hint_auto="false"
         app:content_input_type="phone"
         app:editable="true"
-        app:content_hint_auto="false"
         app:left_text="手机号"/>
 
     <com.jzd.android.jon.widget.JFormItemView
@@ -77,15 +77,32 @@
         android:minHeight="48dp"
         app:content_input_type="password"
         app:editable="true"
-        app:right_text="天"
-        app:left_text="密码"/>
+        app:left_text="密码"
+        app:right_text="天"/>
 
     <com.jzd.android.jon.widget.JFormItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        app:editable="true"
         app:content_single_line="true"
+        app:editable="true"
+        app:left_text="明文密码"
+        app:right_text="天"/>
+
+    <com.jzd.android.jon.widget.JFormItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        app:content_min_lines="2"
+        app:editable="true"
+        app:left_text="多行显示"
         app:right_text="天"
-        app:left_text="明文密码"/>
+        tools:ignore="HardcodedText"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="2"
+        android:text="dsan阿斯顿撒大大大的撒的撒的撒的撒的撒的撒的撒旦撒的撒的俺三大家都撒的撒的撒旦撒旦是的撒的撒"
+        />
 </LinearLayout>

@@ -39,4 +39,6 @@ dependencies {
     api 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     compileOnly 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
+
+    api 'me.imid.swipebacklayout.lib:library:1.1.0'
 }

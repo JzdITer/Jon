@@ -183,13 +183,13 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             val contentMinLines = attributeSet.getInt(R.styleable.JFormItemView_content_min_lines, 0)
             if(contentMinLines != 0)
             {
-                mTvItemContext.minHeight = contentMinLines
+                mTvItemContext.minLines = contentMinLines
             }
             // 最多行数
             val contentMaxLines = attributeSet.getInt(R.styleable.JFormItemView_content_max_lines, 0)
             if(contentMaxLines != 0)
             {
-                mTvItemContext.maxHeight = contentMaxLines
+                mTvItemContext.maxLines = contentMaxLines
             }
             // 显示行数，不管文字多少
             val contentLines = attributeSet.getInt(R.styleable.JFormItemView_content_lines, 0)

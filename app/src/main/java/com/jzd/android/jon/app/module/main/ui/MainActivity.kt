@@ -37,6 +37,7 @@ class MainActivity : BaseActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSwipeBackEnable(false)
 
         setDoubleBack("双击退出应用", object : OnDoubleBackPressListener
         {

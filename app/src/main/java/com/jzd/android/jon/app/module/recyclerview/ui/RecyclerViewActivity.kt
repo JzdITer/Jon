@@ -1,8 +1,8 @@
 package com.jzd.android.jon.app.module.recyclerview.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.ContextMenu
@@ -13,8 +13,8 @@ import com.jzd.android.jon.app.base.BaseActivity
 import com.jzd.android.jon.app.module.recyclerview.adapter.RecyclerViewAdapter
 import com.jzd.android.jon.core.module.jmap.JMapImpl
 import com.jzd.android.jon.core.module.jmap.toJMap
-import com.jzd.android.jon.utils.clearItemDecoration
 import com.jzd.android.jon.utils.setItemDecoration
+import com.jzd.android.jon.widget.JDividerItemDecoration
 import kotlinx.android.synthetic.main.activity_recycler_view.*
 
 class RecyclerViewActivity : BaseActivity()
@@ -26,15 +26,15 @@ class RecyclerViewActivity : BaseActivity()
         setContentView(R.layout.activity_recycler_view)
 
         val data = arrayListOf<JMapImpl>()
-        for (i in 0..20)
+        for(i in 0..1)
         {
             data.add(i.toString().toJMap())
         }
 
         val mAdapter = RecyclerViewAdapter(R.layout.rv_item_common_txt, data)
         mRvData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val itemDecoration = DividerItemDecoration(mRvData.context, DividerItemDecoration.VERTICAL)
-        itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.drawable_recycler_view_divider_vertical)!!)
+        val itemDecoration = JDividerItemDecoration(mContext, JDividerItemDecoration.VERTICAL).setDivider(
+                Color.GREEN, 30)
         mRvData.addItemDecoration(itemDecoration)
         mRvData.adapter = mAdapter
 
@@ -51,24 +51,25 @@ class RecyclerViewActivity : BaseActivity()
 
     override fun onContextItemSelected(item: MenuItem?): Boolean
     {
-        when (item?.itemId)
+        when(item?.itemId)
         {
             R.id.id_menu_linear_layout_h ->
             {
                 mRvData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                mRvData.setItemDecoration(DividerItemDecoration(mRvData.context, DividerItemDecoration.HORIZONTAL))
+                val itemDecoration = JDividerItemDecoration(mContext, JDividerItemDecoration.HORIZONTAL)
+                        .setDivider(Color.RED, 10)
+                mRvData.setItemDecoration(itemDecoration)
             }
             R.id.id_menu_linear_layout_v ->
             {
                 mRvData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                mRvData.setItemDecoration(DividerItemDecoration(mRvData.context, DividerItemDecoration.VERTICAL))
+                val itemDecoration = JDividerItemDecoration(mContext, JDividerItemDecoration.VERTICAL)
+                        .setDivider(ContextCompat.getDrawable(mContext, R.drawable.drawable_recycler_view_divider_vertical))
+                mRvData.setItemDecoration(itemDecoration)
             }
             R.id.id_menu_grid ->
             {
                 mRvData.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
-                mRvData.clearItemDecoration()
-                mRvData.addItemDecoration(DividerItemDecoration(mRvData.context, DividerItemDecoration.VERTICAL))
-                mRvData.addItemDecoration(DividerItemDecoration(mRvData.context, DividerItemDecoration.HORIZONTAL))
             }
         }
 

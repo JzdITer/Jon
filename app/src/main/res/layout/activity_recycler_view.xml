@@ -5,12 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="24dp"
     tools:context=".module.recyclerview.ui.RecyclerViewActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRvData"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"/>
 
 
     <ImageView

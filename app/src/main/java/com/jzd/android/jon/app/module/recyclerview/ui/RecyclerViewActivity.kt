@@ -73,13 +73,13 @@ class RecyclerViewActivity : BaseActivity()
             }
             R.id.id_menu_grid_horizontal ->
             {
-                mRvData.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false)
+                mRvData.layoutManager = GridLayoutManager(this, 4, GridLayoutManager.HORIZONTAL, false)
                 val itemDecoration = JGridItemDecoration(mContext)
                 mRvData.setItemDecoration(itemDecoration)
             }
             R.id.id_menu_grid_vertical->
             {
-                mRvData.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+                mRvData.layoutManager = GridLayoutManager(this, 5, GridLayoutManager.VERTICAL, false)
                 val itemDecoration = JGridItemDecoration(mContext)
                 mRvData.setItemDecoration(itemDecoration)
             }

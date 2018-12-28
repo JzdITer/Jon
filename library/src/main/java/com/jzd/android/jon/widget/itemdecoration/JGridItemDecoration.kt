@@ -60,10 +60,20 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
-            val left = child.left - params.leftMargin
-            val right = child.right + params.rightMargin + mDivider!!.intrinsicWidth
-            val top = child.bottom + params.bottomMargin
-            val bottom = top + mDivider!!.intrinsicHeight
+            // 最左边一列
+            if(i in 0..getSpanCount(parent))
+            {
+                val left = child.left - params.leftMargin - mDivider!!.intrinsicWidth
+                val right = left + mDivider!!.intrinsicWidth
+                val top = child.top - params.topMargin
+                val bottom = child.bottom + params.bottomMargin
+                mDivider!!.setBounds(left, top, right, bottom)
+                mDivider!!.draw(c)
+            }
+            val left = child.right + params.rightMargin
+            val right = left + mDivider!!.intrinsicWidth
+            val top = child.top - params.topMargin
+            val bottom = child.bottom + params.bottomMargin
             mDivider!!.setBounds(left, top, right, bottom)
             mDivider!!.draw(c)
             i++
@@ -80,12 +90,21 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         while(i < parent.childCount)
         {
             val child = parent.getChildAt(i)
-
             val params = child.layoutParams as RecyclerView.LayoutParams
-            val top = child.top - params.topMargin
-            val bottom = child.bottom + params.bottomMargin
-            val left = child.right + params.rightMargin
-            val right = left + mDivider!!.intrinsicWidth
+            // 最上边一行
+            if(i % getSpanCount(parent) == 0)
+            {
+                val left = child.left - params.leftMargin
+                val right = child.right + params.rightMargin
+                val top = child.top - params.topMargin - mDivider!!.intrinsicHeight
+                val bottom = top + mDivider!!.intrinsicHeight
+                mDivider!!.setBounds(left, top, right, bottom)
+                mDivider!!.draw(c)
+            }
+            val left = child.left - params.leftMargin
+            val right = child.right + params.rightMargin
+            val top = child.bottom - params.bottomMargin
+            val bottom = top + mDivider!!.intrinsicHeight
 
             mDivider!!.setBounds(left, top, right, bottom)
             mDivider!!.draw(c)
@@ -93,80 +112,9 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         }
     }
 
-    private fun isLastColum(parent: RecyclerView, pos: Int, spanCount: Int,
-                            childCount: Int): Boolean
-    {
-        val layoutManager = parent.layoutManager
-        if(layoutManager is GridLayoutManager)
-        {
-            if((pos + 1) % spanCount == 0) // 如果是最后一列，则不需要绘制右边
-            {
-                return true
-            }
-        } else if(layoutManager is StaggeredGridLayoutManager)
-        {
-            val orientation = layoutManager.orientation
-            if(orientation == StaggeredGridLayoutManager.VERTICAL)
-            {
-                if((pos + 1) % spanCount == 0) // 如果是最后一列，则不需要绘制右边
-                {
-                    return true
-                }
-            } else
-            {
-                if(pos >= (childCount - childCount % spanCount)) // 如果是最后一列，则不需要绘制右边
-                    return true
-            }
-        }
-        return false
-    }
-
-    private fun isLastRaw(parent: RecyclerView, pos: Int, spanCount: Int,
-                          childCount: Int): Boolean
-    {
-        val layoutManager = parent.layoutManager
-        if(layoutManager is GridLayoutManager)
-        {
-            if(pos >= childCount - childCount % spanCount) // 如果是最后一行，则不需要绘制底部
-                return true
-        } else if(layoutManager is StaggeredGridLayoutManager)
-        {
-            val orientation = layoutManager.orientation
-            // StaggeredGridLayoutManager 且纵向滚动
-            if(orientation == StaggeredGridLayoutManager.VERTICAL)
-            {
-                // 如果是最后一行，则不需要绘制底部
-                if(pos >= childCount - childCount % spanCount)
-                    return true
-            } else
-            // StaggeredGridLayoutManager 且横向滚动
-            {
-                // 如果是最后一行，则不需要绘制底部
-                if((pos + 1) % spanCount == 0)
-                {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State)
     {
-        val itemPosition = parent.getChildAdapterPosition(view)
-        val spanCount = getSpanCount(parent)
-        val childCount = parent.adapter.itemCount
-        if(isLastRaw(parent, itemPosition, spanCount, childCount)) // 如果是最后一行，则不需要绘制底部
-        {
-            outRect.set(0, 0, mDivider!!.intrinsicWidth, 0)
-        } else if(isLastColum(parent, itemPosition, spanCount, childCount)) // 如果是最后一列，则不需要绘制右边
-        {
-            outRect.set(0, 0, 0, mDivider!!.intrinsicHeight)
-        } else
-        {
-            outRect.set(0, 0, mDivider!!.intrinsicWidth,
-                    mDivider!!.intrinsicHeight)
-        }
+        outRect.set(mDivider!!.intrinsicWidth, mDivider!!.intrinsicHeight, mDivider!!.intrinsicWidth, mDivider!!.intrinsicHeight)
     }
 
 }

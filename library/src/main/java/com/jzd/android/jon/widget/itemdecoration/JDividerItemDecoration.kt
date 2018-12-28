@@ -65,7 +65,7 @@ class JDividerItemDecoration(val mContext: Context, private val mOrientation: In
             return
         }
         val left = parent.paddingLeft
-        val right = parent.measuredWidth - parent.paddingRight
+        val right = parent.width - parent.paddingRight
         var index = 0
         while(index < parent.childCount)
         {

@@ -1,4 +1,4 @@
-package com.jzd.android.jon.widget
+package com.jzd.android.jon.widget.itemdecoration
 
 import android.content.Context
 import android.graphics.Canvas

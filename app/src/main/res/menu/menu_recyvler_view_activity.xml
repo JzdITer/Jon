@@ -8,6 +8,9 @@
         android:id="@+id/id_menu_linear_layout_v"
         android:title="vertical"/>
     <item
-        android:id="@+id/id_menu_grid"
-        android:title="grid"/>
+        android:id="@+id/id_menu_grid_vertical"
+        android:title="grid_vertical"/>
+    <item
+        android:id="@+id/id_menu_grid_horizontal"
+        android:title="grid_horizontal"/>
 </menu>

@@ -16,10 +16,10 @@ class JDividerItemDecoration(val mContext: Context, private val mOrientation: In
 
     companion object
     {
-        const val HORIZONTAL = LinearLayoutManager.HORIZONTAL
-        const val VERTICAL = LinearLayoutManager.VERTICAL
         // <item name="android:listDivider">@drawable/divider</item>
         val ATTRS = intArrayOf(android.R.attr.listDivider)
+        const val HORIZONTAL = LinearLayoutManager.HORIZONTAL
+        const val VERTICAL = LinearLayoutManager.VERTICAL
     }
 
     init

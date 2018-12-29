@@ -18,6 +18,7 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
 
     private var mDivider: Drawable? = null
 
+
     init
     {
         if(mDivider == null)
@@ -49,6 +50,7 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         return spanCount
     }
 
+    // 画竖向分割线
     private fun drawHorizontal(c: Canvas, parent: RecyclerView)
     {
         if(mDivider == null)
@@ -60,16 +62,6 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
-            // 最左边一列
-            if(i in 0..getSpanCount(parent))
-            {
-                val left = child.left - params.leftMargin - mDivider!!.intrinsicWidth
-                val right = left + mDivider!!.intrinsicWidth
-                val top = child.top - params.topMargin
-                val bottom = child.bottom + params.bottomMargin
-                mDivider!!.setBounds(left, top, right, bottom)
-                mDivider!!.draw(c)
-            }
             val left = child.right + params.rightMargin
             val right = left + mDivider!!.intrinsicWidth
             val top = child.top - params.topMargin
@@ -80,6 +72,7 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         }
     }
 
+    // 画横向分割线
     private fun drawVertical(c: Canvas, parent: RecyclerView)
     {
         if(mDivider == null)
@@ -91,21 +84,10 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
-            // 最上边一行
-            if(i % getSpanCount(parent) == 0)
-            {
-                val left = child.left - params.leftMargin
-                val right = child.right + params.rightMargin
-                val top = child.top - params.topMargin - mDivider!!.intrinsicHeight
-                val bottom = top + mDivider!!.intrinsicHeight
-                mDivider!!.setBounds(left, top, right, bottom)
-                mDivider!!.draw(c)
-            }
             val left = child.left - params.leftMargin
             val right = child.right + params.rightMargin
             val top = child.bottom - params.bottomMargin
             val bottom = top + mDivider!!.intrinsicHeight
-
             mDivider!!.setBounds(left, top, right, bottom)
             mDivider!!.draw(c)
             i++
@@ -114,7 +96,63 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State)
     {
-        outRect.set(mDivider!!.intrinsicWidth, mDivider!!.intrinsicHeight, mDivider!!.intrinsicWidth, mDivider!!.intrinsicHeight)
+        val position = parent.getChildAdapterPosition(view)
+        val spanCount = getSpanCount(parent)
+        val isLastLaw = isLastLaw(position, spanCount, parent)
+        val isLastColumn = isLastColumn(position, spanCount, parent)
+        if(isLastColumn && isLastLaw)
+        {
+            outRect.set(0,0,0,0)
+        } else if(isLastLaw(position, spanCount, parent))
+        {
+            outRect.set(0, 0, mDivider!!.intrinsicWidth, 0)
+        } else if(isLastColumn)
+        {
+            outRect.set(0, 0, 0, mDivider!!.intrinsicHeight)
+        } else
+        {
+            outRect.set(0, 0, mDivider!!.intrinsicWidth, mDivider!!.intrinsicHeight)
+        }
+       // outRect.set(0, 0, mDivider!!.intrinsicWidth, mDivider!!.intrinsicHeight)
+    }
+
+    private fun isLastLaw(position: Int, spanCount: Int, parent: RecyclerView): Boolean
+    {
+        val orientation = getOrientation(parent)
+        if(orientation == RecyclerView.HORIZONTAL)
+        {
+            return (position + 1) % spanCount == 0
+        } else if(orientation == RecyclerView.VERTICAL)
+        {
+            return position in (parent.childCount - (parent.childCount % spanCount) until parent.childCount)
+        }
+        return false
+    }
+
+    private fun isLastColumn(position: Int, spanCount: Int, parent: RecyclerView): Boolean
+    {
+        val orientation = getOrientation(parent)
+        if(orientation == RecyclerView.HORIZONTAL)
+        {
+            return position in (parent.childCount - (parent.childCount % spanCount) until parent.childCount)
+        } else if(orientation == RecyclerView.VERTICAL)
+        {
+            return (position + 1) % spanCount == 0
+        }
+        return false
+    }
+
+    private fun getOrientation(parent: RecyclerView): Int
+    {
+        val layoutManager = parent.layoutManager
+        if(layoutManager is GridLayoutManager)
+        {
+            return layoutManager.orientation
+        } else if(layoutManager is StaggeredGridLayoutManager)
+        {
+            return layoutManager.orientation
+        }
+        return -1
     }
 
 }

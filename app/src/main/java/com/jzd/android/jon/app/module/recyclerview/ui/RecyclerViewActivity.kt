@@ -34,8 +34,7 @@ class RecyclerViewActivity : BaseActivity()
 
         val mAdapter = RecyclerViewAdapter(R.layout.rv_item_common_txt, data)
         mRvData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val itemDecoration = JDividerItemDecoration(mContext,
-                JDividerItemDecoration.VERTICAL).setDivider(
+        val itemDecoration = JDividerItemDecoration(mContext, JDividerItemDecoration.VERTICAL).setDivider(
                 Color.GREEN, 30)
         mRvData.addItemDecoration(itemDecoration)
         mRvData.adapter = mAdapter
@@ -58,16 +57,14 @@ class RecyclerViewActivity : BaseActivity()
             R.id.id_menu_linear_layout_h ->
             {
                 mRvData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                val itemDecoration = JDividerItemDecoration(mContext,
-                        JDividerItemDecoration.HORIZONTAL)
+                val itemDecoration = JDividerItemDecoration(mContext, JDividerItemDecoration.HORIZONTAL)
                         .setDivider(Color.RED, 10)
                 mRvData.setItemDecoration(itemDecoration)
             }
             R.id.id_menu_linear_layout_v ->
             {
                 mRvData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                val itemDecoration = JDividerItemDecoration(mContext,
-                        JDividerItemDecoration.VERTICAL)
+                val itemDecoration = JDividerItemDecoration(mContext, JDividerItemDecoration.VERTICAL)
                         .setDivider(ContextCompat.getDrawable(mContext, R.drawable.drawable_recycler_view_divider_vertical))
                 mRvData.setItemDecoration(itemDecoration)
             }
@@ -77,7 +74,7 @@ class RecyclerViewActivity : BaseActivity()
                 val itemDecoration = JGridItemDecoration(mContext)
                 mRvData.setItemDecoration(itemDecoration)
             }
-            R.id.id_menu_grid_vertical->
+            R.id.id_menu_grid_vertical ->
             {
                 mRvData.layoutManager = GridLayoutManager(this, 5, GridLayoutManager.VERTICAL, false)
                 val itemDecoration = JGridItemDecoration(mContext)

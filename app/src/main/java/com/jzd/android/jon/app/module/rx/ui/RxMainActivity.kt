@@ -120,7 +120,7 @@ class RxMainActivity : BaseActivity()
             }
             R.id.mBtnTime ->
             {
-                Observable.timer(2, TimeUnit.SECONDS)
+                Observable.timer(5, TimeUnit.SECONDS)
                         .subscribe(object : Observer<Long>
                         {
                             override fun onComplete()

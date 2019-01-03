@@ -16,7 +16,7 @@ class TreeActivity : BaseActivity()
 
         val data = getData()
 
-        val adapter = TreeAdapter(this,mLvData,0)
+        val adapter = TreeAdapter(this,mLvData,1)
         adapter.setDatas(data)
         mLvData.adapter = adapter
     }

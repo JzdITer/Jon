@@ -49,7 +49,7 @@ class JImgPreview(context: Context, attrs: AttributeSet?, defStyle: Int) : Recyc
             mDelete = attributeSet.getBoolean(R.styleable.JImgPreview_j_img_preview_delete, false)
 
             val drawableV = ContextCompat.getDrawable(context, R.drawable.drawable_item_decoration_empty_v)!!
-            val drawableH = ContextCompat.getDrawable(context, R.drawable.drawable_item_decoration_empty_h)!!
+            val drawableH = ContextCompat.getDrawable(context, R.drawable.drawable_item_decoration_empty_v)!!
             if(layoutManager is GridLayoutManager)
             {
                 val itemDecoration1 = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)

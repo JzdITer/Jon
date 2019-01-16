@@ -100,6 +100,8 @@ class JGridItemDecoration(val mContext: Context) : RecyclerView.ItemDecoration()
         val spanCount = getSpanCount(parent)
         val isLastLaw = isLastLaw(position, spanCount, parent)
         val isLastColumn = isLastColumn(position, spanCount, parent)
+
+
         if(isLastColumn && isLastLaw)
         {
             outRect.set(0,0,0,0)

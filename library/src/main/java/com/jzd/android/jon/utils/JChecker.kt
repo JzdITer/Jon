@@ -39,7 +39,7 @@ object JChecker
     /**
      * 非空检查
      */
-    fun checkEmpty(showHint: Boolean, vararg views: View): Boolean
+    fun checkEmpty(showHint: Boolean = false, vararg views: View): Boolean
     {
         views.forEach {
             if(it is TextView)
@@ -91,7 +91,7 @@ object JChecker
     /**
      * tag检查
      */
-    fun checkTag(showHint: Boolean, vararg views: View): Boolean
+    fun checkTag(showHint: Boolean = false, vararg views: View): Boolean
     {
         views.forEach {
             if(it.tag == null)
@@ -139,7 +139,7 @@ object JChecker
      * data检查
      * JFormItemView检查data,TextView检查text
      */
-    fun checkData(showHint: Boolean, vararg views: View): Boolean
+    fun checkData(showHint: Boolean = false, vararg views: View): Boolean
     {
         views.forEach {
             val map = it.getData()

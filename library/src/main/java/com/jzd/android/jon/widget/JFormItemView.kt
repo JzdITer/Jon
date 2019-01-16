@@ -277,7 +277,7 @@ class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     /**
      * 设置文本内容
      */
-    fun setContent(content: CharSequence)
+    fun setContent(content: CharSequence?)
     {
         mTvItemContext.setText(content)
     }

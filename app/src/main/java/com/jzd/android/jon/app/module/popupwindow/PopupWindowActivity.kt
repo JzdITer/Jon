@@ -43,7 +43,7 @@ class PopupWindowActivity : BaseActivity()
                 JListPopupWindow(this, data,
                         JListPopupWindow.OnItemClickListener { _, obj ->
                             JToast.show(obj.value().toString())
-                        }).setListGravity(Gravity.END or Gravity.CENTER_VERTICAL).setIm(true).show()
+                        }).setListGravity(Gravity.CENTER).setIm(true).show()
             }
             R.id.mBtnShowTop ->
             {

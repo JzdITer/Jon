@@ -40,9 +40,10 @@ fun List<JMapImpl>.asStringList(): ArrayList<String>
 
 fun List<JMapImpl>.asStringArray(): Array<String>
 {
-    val values: Array<String> = emptyArray()
+    var index = 0
+    val values: Array<String> = Array(size,{""})
     forEach {
-        values.plus(it.value().toString())
+        values[index++] = it.value().toString()
     }
     return values
 }

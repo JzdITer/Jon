@@ -84,7 +84,7 @@ object JApp
      * 发送短信
      * <uses-permission android:name="android.permission.SEND_SMS" />
      */
-    fun sendSms(context: Context, phoneNumber: String?, content: String?): Intent
+    fun sendSms(phoneNumber: String?, content: String?): Intent
     {
         val uri = Uri.parse("smsto:" + (phoneNumber ?: ""))
         val intent = Intent(Intent.ACTION_SENDTO, uri)

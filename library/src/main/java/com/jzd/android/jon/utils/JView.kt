@@ -138,17 +138,13 @@ fun RecyclerView.setItemDecoration(itemDecoration: RecyclerView.ItemDecoration)
  */
 fun View.setData(map: JMapImpl?)
 {
-    if(map == null)
-    {
-        return
-    }
     this.tag = map
     if(this is TextView)
     {
-        this.text = map.value().toString()
+        this.text = map?.value().toString()
     } else if(this is JFormItemView)
     {
-        this.setContent(map.value().toString())
+        this.setContent(map?.value().toString())
     }
 }
 
@@ -159,10 +155,13 @@ fun View.setData(msg: String?)
 {
     if(msg == null)
     {
-        return
+        val jMapImpl : JMapImpl? = null
+        setData(jMapImpl)
+    }else
+    {
+        val map = JMap(msg, msg)
+        setData(map)
     }
-    val map = JMap(msg, msg)
-    setData(map)
 }
 
 /**

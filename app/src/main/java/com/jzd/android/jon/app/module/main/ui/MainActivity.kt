@@ -10,6 +10,8 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.app.adapter.ModuleAdapter
 import com.jzd.android.jon.app.base.BaseActivity
+import com.jzd.android.jon.app.module.anim.ui.AnimMainActivity
+import com.jzd.android.jon.app.module.excel.ExcelActivity
 import com.jzd.android.jon.app.module.imgpreview.ImgPreviewActivity
 import com.jzd.android.jon.app.module.japp.ui.JAppActivity
 import com.jzd.android.jon.app.module.jformitemview.ui.JFormItemActivity
@@ -83,6 +85,8 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("OKGO", OkGoActivity::class.java))
         data.add(ModuleBean("PopupWindow", PopupWindowActivity::class.java))
         data.add(ModuleBean("ImgPreview", ImgPreviewActivity::class.java))
+        data.add(ModuleBean("动画", AnimMainActivity::class.java))
+        data.add(ModuleBean("Excel", ExcelActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

@@ -141,10 +141,10 @@ fun View.setData(map: JMapImpl?)
     this.tag = map
     if(this is TextView)
     {
-        this.text = map?.value().toString()
+        this.text = map?.value()?.toString()
     } else if(this is JFormItemView)
     {
-        this.setContent(map?.value().toString())
+        this.setContent(map?.value()?.toString())
     }
 }
 

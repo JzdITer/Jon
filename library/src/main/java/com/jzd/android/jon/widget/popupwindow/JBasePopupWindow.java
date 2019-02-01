@@ -190,7 +190,13 @@ import java.util.List;
         {
             WindowManager.LayoutParams params = window.getAttributes();
             params.alpha = (Float) animation.getAnimatedValue();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            if(toAlpha < 1)
+            {
+                window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            }else
+            {
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            }
             window.setAttributes(params);
         });
         valueAnimator.start();

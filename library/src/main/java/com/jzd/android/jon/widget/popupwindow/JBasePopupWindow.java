@@ -173,7 +173,7 @@ import java.util.List;
     }
 
     private boolean mWithDimBehind = true;
-    private JBasePopupWindow withDimBehind(boolean withDimBehind)
+    public JBasePopupWindow withDimBehind(boolean withDimBehind)
     {
         mWithDimBehind = withDimBehind;
         return this;

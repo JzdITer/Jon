@@ -172,6 +172,12 @@ import java.util.List;
         showAtLocation(view, gravity, x, y);
     }
 
+    private boolean mWithDimBehind = true;
+    private JBasePopupWindow withDimBehind(boolean withDimBehind)
+    {
+        mWithDimBehind = withDimBehind;
+        return this;
+    }
 
     /**
      * 改变屏幕亮度
@@ -190,8 +196,9 @@ import java.util.List;
         {
             WindowManager.LayoutParams params = window.getAttributes();
             params.alpha = (Float) animation.getAnimatedValue();
-            if(toAlpha < 1)
+            if(mWithDimBehind)
             {
+                // 背景图层变暗，如果背景图层是地图之类，会变黑
                 window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             }else
             {

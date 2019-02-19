@@ -48,6 +48,7 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+        mContext = this
         if(isSplash())
         {
             if(intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0)
@@ -126,7 +127,6 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
         {
             StatusBarCompat.translucentStatusBar(this, true)
         }
-        mContext = this
     }
 
     /**

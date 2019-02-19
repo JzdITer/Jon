@@ -1,6 +1,7 @@
 package com.jzd.android.jon.widget
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -28,7 +29,7 @@ import com.jzd.android.jon.widget.util.JWidgetUtil
 class JFormItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr)
 {
 
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, Resources.getSystem().getIdentifier("textViewStyle", "attr", "android"))
     constructor(context: Context) : this(context, null)
 
     lateinit var mLayoutRoot: LinearLayout

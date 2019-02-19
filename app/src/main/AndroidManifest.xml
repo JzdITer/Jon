@@ -60,6 +60,8 @@
         </activity>
         <activity android:name=".module.excel.ExcelActivity">
         </activity>
+        <activity android:name=".module.button.JButtonActivity">
+        </activity>
     </application>
 
 </manifest>

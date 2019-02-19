@@ -11,6 +11,7 @@ import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.app.adapter.ModuleAdapter
 import com.jzd.android.jon.app.base.BaseActivity
 import com.jzd.android.jon.app.module.anim.ui.AnimMainActivity
+import com.jzd.android.jon.app.module.button.JButtonActivity
 import com.jzd.android.jon.app.module.excel.ExcelActivity
 import com.jzd.android.jon.app.module.imgpreview.ImgPreviewActivity
 import com.jzd.android.jon.app.module.japp.ui.JAppActivity
@@ -87,6 +88,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("ImgPreview", ImgPreviewActivity::class.java))
         data.add(ModuleBean("动画", AnimMainActivity::class.java))
         data.add(ModuleBean("Excel", ExcelActivity::class.java))
+        data.add(ModuleBean("JButton", JButtonActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

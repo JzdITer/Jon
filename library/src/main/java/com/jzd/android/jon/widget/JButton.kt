@@ -17,7 +17,7 @@ import com.jzd.android.jon.R
  */
 class JButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : Button(context, attrs, defStyleAttr)
 {
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, Resources.getSystem().getIdentifier("buttonStyle", "attr", "android"))
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs,Resources.getSystem().getIdentifier("buttonStyle","attr","android"))
     constructor(context: Context) : this(context, null)
 
     init
@@ -25,8 +25,8 @@ class JButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : Butto
 
         val attrsArray = context.obtainStyledAttributes(attrs, R.styleable.JButton)
 
-        val backGround = attrsArray.getColor(R.styleable.JButton_j_button_background_color, Color.GRAY)
-        val cornerRadius = attrsArray.getDimensionPixelSize(R.styleable.JButton_j_button_corner_radius, 0)
+        val backGround = attrsArray.getColor(R.styleable.JButton_j_button_background_color, Color.LTGRAY)
+        val cornerRadius = attrsArray.getDimensionPixelSize(R.styleable.JButton_j_button_corner_radius, 5)
         val drawable = GradientDrawable()
         drawable.cornerRadius = cornerRadius.toFloat()
         drawable.setColor(backGround)

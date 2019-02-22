@@ -3,6 +3,7 @@ package com.jzd.android.jon.app.module.popupwindow
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import com.jzd.android.jon.app.R
 import com.jzd.android.jon.app.base.BaseActivity
 import com.jzd.android.jon.core.module.jmap.JMap
@@ -29,8 +30,10 @@ class PopupWindowActivity : BaseActivity()
         {
             R.id.mBtnShow ->
             {
-                val view = layoutInflater.inflate(R.layout.activity_jform_item, null, false)
-                JBasePopupWindow(this, view).show()
+                val view = TextView(mContext)
+                view.text = "zjjds"
+                val popupView = JBasePopupWindow(this, view)
+                popupView.show()
             }
             R.id.mBtnShowList ->
             {

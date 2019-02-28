@@ -17,6 +17,7 @@ import com.jzd.android.jon.app.module.imgpreview.ImgPreviewActivity
 import com.jzd.android.jon.app.module.japp.ui.JAppActivity
 import com.jzd.android.jon.app.module.jformitemview.ui.JFormItemActivity
 import com.jzd.android.jon.app.module.loader.ui.JLoaderActivity
+import com.jzd.android.jon.app.module.network.NetworkActivity
 import com.jzd.android.jon.app.module.notification.ui.NotificationWatchActivity
 import com.jzd.android.jon.app.module.okgo.ui.OkGoActivity
 import com.jzd.android.jon.app.module.permission.ui.PermissionActivity
@@ -89,6 +90,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("动画", AnimMainActivity::class.java))
         data.add(ModuleBean("Excel", ExcelActivity::class.java))
         data.add(ModuleBean("JButton", JButtonActivity::class.java))
+        data.add(ModuleBean("Network",NetworkActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

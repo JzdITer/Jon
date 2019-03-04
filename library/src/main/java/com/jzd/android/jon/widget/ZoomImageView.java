@@ -7,11 +7,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 
 /**
@@ -33,7 +31,7 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
     private float mLastX, mLastY;  // 记录上次的中心点位置
     private int mScaledTouchSlop; // 可以触发移动操作的边界
 
-    private GestureDetector mGestureDetector;
+    //private GestureDetector mGestureDetector;
     private boolean mScaling = false;// 正在双击放大，防止冲突
     // 滑动方向
     private Orientation mOrientation = Orientation.NO;
@@ -66,42 +64,39 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
         this.setScaleType(ScaleType.MATRIX);
         this.mScaleGestureDetector = new ScaleGestureDetector(context, this);
         // 双击手势
-        this.mGestureDetector = new GestureDetector(context, new SimpleOnGestureListener()
-        {
-            @Override
-            public boolean onDoubleTap(MotionEvent e)
-            {
-
-                float x = e.getX();
-                float y = e.getY();
-                float scale = 1.0f;
-                // 未达到最大缩放值的时候双击为放大
-                if (getScale() < mDoubleScale)
-                {
-                    scale = mDoubleScale;
-                }
-                else if (getScale() >= mDoubleScale && getScale() < mMaxScale)
-                {
-                    scale = mMaxScale;
-                }
-                else if (getScale() >= mMaxScale)
-                {
-                    scale = mMinScale;
-                }
-//                mMatrix.postScale(scale, scale, x, y);
-//                checkBoarderAndCenter();
-//                setImageMatrix(mMatrix);
-
-                if (!mScaling)
-                {
-                    new AutoScaleRunnable(x, y, scale).run();
-                }
-                return true;
-            }
-        });
+//        this.mGestureDetector = new GestureDetector(context, new SimpleOnGestureListener()
+//        {
+//            @Override
+//            public boolean onDoubleTap(MotionEvent e)
+//            {
+//
+//                float x = e.getX();
+//                float y = e.getY();
+//                float scale = 1.0f;
+//                // 未达到最大缩放值的时候双击为放大
+//                if (getScale() < mDoubleScale)
+//                {
+//                    scale = mDoubleScale;
+//                }
+//                else if (getScale() >= mDoubleScale && getScale() < mMaxScale)
+//                {
+//                    scale = mMaxScale;
+//                }
+//                else if (getScale() >= mMaxScale)
+//                {
+//                    scale = mMinScale;
+//                }
+//
+//                if (!mScaling)
+//                {
+//                    new AutoScaleRunnable(x, y, scale).run();
+//                }
+//                return true;
+//            }
+//        });
         this.setOnTouchListener(this);
 
-        mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        //mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     /**
@@ -227,6 +222,7 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
                 mDoubleScale = scale * 2;
 
                 mMatrix.postTranslate(width * 1.0f / 2 - imgWidth * 1.0f / 2, height * 1.0f / 2 - imgHeight * 1.0f / 2);
+                // sx:x缩放 sy:y缩放 px,py:缩放中心点
                 mMatrix.postScale(mMinScale, mMinScale, width * 1.0f / 2, height * 1.0f / 2);
                 setImageMatrix(mMatrix);
             }
@@ -237,76 +233,76 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
     @Override
     public boolean onTouch(View v, MotionEvent event)
     {
-        if (mGestureDetector.onTouchEvent(event))
-        {
-            return true;
-        }
+//        if (mGestureDetector.onTouchEvent(event))
+//        {
+//            return true;
+//        }
         mScaleGestureDetector.onTouchEvent(event);
-        if (getDrawable() != null)
-        {
-            int pointerCount = event.getPointerCount();
-            float x = 0, y = 0;
-            for (int i = 0; i < pointerCount; i++)
-            {
-                x += event.getX(i);
-                y += event.getY(i);
-            }
-            x /= pointerCount;
-            y /= pointerCount;
-            // 防止在多指操作切换的时候，图片出现跳跃
-            if (mLastPointCount != pointerCount)
-            {
-                mLastX = x;
-                mLastY = y;
-            }
-            mLastPointCount = pointerCount;
-
-            switch (event.getAction())
-            {
-                case MotionEvent.ACTION_DOWN:
-                    mOrientation = Orientation.NO;
-                    mOnceSlide = false;
-                    if (getParent() != null)
-                    {
-                        getParent().requestDisallowInterceptTouchEvent(disallowParentInterceptTouchEvent());
-                    }
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    float dx = x - mLastX;
-                    float dy = y - mLastY;
-
-                    if (isMove(dx, dy))
-                    {
-                        checkOrientation(dx, dy);
-                        if (getParent() != null)
-                        {
-                            getParent().requestDisallowInterceptTouchEvent(disallowParentInterceptTouchEvent());
-                        }
-                        RectF matrixRectF = getMatrixRectF();
-                        // 比控件小的时候不能移动
-                        if (matrixRectF.width() <= this.getWidth())
-                        {
-                            dx = 0;
-                        }
-                        if (matrixRectF.height() <= this.getHeight())
-                        {
-                            dy = 0;
-                        }
-                        mMatrix.postTranslate(dx, dy);
-                        checkBoarderAndCenter();
-                        this.setImageMatrix(mMatrix);
-                    }
-
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                case MotionEvent.ACTION_UP:
-                    mLastPointCount = 0;
-                    mOnceSlide = true;
-                    break;
-            }
-            mLastX = x;
-            mLastY = y;
-        }
+//        if (getDrawable() != null)
+//        {
+//            int pointerCount = event.getPointerCount();
+//            float x = 0, y = 0;
+//            for (int i = 0; i < pointerCount; i++)
+//            {
+//                x += event.getX(i);
+//                y += event.getY(i);
+//            }
+//            x /= pointerCount;
+//            y /= pointerCount;
+//            // 防止在多指操作切换的时候，图片出现跳跃
+//            if (mLastPointCount != pointerCount)
+//            {
+//                mLastX = x;
+//                mLastY = y;
+//            }
+//            mLastPointCount = pointerCount;
+//
+//            switch (event.getAction())
+//            {
+//                case MotionEvent.ACTION_DOWN:
+//                    mOrientation = Orientation.NO;
+//                    mOnceSlide = false;
+//                    if (getParent() != null)
+//                    {
+//                        getParent().requestDisallowInterceptTouchEvent(disallowParentInterceptTouchEvent());
+//                    }
+//                    break;
+//                case MotionEvent.ACTION_MOVE:
+//                    float dx = x - mLastX;
+//                    float dy = y - mLastY;
+//
+//                    if (isMove(dx, dy))
+//                    {
+//                        checkOrientation(dx, dy);
+//                        if (getParent() != null)
+//                        {
+//                            getParent().requestDisallowInterceptTouchEvent(disallowParentInterceptTouchEvent());
+//                        }
+//                        RectF matrixRectF = getMatrixRectF();
+//                        // 比控件小的时候不能移动
+//                        if (matrixRectF.width() <= this.getWidth())
+//                        {
+//                            dx = 0;
+//                        }
+//                        if (matrixRectF.height() <= this.getHeight())
+//                        {
+//                            dy = 0;
+//                        }
+//                        mMatrix.postTranslate(dx, dy);
+//                        checkBoarderAndCenter();
+//                        this.setImageMatrix(mMatrix);
+//                    }
+//
+//                    break;
+//                case MotionEvent.ACTION_CANCEL:
+//                case MotionEvent.ACTION_UP:
+//                    mLastPointCount = 0;
+//                    mOnceSlide = true;
+//                    break;
+//            }
+//            mLastX = x;
+//            mLastY = y;
+//        }
 
         return true;
     }
@@ -384,8 +380,6 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
 
     /**
      * 得到图片的缩放比例
-     *
-     * @return Matrix.MSCALE_X
      */
     private float getScale()
     {
@@ -394,16 +388,6 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
         return values[Matrix.MSCALE_X];
     }
 
-    @Override
-    public boolean onScale(ScaleGestureDetector detector)
-    {
-        // 手势缩放大小
-        float scaleFactor = detector.getScaleFactor();
-        mMatrix.postScale(scaleFactor, scaleFactor, detector.getFocusX(), detector.getFocusY());
-        checkBoarderAndCenter();
-        setImageMatrix(mMatrix);
-        return true;
-    }
 
     /**
      * 检测边界和中心点
@@ -454,19 +438,29 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
 
     /**
      * 得到图片的位置
-     *
-     * @return 图片位置的矩阵
      */
     private RectF getMatrixRectF()
     {
+        Matrix matrix = mMatrix;
         RectF rectF = new RectF();
         Drawable drawable = getDrawable();
         if (drawable != null)
         {
             rectF.set(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            mMatrix.mapRect(rectF);
+            matrix.mapRect(rectF);
         }
         return rectF;
+    }
+
+    @Override
+    public boolean onScale(ScaleGestureDetector detector)
+    {
+        // 手势缩放大小
+        float scaleFactor = detector.getScaleFactor();
+        mMatrix.postScale(scaleFactor, scaleFactor, detector.getFocusX(), detector.getFocusY());
+        checkBoarderAndCenter();
+        setImageMatrix(mMatrix);
+        return true;
     }
 
     @Override
@@ -480,21 +474,21 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
     {
         // 当前scale = 原来scale * scaleFactor
         // 如果当前scale比mMaxScale大，缩放比例为 mMaxScale/scale
-        float scale = getScale();
-        float postScale = 1;
-        if (scale > mMaxScale || scale < mMinScale)
-        {
-            if (scale > mMaxScale)
-            {
-                postScale = mMaxScale / scale;
-            }
-            else if (scale < mMinScale)
-            {
-                postScale = mMinScale / scale;
-            }
-            mMatrix.postScale(postScale, postScale, getWidth() / 2, getHeight() / 2);
-            checkBoarderAndCenter();
-            setImageMatrix(mMatrix);
-        }
+//        float scale = getScale();
+//        float postScale = 1;
+//        if (scale > mMaxScale || scale < mMinScale)
+//        {
+//            if (scale > mMaxScale)
+//            {
+//                postScale = mMaxScale / scale;
+//            }
+//            else if (scale < mMinScale)
+//            {
+//                postScale = mMinScale / scale;
+//            }
+//            mMatrix.postScale(postScale, postScale, getWidth() / 2, getHeight() / 2);
+//            checkBoarderAndCenter();
+//            setImageMatrix(mMatrix);
+//        }
     }
 }

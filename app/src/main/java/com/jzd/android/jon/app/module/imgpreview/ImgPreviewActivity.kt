@@ -25,14 +25,14 @@ class ImgPreviewActivity : BaseActivity()
             override fun onImgClick(position: Int, obj: Any)
             {
                 JToast.show("img")
-                //startWithInt(ZoomImageActivity::class.java,obj as Int)
+                startWithInt(ZoomImageActivity::class.java,obj as Int)
             }
 
             override fun onAddClick()
             {
                 JToast.show("添加啊，不要删除啊啊")
-                mIPGrid.addData("https://goss.veer.com/creative/vcg/veer/800water/veer-167534806.jpg")
-                //mIPGrid.addData(R.mipmap.ic_launcher)
+                //mIPGrid.addData("https://goss.veer.com/creative/vcg/veer/800water/veer-167534806.jpg")
+                mIPGrid.addData(R.mipmap.ic_launcher)
             }
 
             override fun onDeleteClick(position: Int): Boolean

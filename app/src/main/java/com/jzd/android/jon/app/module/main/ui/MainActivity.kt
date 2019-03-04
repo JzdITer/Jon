@@ -91,6 +91,7 @@ class MainActivity : BaseActivity()
         data.add(ModuleBean("Excel", ExcelActivity::class.java))
         data.add(ModuleBean("JButton", JButtonActivity::class.java))
         data.add(ModuleBean("Network",NetworkActivity::class.java))
+        data.add(ModuleBean("Network",NetworkActivity::class.java))
         mAdapter.setNewData(data)
     }
 }

@@ -13,20 +13,19 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 /**
  * 可缩放的图片控件
  * Created by jzd on 2017/1/24.
  */
 
-public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGlobalLayoutListener,
+public class ZoomImageView extends android.support.v7.widget.AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener,
         View.OnTouchListener, ScaleGestureDetector.OnScaleGestureListener
 {
     private boolean mOnce = false;
     private float mMinScale; // 最小缩放尺寸，也是默认的缩放尺寸
     private float mMaxScale; // 最大缩放尺寸
-    private float mDoubelScale; // 双击放大的缩放尺寸
+    private float mDoubleScale; // 双击放大的缩放尺寸
     private Matrix mMatrix = new Matrix();
     private ScaleGestureDetector mScaleGestureDetector; // 缩放手势监听
 
@@ -77,11 +76,11 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
                 float y = e.getY();
                 float scale = 1.0f;
                 // 未达到最大缩放值的时候双击为放大
-                if (getScale() < mDoubelScale)
+                if (getScale() < mDoubleScale)
                 {
-                    scale = mDoubelScale;
+                    scale = mDoubleScale;
                 }
-                else if (getScale() >= mDoubelScale && getScale() < mMaxScale)
+                else if (getScale() >= mDoubleScale && getScale() < mMaxScale)
                 {
                     scale = mMaxScale;
                 }
@@ -225,7 +224,7 @@ public class ZoomImageView extends ImageView implements ViewTreeObserver.OnGloba
 
                 mMinScale = scale;
                 mMaxScale = scale * 4;
-                mDoubelScale = scale * 2;
+                mDoubleScale = scale * 2;
 
                 mMatrix.postTranslate(width * 1.0f / 2 - imgWidth * 1.0f / 2, height * 1.0f / 2 - imgHeight * 1.0f / 2);
                 mMatrix.postScale(mMinScale, mMinScale, width * 1.0f / 2, height * 1.0f / 2);

@@ -10,7 +10,6 @@ import com.jzd.android.jon.core.impl.ImageLoaderImp
  */
 // todo okgo
 // @Throws(Throwable::class)
-// popupwindow
 // todo webview
 @SuppressLint("StaticFieldLeak")
 object Jon

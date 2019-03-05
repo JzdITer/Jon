@@ -25,7 +25,7 @@ class ImgPreviewActivity : BaseActivity()
             override fun onImgClick(position: Int, obj: Any)
             {
                 JToast.show("img")
-                startWithInt(ZoomImageActivity::class.java,obj as Int)
+                startWithString(ZoomImageActivity::class.java,obj as String)
             }
 
             override fun onAddClick()

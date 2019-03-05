@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".module.imgpreview.ZoomImageActivity">
 
-    <com.jzd.android.jon.widget.ZoomImageView
+    <com.jzd.android.jon.widget.zoomimageview.JZoomImageView
         android:id="@+id/mZiv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

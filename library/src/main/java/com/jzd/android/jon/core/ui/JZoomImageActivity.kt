@@ -45,7 +45,8 @@ class JZoomImageActivity : JBaseActivity()
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any)
         {
-            container.removeView(views[position])
+            container.removeView(`object` as View)
         }
+
     }
 }

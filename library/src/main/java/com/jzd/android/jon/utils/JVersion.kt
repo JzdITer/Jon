@@ -5,6 +5,11 @@ import com.jzd.android.jon.core.Jon
 /**
  * 版本工具类
  *
+ * Uri uri = Uri.parse(versionAPI.updateUrl);
+ * Intent intent = new Intent();
+ * intent.setAction(Intent.ACTION_VIEW);
+ * intent.setData(uri);
+ * context.startActivity(intent);
  * @author jzd
  * @since  v1.0
  */

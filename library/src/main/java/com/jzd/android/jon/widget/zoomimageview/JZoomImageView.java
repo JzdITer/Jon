@@ -2,7 +2,6 @@ package com.jzd.android.jon.widget.zoomimageview;
 
 import android.content.Context;
 import android.graphics.Matrix;
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -13,6 +12,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
+
+import com.jzd.android.jon.utils.JLog;
 
 /**
  * 可缩放的图片控件
@@ -106,6 +107,7 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
     @Override
     public boolean performClick()
     {
+
         return super.performClick();
     }
 
@@ -275,10 +277,8 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
             switch(event.getAction())
             {
                 case MotionEvent.ACTION_DOWN:
-                    mDownPoint.x = event.getX();
-                    mDownPoint.y = event.getY();
                     RectF matrixF = getMatrixRectF();
-                    if(matrixF.width() > (getWidth() - 0.1) || matrixF.height() > getHeight() - 0.1)
+                    if(matrixF.width() > getWidth() || matrixF.height() > getHeight())
                     {
                         if(getParent() != null)
                         {
@@ -292,13 +292,14 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
 
                     if(isMove(dx, dy))
                     {
+
                         //checkOrientation(dx, dy);
                         RectF matrixRectF = getMatrixRectF();
-                        if(matrixRectF.width() > (getWidth() - 0.1) || matrixRectF.height() > getHeight() - 0.1)
+                        if(matrixRectF.width() > getWidth() || matrixRectF.height() > getHeight())
                         {
                             if(getParent() != null)
                             {
-                                if(matrixRectF.left <= 0.1 && dx > 0 || matrixRectF.right >= getWidth() - 0.1 && dx < 0)
+                                if(matrixRectF.left == 0 && dx > 0 || matrixRectF.right == getWidth() && dx < 0)
                                 {
                                     getParent().requestDisallowInterceptTouchEvent(false);
                                 } else
@@ -306,6 +307,22 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
                                     getParent().requestDisallowInterceptTouchEvent(true);
                                 }
                             }
+                        }
+
+                        // 在移动的时候总有中卡顿的感觉，手指移动的比图片快，此处加一些位移量
+                        if(dx > 0)
+                        {
+                            dx += 5;
+                        } else
+                        {
+                            dx -= 5;
+                        }
+                        if(dy > 0)
+                        {
+                            dy += 3;
+                        } else
+                        {
+                            dy -= 3;
                         }
 
                         // 比控件小的时候不能移动
@@ -317,6 +334,7 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
                         {
                             dy = 0;
                         }
+                        JLog.d("Mode:x=" + dx +",y="+dy);
                         mMatrix.postTranslate(dx, dy);
                         checkBoarderAndCenter();
                         this.setImageMatrix(mMatrix);
@@ -334,7 +352,6 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
         return true;
     }
 
-    private PointF mDownPoint = new PointF();
 
     /**
      * 是否足以出发Move事件
@@ -427,7 +444,7 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
         // 手势缩放大小
         float scaleFactor = detector.getScaleFactor();
         mMatrix.postScale(scaleFactor, scaleFactor, detector.getFocusX(), detector.getFocusY());
-        checkBoarderAndCenter();
+        //checkBoarderAndCenter();
         setImageMatrix(mMatrix);
         return true;
     }
@@ -454,9 +471,16 @@ public class JZoomImageView extends android.support.v7.widget.AppCompatImageView
             {
                 postScale = mMinScale / scale;
             }
+
+//            new AutoScaleRunnable(detector.getFocusX(), detector.getFocusY(), postScale).run();
+//            mScaling = true;
             mMatrix.postScale(postScale, postScale, getWidth() / 2, getHeight() / 2);
             checkBoarderAndCenter();
             setImageMatrix(mMatrix);
         }
+
+
     }
+
+
 }

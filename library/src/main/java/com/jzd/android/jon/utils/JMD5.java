@@ -3,8 +3,9 @@ package com.jzd.android.jon.utils;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
-public class JEncoder
+public class JMD5
 {
+
     public static String toMD5(String plainText)
     {
         try
@@ -17,15 +18,15 @@ public class JEncoder
             byte b[] = md.digest();
             //生成具体的md5密码到buf数组
             int i;
-            StringBuffer buf = new StringBuffer("");
-            for (int offset = 0; offset < b.length; offset++)
+            StringBuilder buf = new StringBuilder("");
+            for(byte aB : b)
             {
-                i = b[offset];
-                if (i < 0)
+                i = aB;
+                if(i < 0)
                 {
                     i += 256;
                 }
-                if (i < 16)
+                if(i < 16)
                 {
                     buf.append("0");
                 }
@@ -34,7 +35,7 @@ public class JEncoder
             // System.out.println("32位: " + buf.toString());// 32位的加密
             // System.out.println("16位: " + buf.toString().substring(8, 24));// 16位的加密，其实就是32位加密后的截取
             return buf.toString();
-        } catch (Exception e)
+        } catch(Exception e)
         {
             e.printStackTrace();
         }
@@ -42,34 +43,33 @@ public class JEncoder
     }
 
     /**
-     * @param noncestr 随机字符串
+     * @param noncestr  随机字符串
      * @param timestamp 时间戳
-     * @return
      */
-    public static String getStringURLMosaic(String openId, String noncestr, String timestamp,String masterSecret)
+    public static String getStringURLMosaic(String openId, String noncestr, String timestamp, String masterSecret)
     {
         String[] beforeSignaTure = new String[]{"nonceStr=" + noncestr, "openId=" + openId, "timestamp=" + timestamp};
         Arrays.sort(beforeSignaTure);
-        StringBuffer content = new StringBuffer();
-        for (String str : beforeSignaTure)
+        StringBuilder content = new StringBuilder();
+        for(String str : beforeSignaTure)
         {
-            if (content.length() == 0)
+            if(content.length() == 0)
             {
                 content.append(str);
-            }
-            else
+            } else
             {
-                content.append("&" + str);
+                content.append("&")
+                        .append(str);
             }
         }
-        return toMD5(content.toString()+masterSecret);
+        return toMD5(content.toString() + masterSecret);
     }
 
     public static String getStringPassworld()
     {
         int firstNum = ((int) (Math.random() * 10)) % 9 + 1;
         String lastNum = "" + firstNum;
-        for (int i = 0; i < firstNum; i++)
+        for(int i = 0; i < firstNum; i++)
         {
             lastNum += (int) (Math.random() * 10);
         }
@@ -79,7 +79,7 @@ public class JEncoder
     public static String getRandomString()
     {
         String randomString = "";
-        for (int i = 0; i < 30; i++)
+        for(int i = 0; i < 30; i++)
         {
             randomString += (int) (Math.random() * 10);
         }

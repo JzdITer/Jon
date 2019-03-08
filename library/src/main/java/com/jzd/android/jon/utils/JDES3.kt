@@ -8,18 +8,21 @@ import javax.crypto.spec.DESedeKeySpec
 import javax.crypto.spec.IvParameterSpec
 
 @SuppressLint("GetInstance")
-class JDES3
+class JDES3 private constructor()
 {
-    val mAlgorithm = "desede"
-    lateinit var mKey: ByteArray
-    var mKeyIv: ByteArray? = null
-    lateinit var mChartName: String
-
-    fun getInstance(key: ByteArray, keyIv: ByteArray?, chartName: String)
+    companion object
     {
-        mKey = key
-        mKeyIv = keyIv
-        mChartName = chartName
+        const val mAlgorithm = "desede"
+        lateinit var mKey: ByteArray
+        var mKeyIv: ByteArray? = null
+        private lateinit var mChartName: String
+        fun getInstance(key: ByteArray, keyIv: ByteArray?, chartName: String): JDES3
+        {
+            mKey = key
+            mKeyIv = keyIv
+            mChartName = chartName
+            return JDES3()
+        }
     }
 
     /**

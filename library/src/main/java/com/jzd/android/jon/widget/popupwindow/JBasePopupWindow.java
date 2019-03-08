@@ -173,6 +173,7 @@ import java.util.List;
     }
 
     private boolean mWithDimBehind = true;
+
     public JBasePopupWindow withDimBehind(boolean withDimBehind)
     {
         mWithDimBehind = withDimBehind;
@@ -184,6 +185,10 @@ import java.util.List;
      */
     private void lightAlpha(float toAlpha)
     {
+        if(!mWithDimBehind)
+        {
+            return;
+        }
         //        WindowManager.LayoutParams lp = mActivity.getWindow().getAttributes();
         //        lp.alpha = alpha;
         //        mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
@@ -196,14 +201,8 @@ import java.util.List;
         {
             WindowManager.LayoutParams params = window.getAttributes();
             params.alpha = (Float) animation.getAnimatedValue();
-            if(mWithDimBehind)
-            {
-                // 背景图层变暗，如果背景图层是地图之类，会变黑
-                window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            }else
-            {
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            }
+            // 背景图层变暗，如果背景图层是地图之类，会变黑
+            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             window.setAttributes(params);
         });
         valueAnimator.start();

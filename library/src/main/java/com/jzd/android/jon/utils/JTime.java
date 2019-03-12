@@ -16,15 +16,15 @@ public class JTime
     /**
      * yyyy-MM-dd
      */
-    public static final String DATE_PATTERN    = "yyyy-MM-dd";
+    public static final String DATE_PATTERN = "yyyy-MM-dd";
     /**
      * HH:mm:ss
      */
-    public static final String TIME_PATTERN    = "HH:mm:ss";
+    public static final String TIME_PATTERN = "HH:mm:ss";
     /**
      * yyyy-MM-dd HH:mm
      */
-    public static final String ALARM_PATTERN   = "yyyy-MM-dd HH:mm";
+    public static final String ALARM_PATTERN = "yyyy-MM-dd HH:mm";
 
     /**
      * 得到简单的24小时制的时间字符串 2016-3-3 17:56:00
@@ -41,9 +41,9 @@ public class JTime
      */
     public static boolean isSameDay(String time1, String pattern1, String time2, String pattern2)
     {
-        Date     date1 = parseDate(time1, pattern1);
-        Date     date2 = parseDate(time2, pattern2);
-        Calendar c1    = Calendar.getInstance();
+        Date date1 = parseDate(time1, pattern1);
+        Date date2 = parseDate(time2, pattern2);
+        Calendar c1 = Calendar.getInstance();
         c1.setTime(date1);
         Calendar c2 = Calendar.getInstance();
         c2.setTime(date2);
@@ -99,9 +99,9 @@ public class JTime
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
-        int    week  = calendar.get(Calendar.DAY_OF_WEEK);
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
         String descp = getWeekDescp(week);
-        String date  = "";
+        String date = "";
         date = format(new Date(millis), outPattern) + " " + descp;
         return date;
     }
@@ -114,7 +114,7 @@ public class JTime
      */
     public static String formatWeek(long millis)
     {
-        String   week     = "";
+        String week = "";
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
         week = getWeekDescp(calendar.get(Calendar.DAY_OF_WEEK));
@@ -130,9 +130,9 @@ public class JTime
      */
     public static String formatWeek(String time, String pattern)
     {
-        String   week     = "";
+        String week = "";
         Calendar calendar = Calendar.getInstance();
-        Date     date     = parseDate(time, pattern);
+        Date date = parseDate(time, pattern);
         if(date == null)
         {
             return "";
@@ -151,14 +151,14 @@ public class JTime
     public static String formatWeekDate(String time, String inPattern, String outPattern)
     {
         Calendar calendar = Calendar.getInstance();
-        Date     date     = parseDate(time, inPattern);
+        Date date = parseDate(time, inPattern);
         if(date == null)
         {
             return "";
         }
         calendar.setTime(date);
-        int    week   = calendar.get(Calendar.DAY_OF_WEEK);
-        String descp  = getWeekDescp(week);
+        int week = calendar.get(Calendar.DAY_OF_WEEK);
+        String descp = getWeekDescp(week);
         String result = "";
         result = format(date, outPattern) + " " + descp;
         return result;
@@ -238,6 +238,13 @@ public class JTime
         return calendar.getTime();
     }
 
+    public static Date getDateFromCalendar(long millis)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar.getTime();
+    }
+
     /**
      * 讲当前时间转化为默认的时间格式
      *
@@ -285,8 +292,8 @@ public class JTime
      */
     public static String format(String beforeTime, String beforePattern, String afterPattern)
     {
-        String result     = "";
-        Date   beforeDate = parseDate(beforeTime, beforePattern);
+        String result = "";
+        Date beforeDate = parseDate(beforeTime, beforePattern);
         if(beforeDate != null)
         {
             result = format(beforeDate, afterPattern);
@@ -364,8 +371,8 @@ public class JTime
         return format(calendar.getTime(), pattern);
     }
 
-    public static String addTime(String time, String beforePattern, String afterPattern, int year, int month,
-                                 int day, int hour, int minute, int second)
+    public static String addTime(String time, String beforePattern, String afterPattern, int year, int month, int day, int hour, int minute,
+                                 int second)
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(parseDate(time, beforePattern));

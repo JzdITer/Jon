@@ -14,6 +14,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.jzd.android.jon.core.impl.IContextDelegate
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.REQUEST_CODE_PERMISSION
+import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_BOOLEAN
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_BUNDLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_DOUBLE
 import com.jzd.android.jon.core.impl.IContextDelegate.Companion.START_CODE_FLOAT
@@ -290,6 +291,18 @@ open class JBaseActivity : RxAppCompatActivity(), View.OnClickListener, IContext
     fun getStartDouble(): Double
     {
         return intent.getDoubleExtra(START_CODE_DOUBLE, 0.0)
+    }
+
+    fun startWithBoolean(activity: Class<out Activity>, b: Boolean)
+    {
+        val intent = Intent(mContext, activity)
+        intent.putExtra(START_CODE_BOOLEAN, b)
+        start(intent)
+    }
+
+    fun getStartBoolean(def:Boolean): Boolean
+    {
+        return intent.getBooleanExtra(START_CODE_BOOLEAN, def)
     }
 
     fun startWithLong(activity: Class<out Activity>, l: Long)

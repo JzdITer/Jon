@@ -47,3 +47,12 @@ fun List<JMapImpl>.asStringArray(): Array<String>
     }
     return values
 }
+
+fun List<Any>.asJMapList():List<JMapImpl>
+{
+    val list = arrayListOf<JMapImpl>()
+    forEach {
+        list.add(it.toJMap())
+    }
+    return list
+}

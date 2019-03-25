@@ -145,6 +145,7 @@ private class ImgAdapter(val context: Context, val width: Int, val height: Int, 
     fun setAddImgResource(@DrawableRes resId: Int)
     {
         mAddBtn = resId
+        setData(arrayListOf())
     }
 
     private fun checkData(checkData: List<Any>): List<Any>

@@ -19,6 +19,7 @@ class ImgPreviewActivity : BaseActivity()
         val list = getData()
         mIPLinear.setData(list)
 
+        mIPGrid.setAddImgResource(R.drawable.ic_heart)
         mIPGrid.setData(list)
         mIPGrid.setOnPreviewItemClickListener(object : OnSimplePreviewItemClickListener()
         {

@@ -25,7 +25,7 @@ class JZoomImageActivity : JBaseActivity()
     inner class MyAdapter<T> : JPagerAdapter<T>()
     {
         private val views = arrayListOf<View>()
-        private val res = arrayListOf(R.drawable.ic_launcher, R.drawable.jon_ic_img_preview_add, R.drawable.jon_ic_img_preview_delete)
+        private val res = arrayListOf(R.drawable.jon_ic_img_preview_add, R.drawable.jon_ic_img_preview_delete)
         override fun instantiateItem(container: ViewGroup, position: Int): Any
         {
             val view = JZoomImageView(this@JZoomImageActivity)

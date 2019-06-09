@@ -434,4 +434,15 @@ public class JTime
         return calendar;
     }
 
+    /**
+     * 设置Calendar
+     */
+    public static Calendar initCalendar(String time,String patter)
+    {
+        Date date = parseDate(time,patter);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
 }
